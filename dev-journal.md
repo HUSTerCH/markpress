@@ -1,0 +1,9 @@
+# 20260211
+luochang使用poetry完成项目建立，并引入mistune进行Markdown解析，现在可以将Markdown解析成树状结构
+
+# 20260212
+luochang使用 fontforge 搞定了斜体字体，斜体支持regular斜体和bold斜体
+luochang初步搭建好了项目框架，目前支持正文的部分富文本
+
+# 20260213
+luochang完成了引用内容的调试

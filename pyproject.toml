@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "markpress"
+version = "0.1.0"
+description = "A high-quality Markdown to PDF converter."
+authors = ["Chang Luo, skyfengsheng@icloud.com", "Fulin Zhao,154126756@qq.com"]
+readme = "README.md"
+packages = [{include = "markpress", from = "src"}]
+
+# [关键点 1]：显式包含字体文件，否则 pip install 后会丢失字体
+include = ["src/markpress/assets/fonts/*.ttf"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+reportlab = "^4.0"
+mistune = "^3.0"  # 推荐使用 mistune 解析 Markdown，速度快且容易扩展
+click = "^8.1"  # 如果想写更优雅的命令行，建议加上 click
+pygments = "^2.19.2"
+matplotlib = "^3.10.8"
+beautifulsoup4 = "^4.14.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+black = "^24.0"   # 代码格式化
+
+[tool.poetry.scripts]
+# [关键点 2]：安装后，用户在终端输入 'markpress' 就会执行 cli.py 里的 main 函数
+markpress = "markpress.cli:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

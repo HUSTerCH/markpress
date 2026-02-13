@@ -1,0 +1,100 @@
+{
+    "meta": {
+        "name": "Academic Standard",
+        "version": "1.0",
+        "author": "MarkPress Team"
+    },
+    "page": {
+        "size": "A4",
+        "orientation": "portrait",
+        "margin_top": 25,
+        "margin_bottom": 25,
+        "margin_left": 25,
+        "margin_right": 25,
+        "background_color": "#FFFFFF"
+    },
+    "fonts": {
+        "regular": "HarmonySC",
+        "bold": "HarmonySC-Bold",
+        "heading": "HarmonySC-Bold",
+        "code": "JetBrainsMono"
+    },
+    "colors": {
+        "text_primary": "#000000",
+        "text_secondary": "#555555",
+        "link": "#0000FF",
+        "border": "#CCCCCC"
+    },
+    "styles": {
+        "body": {
+            "font_size": 10.5,
+            "leading": 16,
+            "alignment": "JUSTIFY",
+            "space_after": 8
+        },
+        "headings": {
+            "h1": {
+                "font_size": 22,
+                "leading": 28,
+                "color": "#000000",
+                "space_before": 16,
+                "space_after": 16,
+                "align": "CENTER"
+            },
+            "h2": {
+                "font_size": 16,
+                "leading": 22,
+                "color": "#333333",
+                "space_before": 12,
+                "space_after": 10,
+                "align": "LEFT"
+            },
+            "h3": {
+                "font_size": 14,
+                "leading": 20,
+                "color": "#333333",
+                "space_before": 10,
+                "space_after": 8,
+                "align": "LEFT"
+            },
+            "h4": {
+                "font_size": 12,
+                "leading": 16,
+                "color": "#444444",
+                "space_before": 6,
+                "space_after": 6,
+                "align": "LEFT"
+            }
+        },
+        "code": {
+            "style_name": "friendly",
+            "font_size": 9,
+            "background_color": "#F0F0F0",
+            "border_color": "#E0E0E0",
+            "show_line_numbers": false,
+            "highlight_colors": {
+                "Keyword": "#d73a49",
+                "Name.Function": "#6f42c1",
+                "Name.Class": "#6f42c1",
+                "String": "#032f62",
+                "Comment": "#6a737d",
+                "Number": "#005cc5",
+                "Operator": "#d73a49",
+                "Text": "#24292e"
+            }
+        },
+        "table": {
+            "header_bg": "#E0E0E0",
+            "header_text": "#000000",
+            "row_bg_even": "#FFFFFF",
+            "row_bg_odd": "#F9F9F9",
+            "grid_color": "#666666"
+        },
+        "quote": {
+            "border_color": "#D0D0D0",
+            "border_width": 2,
+            "left_indent": 12,
+            "text_color": "#999999"
+        }
+    }
+}

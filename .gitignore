@@ -1,0 +1,12 @@
+# .gitignore
+__pycache__/
+*.py[cod]
+*$py.class
+dist/
+build/
+*.egg-info/
+.venv/
+.idea/
+.vscode/
+*.pdf
+.DS_Store

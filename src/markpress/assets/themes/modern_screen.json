@@ -1,0 +1,100 @@
+{
+    "meta": {
+        "name": "Modern Screen Dark",
+        "version": "1.0",
+        "author": "MarkPress Team"
+    },
+    "page": {
+        "size": "A3",
+        "orientation": "portrait",
+        "margin_top": 15,
+        "margin_bottom": 15,
+        "margin_left": 15,
+        "margin_right": 15,
+        "background_color": "#1E1E1E"
+    },
+    "fonts": {
+        "regular": "MS-YaHei",
+        "bold": "MS-YaHei-Bold",
+        "heading": "MS-YaHei-Bold",
+        "code": "JetBrainsMono"
+    },
+    "colors": {
+        "text_primary": "#D4D4D4",
+        "text_secondary": "#A0A0A0",
+        "link": "#3794FF",
+        "border": "#404040"
+    },
+    "styles": {
+        "body": {
+            "font_size": 12,
+            "leading": 20,
+            "alignment": "LEFT",
+            "space_after": 12
+        },
+        "headings": {
+            "h1": {
+                "font_size": 28,
+                "leading": 34,
+                "color": "#569CD6",
+                "space_before": 24,
+                "space_after": 20,
+                "align": "LEFT"
+            },
+            "h2": {
+                "font_size": 22,
+                "leading": 28,
+                "color": "#4EC9B0",
+                "space_before": 20,
+                "space_after": 16,
+                "align": "LEFT"
+            },
+            "h3": {
+                "font_size": 18,
+                "leading": 24,
+                "color": "#DCDCAA",
+                "space_before": 16,
+                "space_after": 12,
+                "align": "LEFT"
+            },
+            "h4": {
+                "font_size": 14,
+                "leading": 20,
+                "color": "#C586C0",
+                "space_before": 12,
+                "space_after": 10,
+                "align": "LEFT"
+            }
+        },
+        "code": {
+            "style_name": "monokai",
+            "font_size": 10,
+            "background_color": "#2D2D2D",
+            "border_color": "#555555",
+            "show_line_numbers": true,
+            "highlight_colors": {
+                "Keyword": "#C586C0",
+                "Name.Function": "#DCDCAA",
+                "Name.Class": "#4EC9B0",
+                "String": "#CE9178",
+                "Comment": "#6A9955",
+                "Number": "#B5CEA8",
+                "Operator": "#D4D4D4",
+                "Text": "#D4D4D4"
+            }
+        },
+        "table": {
+            "header_bg": "#333333",
+            "header_text": "#FFFFFF",
+            "row_bg_even": "#252526",
+            "row_bg_odd": "#1E1E1E",
+            "grid_color": "#555555"
+        },
+        "quote": {
+            "border_color": "#404040",
+            "border_width": 2,
+            "left_indent": 12,
+            "text_color": "#A0A0A0"
+        }
+    }
+}
