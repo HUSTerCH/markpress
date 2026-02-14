@@ -1,3 +1,6 @@
+import os
+import tempfile
+
 import mistune
 from .core import MarkPressEngine
 
@@ -43,7 +46,9 @@ def convert_markdown_file(input_path: str, output_path: str, theme: str = "acade
     _render_ast(writer, ast)
 
     # 6. 保存
-    writer.save()
+    writer.save_pdf()
+    writer.close_katex_render()
+    # writer.try_trigger_autosave()
 
 
 def _render_ast(writer: MarkPressEngine, tokens: list):
@@ -58,12 +63,12 @@ def _render_ast(writer: MarkPressEngine, tokens: list):
         # --- 标题 (Heading) ---
         if t_type == 'heading':
             level = attrs.get('level', 1)
-            text = _render_inline(children)
+            text = _render_inline(writer, children)
             writer.add_heading(text, level=level)
 
         # --- 段落 (Paragraph) ---
         elif t_type == 'paragraph':
-            text = _render_inline(children)
+            text = _render_inline(writer, children)
             # 过滤掉空的图片段落（如果图片被单独处理了）
             if text.strip():
                 writer.add_text(text)
@@ -106,10 +111,11 @@ def _render_ast(writer: MarkPressEngine, tokens: list):
             writer.end_quote()
         elif t_type == 'block_math':
             # 行间公式
-            print("行间公式，暂时跳过")
+            # print("行间公式，暂时跳过")
+            writer.add_formula(token.get('raw', ''))
 
 
-def _render_inline(tokens: list) -> str:
+def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
     """
     将 Inline Tokens (Text, Strong, Link, Image) 转换为
     ReportLab 支持的 XML 字符串 (例如 <b>Text</b>)
@@ -122,7 +128,7 @@ def _render_inline(tokens: list) -> str:
         t_type = tok.get('type')
 
         if t_type == 'text':
-            #普通text，必须转义 XML 字符，防止 & < > 破坏 PDF 结构
+            # 普通text，必须转义 XML 字符，防止 & < > 破坏 PDF 结构
             text = tok.get('raw', '').replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
             result.append(text)
         elif t_type == 'inline_html':
@@ -130,12 +136,12 @@ def _render_inline(tokens: list) -> str:
             result.append(tok.get('raw', ''))
         elif t_type == 'strong':
             # 加粗字体
-            result.append(f"<b>{_render_inline(tok.get('children'))}</b>")
+            result.append(f"<b>{_render_inline(writer, tok.get('children'))}</b>")
         elif t_type == 'emphasis':
             # 斜体字体
             # ReportLab 的 Italic 需要字体支持，否则可能显示方框
             # 只要注册了 Italic 字体就可以用 <i>
-            result.append(f"<i>{_render_inline(tok.get('children'))}</i>")
+            result.append(f"<i>{_render_inline(writer, tok.get('children'))}</i>")
 
         elif t_type == 'codespan':
             # 行内代码块，就是被``包裹的文字
@@ -143,11 +149,30 @@ def _render_inline(tokens: list) -> str:
             # 给行内代码加个背景色需要高级设置，这里简单加粗或换字体
             result.append(f'<font face="Courier">{code}</font>')
         elif t_type == 'inline_math':
-            # 行内公式
-            print("行内公式，暂时跳过")
+            # 行内公式，生成 <img/> 标签
+            # 这里的 raw 就是 latex 源码
+            try:
+                latex = tok.get('raw', '')
+                png_bytes, w, h = writer.katex_renderer.render_image(tok.get('raw', ''), is_block=False)
+                if png_bytes:
+                    # 走katex
+                    fd, path = tempfile.mkstemp(suffix=".png")
+                    os.write(fd, png_bytes)
+                    os.close(fd)
+
+                    # 计算下沉 (valign)
+                    # KaTeX 的图片通常重心居中，行内公式需要下沉约 1/3 高度
+                    valign = f"-{h * 0.3}"
+                    xml_img = f'<img src="{path}" width="{w}" height="{h}" valign="{valign}"/>'
+                else:
+                    # 走matplot
+                    xml_img = writer.formula_renderer.render_inline()
+            except Exception:
+                xml_img = f"<font color='red'>${latex}$</font>"
+            result.append(xml_img)
         elif t_type == 'link':
             # 链接
-            text = _render_inline(tok.get('children'))
+            text = _render_inline(writer, tok.get('children'))
             href = tok.get('attrs', {}).get('url', '')
             # ReportLab 的超链接标签
             result.append(f'<a href="{href}" color="blue">{text}</a>')
@@ -168,7 +193,7 @@ def _render_inline(tokens: list) -> str:
     return "".join(result)
 
 
-def _parse_list_items(list_children: list) -> list:
+def _parse_list_items(writer: MarkPressEngine, list_children: list) -> list:
     """
     辅助函数：把 mistune 的 list tokens 解析成 writer.add_list 需要的嵌套列表结构
     """
@@ -181,10 +206,10 @@ def _parse_list_items(list_children: list) -> list:
 
             for child in item.get('children', []):
                 if child.get('type') == 'paragraph':
-                    current_item_text = _render_inline(child.get('children'))
+                    current_item_text = _render_inline(writer, child.get('children'))
                 elif child.get('type') == 'list':
                     # 递归处理嵌套列表
-                    sub_list = _parse_list_items(child.get('children'))
+                    sub_list = _parse_list_items(writer, child.get('children'))
 
             result.append(current_item_text)
             if sub_list:
@@ -192,7 +217,7 @@ def _parse_list_items(list_children: list) -> list:
     return result
 
 
-def _parse_table(table_children: list) -> list:
+def _parse_table(writer: MarkPressEngine, table_children: list) -> list:
     """
     辅助函数：解析表格
     """
@@ -207,7 +232,7 @@ def _parse_table(table_children: list) -> list:
                     # cell 的 children 里通常直接就是 text，或者 paragraph
                     # 简化处理：直接提取文本
                     # 注意：Mistune 3 的 table cell 结构可能比较深
-                    cell_content = _render_inline(cell.get('children', []))
+                    cell_content = _render_inline(writer, cell.get('children', []))
                     current_row.append(cell_content)
                 rows.append(current_row)
     return rows

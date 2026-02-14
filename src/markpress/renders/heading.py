@@ -29,7 +29,7 @@ class HeadingRenderer(BaseRenderer):
                 alignment=align_map.get(h_style_conf.align, TA_LEFT),
                 spaceBefore=h_style_conf.space_before,
                 spaceAfter=h_style_conf.space_after,
-                keepWithNext=True  # 标题永远不要和正文分家
+                keepWithNext=False
             )
             self.styles.add(ps)
 
