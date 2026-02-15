@@ -12,6 +12,7 @@ from reportlab.platypus.flowables import HRFlowable, Image
 
 from markpress.renders.formular import FormulaRenderer
 from markpress.renders.katex import KatexRenderer
+from markpress.renders.list import ListRenderer
 from src.markpress.renders.code import CodeRenderer
 from src.markpress.renders.heading import HeadingRenderer
 from src.markpress.renders.text import TextRenderer
@@ -34,6 +35,7 @@ class MarkPressEngine:
         self.code_renderer = CodeRenderer(self.config, self.stylesheet)
         self.formula_renderer = FormulaRenderer(self.config, self.stylesheet)
         self.katex_renderer = KatexRenderer(self.config, self.stylesheet)
+        self.list_renderer = ListRenderer(self.config, self.stylesheet)
 
         # self.story 是最终输出列表
         # self.context_stack 用于存储嵌套层级的 (list_obj, available_width)
@@ -272,6 +274,13 @@ class MarkPressEngine:
             dash=None  # 如果想做虚线，可以设为 [2, 4]
         )
         self.current_story.append(hr)
+        self.try_trigger_autosave()
+
+    def add_list(self, items: list, is_ordered: bool = False):
+        """添加列表"""
+        flowables = self.list_renderer.render(items, is_ordered)
+        self.current_story.extend(flowables)
+        # 列表结束后加一点间距
         self.try_trigger_autosave()
 
     def add_code(self, code: str, language: str = None):

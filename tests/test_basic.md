@@ -17,6 +17,37 @@
 
 再来试试font设置<font color="red">红色字体</font>和span设置<span style="background: yellow">黄色背景</span>
 
+再来试试多级列表：
+
+1. 一级列表结合行内公式$\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla) \mathbf{u} = -\frac{1}{\rho} \nabla p + \nu \nabla^2 \mathbf{u} + \mathbf{g}$
+2. 一级列表**加粗**
+3. 一级列表*斜体*
+   1. 二级列表***加粗斜体***
+   2. 二级列表
+   3. 二级列表
+      1. 三级列表
+      2. 三级列表
+      3. 三级列表
+         1. 四级列表
+
+> - 嵌套的列表
+> - 嵌套的列表
+>   - 嵌套的二级列表
+> 
+> 1. 嵌套的一级列表
+> 2. 嵌套的一级列表
+>    1. 嵌套的二级列表
+
+- 一级无序
+- 一级无序
+- 一级无序
+  - 二级无序
+  - 二级无序
+  - 二级无序
+    - 三级无序
+    - 三级无序
+      - 四级无序
+
 # MarkPress 公式压力测试
 
 ## 1. 极限行内混排 (Inline Alignment)

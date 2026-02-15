@@ -81,11 +81,10 @@ def _render_ast(writer: MarkPressEngine, tokens: list):
 
         # --- 列表 (List) ---
         elif t_type == 'list':
-            print("识别到list，暂时跳过")
-            # 列表需要递归处理，这里简化逻辑，把列表项转为 Python list 传给 writer
-            # ordered = attrs.get('ordered', False)
-            # list_items = _parse_list_items(children)
-            # writer.add_list(list_items, is_ordered=attrs.get('ordered', False))
+            # print("识别到list，暂时跳过")
+            ordered = attrs.get('ordered', False)
+            list_items = _parse_list_items(writer, children)
+            writer.add_list(list_items, is_ordered=ordered)
 
         # --- 表格 (Table) ---
         elif t_type == 'table':
@@ -193,27 +192,45 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
     return "".join(result)
 
 
-def _parse_list_items(writer: MarkPressEngine, list_children: list) -> list:
+def _parse_list_items(writer, tokens) -> list:
     """
-    辅助函数：把 mistune 的 list tokens 解析成 writer.add_list 需要的嵌套列表结构
+    将 mistune 的 list_item tokens 转换为 ['Item', ['SubItem'], 'Item'] 格式
     """
     result = []
-    for item in list_children:
-        if item.get('type') == 'list_item':
-            # list_item 的 children 通常是一个 paragraph 或者是 paragraph + nested list
-            current_item_text = ""
+    for tok in tokens:
+        if tok['type'] == 'list_item':
+            # list_item 的 children 可能包含 paragraph, text, 或者是嵌套的 list
+            li_children = tok.get('children', [])
+
+            # 1. 提取当前项的文本 (通常在第一个 paragraph 里)
+            current_text = ""
             sub_list = None
 
-            for child in item.get('children', []):
-                if child.get('type') == 'paragraph':
-                    current_item_text = _render_inline(writer, child.get('children'))
-                elif child.get('type') == 'list':
-                    # 递归处理嵌套列表
-                    sub_list = _parse_list_items(writer, child.get('children'))
+            for child in li_children:
+                if child['type'] == 'block_code':
+                     # 列表里嵌代码块比较麻烦，这里简化处理，或者暂不支持
+                     continue
 
-            result.append(current_item_text)
+                if child['type'] == 'list':
+                    # 发现嵌套列表，递归解析
+                    sub_list = _parse_list_items(writer, child['children'])
+                else:
+                    # 这是一个文本节点 (paragraph 或 text)
+                    # 使用 _render_inline 获取 XML 文本
+                    # 注意：如果是 paragraph，child['children'] 才是 inline tokens
+                    if 'children' in child:
+                         current_text += _render_inline(writer, child['children'])
+                    elif 'raw' in child:
+                         current_text += child['raw']
+
+            # 2. 添加到结果
+            if current_text:
+                result.append(current_text)
+
+            # 3. 如果有子列表，紧跟在文本后面添加
             if sub_list:
                 result.append(sub_list)
+
     return result
 
 
