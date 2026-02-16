@@ -17,6 +17,7 @@ click = "^8.1"  # 如果想写更优雅的命令行，建议加上 click
 pygments = "^2.19.2"
 matplotlib = "^3.10.8"
 beautifulsoup4 = "^4.14.3"
+playwright = "^1.58.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0"

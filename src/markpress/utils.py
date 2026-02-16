@@ -23,3 +23,12 @@ def get_theme_path(filename: str):
         yield str(path)
 
 
+@contextmanager
+def get_katex_path():
+    ref = importlib.resources.files('markpress.assets') / 'katex'
+    with importlib.resources.as_file(ref) as path:
+        if not path.exists():
+            raise FileNotFoundError(f"KaTeX assets directory missing at: {path}")
+        yield str(path)
+
+
