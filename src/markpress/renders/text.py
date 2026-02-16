@@ -1,47 +1,14 @@
-# from reportlab.platypus import Paragraph
-# from reportlab.lib.styles import ParagraphStyle
-# from reportlab.lib import colors
-# from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
-# from .base import BaseRenderer
-#
-#
-# class TextRenderer(BaseRenderer):
-#     def __init__(self, config, stylesheet):
-#         super().__init__(config, stylesheet)
-#         self._init_body_style()
-#
-#     def _init_body_style(self):
-#         """初始化基础正文样式"""
-#         if "Body_Text" not in self.styles:
-#             conf = self.config.styles.body
-#             align_map = {'LEFT': TA_LEFT, 'CENTER': TA_CENTER, 'RIGHT': TA_RIGHT, 'JUSTIFY': TA_JUSTIFY}
-#
-#             self.styles.add(ParagraphStyle(
-#                 name="Body_Text",
-#                 fontName=self.config.fonts.regular,
-#                 fontSize=conf.font_size,
-#                 leading=conf.leading,
-#                 alignment=align_map.get(conf.alignment, TA_JUSTIFY),
-#                 spaceAfter=conf.space_after,
-#                 textColor=colors.HexColor(self.config.colors.text_primary),
-#                 wordWrap='CJK'  # 必须开启，否则中文不换行
-#             ))
-#
-#     def render(self, xml_text: str, **kwargs):
-#         """
-#         :param xml_text: 已经转义并包含 XML 标签的文本 (如 <b>Text</b>)
-#         """
-#         # 注意：这里的 xml_text 必须已经在外部 (Converter层) 处理过转义
-#         print(xml_text)
-#         return [Paragraph(xml_text, self.styles["Body_Text"])]
-
+import copy
 import re
-from bs4 import BeautifulSoup, NavigableString  # [NEW]
-from reportlab.platypus import Paragraph
-from reportlab.lib.styles import ParagraphStyle
+
+from bs4 import BeautifulSoup  # [NEW]
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.platypus import Paragraph
+
 from .base import BaseRenderer
+from ..inherited.SmartInlineImgParagraph import SmartInlineImgParagraph
 
 
 class TextRenderer(BaseRenderer):
@@ -64,74 +31,113 @@ class TextRenderer(BaseRenderer):
                 spaceAfter=conf.space_after,
                 textColor=colors.HexColor(self.config.colors.text_primary),
                 wordWrap='CJK',
-                splitLongWords=True
+                splitLongWords=True,
+                keepWithNext=False
             ))
 
     def render(self, xml_text: str, **kwargs):
         # 清洗并修复 HTML 结构
-        clean_text = self._sanitize_html_for_reportlab(xml_text).replace("\n","")
-        return [Paragraph(clean_text, self.styles["Body_Text"])]
+        clean_text = self._sanitize_html_for_reportlab(xml_text).replace("\n", "")
+        img_heights = [float(h) for h in re.findall(r'height="([\d\.]+)"', clean_text)]
+        max_img_h = max(img_heights) if img_heights else 0
+
+        # 2. 获取基础样式
+        base_style = self.styles["Body_Text"]
+        final_style = base_style
+        required_leading = max_img_h + 4
+
+        if required_leading > base_style.leading:
+            # 必须 copy 一份样式，否则会修改全局单例，导致后面的普通段落也变得很宽
+            final_style = copy.copy(base_style)
+            final_style.leading = required_leading
+            # 可选：如果公式太高，让它稍微居中一点，可以增加 spaceBefore/After
+            # final_style.spaceAfter += 2
+        if "<img" in clean_text:
+            print("这是有img的clean text：",clean_text)
+            return [SmartInlineImgParagraph(clean_text, final_style)]
+        else:
+            return [Paragraph(clean_text, self.styles["Body_Text"])]
+
+
+
 
     def _sanitize_html_for_reportlab(self, text: str) -> str:
         """
-        使用 BeautifulSoup 修复畸形 HTML，并将 CSS 样式转换为 ReportLab XML 属性。
-        解决:
-        1. 结构错误 (如 </font></font>)
-        2. 样式转换 (span style -> font color/backColor)
+        工程化清洗：
+        1. 保护 <img ... />
+        2. BS4 结构修复
+        3. 还原 img
+        4. 清除空标签
         """
         if not text:
             return ""
 
-        # 1. 使用 html.parser 宽松解析 (自动修复闭合标签错误)
-        # 即使输入是 "a</font></font>b", BS4 也会把它修成 "a</font>b" (忽略多余的)
-        soup = BeautifulSoup(text, "html.parser")
+        # --- [Step 1] 保护 <img /> 标签 ---
+        protected_imgs = {}
 
-        # 2. 遍历并转换标签 (ReportLab 不支持 span style，只支持 font)
-        # find_all 会递归查找
+        def protect_match(match):
+            key = f"__IMG_PROTECT_{len(protected_imgs)}__"
+            protected_imgs[key] = match.group(0)
+            return key
+
+        text_safe = re.sub(r'<img[^>]+>', protect_match, text)
+
+        # --- [Step 2] BS4 清洗 ---
+        soup = BeautifulSoup(text_safe, "html.parser")
+
+        # 转换 span -> font
         for tag in soup.find_all("span"):
             if not tag.has_attr("style"):
-                print("span 没有style")
-                # 无样式的 span，直接拆包 (Unwrap)，只保留内容
                 tag.unwrap()
                 continue
 
-            # 解析 style 字符串
             style_str = tag["style"]
             styles = self._parse_css_style(style_str)
 
-            # 转换为 ReportLab 的 font 标签
-            # 创建新 tag
             new_tag = soup.new_tag("font")
-
-            # 迁移内容
             new_tag.extend(tag.contents)
 
-            # 映射属性
             if "color" in styles:
                 new_tag["color"] = styles["color"]
             if "background-color" in styles:
                 new_tag["backColor"] = styles["background-color"]
             if "background" in styles:
                 new_tag["backColor"] = styles["background"]
-            # 还可以支持 face (font-family) 等
 
-            # 替换旧 tag
             tag.replace_with(new_tag)
 
-        # 3. 处理 ReportLab 不支持的其他标签 (如 div, p 等)
-        # 如果 Markdown 解析器生成了 div，我们需要把它拆掉，只留文字
-        # 允许的白名单: b, i, u, strike, super, sub, font, a, br, img
-        ALLOWED_TAGS = {'b', 'i', 'u', 'strike', 'sup', 'sub', 'font', 'a', 'br', 'img', 'strong', 'em'}
-
+        # 白名单过滤
+        ALLOWED_TAGS = {'b', 'i', 'u', 'strike', 'sup', 'sub', 'font', 'a', 'br', 'strong', 'em'}
         for tag in soup.find_all(True):
             if tag.name not in ALLOWED_TAGS:
-                # 遇到不支持的标签 (如 div, span剩下的)，直接拆包，保留内部文字和子标签
-                # 这样可以防止 ReportLab 报错
                 tag.unwrap()
 
-        # 4. 输出修正后的 XML
-        # decode_contents() 返回标签内的 XML 字符串，不包含最外层的 document 结构
-        return str(soup)
+        clean_html = str(soup)
+
+        # --- [Step 3] 还原 <img /> (带空格) ---
+        for key, original_img_tag in protected_imgs.items():
+            # 确保原始标签一定是自闭合的，并且斜杠前有空格
+            tag_content = original_img_tag.strip()
+
+            # 如果是 <img ...> (没闭合) -> <img ... />
+            if not tag_content.endswith("/>"):
+                tag_content = tag_content.rstrip(">") + " />"
+            # 如果是 <img .../> (紧凑闭合) -> <img ... /> (加空格)
+            elif tag_content.endswith("/>") and not tag_content.endswith(" />"):
+                tag_content = tag_content[:-2] + " />"
+
+            clean_html = clean_html.replace(key, tag_content)
+
+        # --- [Step 4] 最后的防线：清理空标签 ---
+        # 空的 font/b/i 标签会导致 CJK Crash，必须清理
+        # 使用正则循环清理，直到没有空标签为止 (处理嵌套空标签 <b><i></i></b>)
+        # 1. 清理空 font
+        clean_html = re.sub(r'<font[^>]*>\s*</font>', '', clean_html)
+        # 2. 清理空 b/i/u/strong/em
+        clean_html = re.sub(r'<(b|i|u|strong|em)[^>]*>\s*</\1>', '', clean_html)
+        # print("清洗前：", text)
+        # print("清洗后：", clean_html)
+        return clean_html
 
     def _parse_css_style(self, style_str: str) -> dict:
 

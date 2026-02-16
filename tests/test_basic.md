@@ -17,12 +17,84 @@
 
 再来试试font设置<font color="red">红色字体</font>和span设置<span style="background: yellow">黄色背景</span>
 
-这是行内公式：$E=mc^2$
+再来试试多级列表：
 
-这是行间公式：
+1. 一级列表结合行内公式$\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla) \mathbf{u} = -\frac{1}{\rho} \nabla p + \nu \nabla^2 \mathbf{u} + \mathbf{g}$
+2. 一级列表**加粗**
+3. 一级列表*斜体*
+   1. 二级列表***加粗斜体***
+   2. 二级列表
+   3. 二级列表
+      1. 三级列表
+      2. 三级列表
+      3. 三级列表
+         1. 四级列表
+
+> - 嵌套的列表
+> - 嵌套的列表
+>   - 嵌套的二级列表
+> 
+> 1. 嵌套的一级列表
+> 2. 嵌套的一级列表
+>    1. 嵌套的二级列表
+
+- 一级无序
+- 一级无序
+- 一级无序
+  - 二级无序
+  - 二级无序
+  - 二级无序
+    - 三级无序
+    - 三级无序
+      - 四级无序
+
+# MarkPress 公式压力测试
+
+## 1. 极限行内混排 (Inline Alignment)
+我们从最基础的 $E=mc^2$ 开始，然后迅速进入复杂模式。
+在量子场论中，路径积分的形式 $Z = \int \mathcal{D}\phi \, e^{i \int d^4x \mathcal{L}}$ 是核心。
+即使是简单的泰勒展开 $f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x-a)^n$ 也能测试分数的垂直对齐。
+如果你的渲染器不够强，这个嵌入的矩阵$\begin{bmatrix} \frac{1}{3}&\frac{2}{3}&0\\ \frac{2}{9}&\frac{5}{9}&\frac{2}{9}\\ 0&\frac{1}{3}&\frac{2}{3}\\ \end{bmatrix}$可能会把行高撑爆，或者基线乱飞。
+再来试试超长的公式，希望不要再被撑爆了：$3 = \sqrt{1 + 2\sqrt{1 + 3\sqrt{1 + 4\sqrt{1 + 5\sqrt{1 + \cdots}}}}}$
+
+## 2. 纳维-斯托克斯方程 (Navier-Stokes)
+流体力学核心方程，测试 **矢量算符 ($\nabla$)**、**偏微分** 和 **长公式缩放**：
+$$
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla) \mathbf{u} = -\frac{1}{\rho} \nabla p + \nu \nabla^2 \mathbf{u} + \mathbf{g}
+$$
+
+这是行间公式，验证矩阵是否可以转换：
 
 $$
-x=\frac{-b±\sqrt{b^2-4ac}}{2a}
+\begin{bmatrix}
+\frac{1}{3}&\frac{2}{3}&0\\
+\frac{2}{9}&\frac{5}{9}&\frac{2}{9}\\
+0&\frac{1}{3}&\frac{2}{3}\\
+\end{bmatrix}
+$$
+
+## 3. 拉马努金无穷根式 (Nested Radicals)
+这是对 **垂直高度计算** 和 **嵌套渲染** 的终极考验。如果图片裁剪（bbox_tight）有问题，最外层的根号会被切掉：
+$$
+3 = \sqrt{1 + 2\sqrt{1 + 3\sqrt{1 + 4\sqrt{1 + 5\sqrt{1 + \cdots}}}}}
+$$
+
+## 4. 广义相对论场方程 (General Relativity)
+测试 **张量下标**、**希腊字母** 和 **分式组合**：
+$$
+R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}
+$$
+
+## 5. 柯西积分公式 (Cauchy Integral Formula)
+测试 **闭合围道积分** 和 **大括号**：
+$$
+f^{(n)}(a) = \frac{n!}{2\pi i} \oint_{\gamma} \frac{f(z)}{(z-a)^{n+1}} \, dz
+$$
+
+## 6. 标准模型拉格朗日量 (Standard Model - The Beast)
+测试 **超高密度符号**。如果渲染出来糊成一团，说明 DPI 不够；如果溢出页面，说明自动缩放失效：
+$$
+\mathcal{L} = -\frac{1}{4} F_{\mu\nu} F^{\mu\nu} + i \bar{\psi} \not D \psi + h.c. + \psi_i y_{ij} \psi_j \phi + h.c. + |D_\mu \phi|^2 - V(\phi)
 $$
 
 
@@ -59,16 +131,7 @@ def convert_markdown_file(input_path: str, output_path: str, theme: str = "acade
     # 初始化 Mistune
     markdown = mistune.create_markdown(
         renderer=None,  # 做解析，不是渲染
-        plugins=[
-            'speedup',
-            'strikethrough',
-            'mark',
-            'insert',
-            'superscript',
-            'subscript',
-            'footnotes',
-            'table',
-            'url',
+        plugins=['speedup','strikethrough','mark','insert','superscript','subscript','footnotes','table','url',
             'abbr',
             'def_list',
             'math',
@@ -88,162 +151,6 @@ def convert_markdown_file(input_path: str, output_path: str, theme: str = "acade
 
     # 6. 保存
     writer.save()
-
-
-def _render_ast(writer: MarkPressEngine, tokens: list):
-    """
-    AST 遍历调度器 (Block Level)
-    """
-    for token in tokens:
-        t_type = token.get('type')
-        children = token.get('children')
-        attrs = token.get('attrs', {})
-
-        # --- 标题 (Heading) ---
-        if t_type == 'heading':
-            level = attrs.get('level', 1)
-            text = _render_inline(children)
-            writer.add_heading(text, level=level)
-
-        # --- 段落 (Paragraph) ---
-        elif t_type == 'paragraph':
-            text = _render_inline(children)
-            # 过滤掉空的图片段落（如果图片被单独处理了）
-            if text.strip():
-                writer.add_text(text)
-
-        # --- 代码块 (Block Code) ---
-        elif t_type == 'block_code':
-            code = token.get('raw', '')
-            info = attrs.get('info', '')  # 语言，例如 python
-            writer.add_code(code, language=info)
-
-        # --- 列表 (List) ---
-        elif t_type == 'list':
-            print("识别到list，暂时跳过")
-            # 列表需要递归处理，这里简化逻辑，把列表项转为 Python list 传给 writer
-            # ordered = attrs.get('ordered', False)
-            # list_items = _parse_list_items(children)
-            # writer.add_list(list_items, is_ordered=attrs.get('ordered', False))
-
-        # --- 表格 (Table) ---
-        elif t_type == 'table':
-            print("识别到table，暂时跳过")
-            # table_data = _parse_table(children)
-            # if table_data:
-            #     writer.add_table(table_data)
-
-        # --- 分隔线 (Thematic Break) ---
-        elif t_type == 'thematic_break':
-            writer.add_spacer(height_mm=2)
-            # 可以画一条线，这里暂时用空行代替
-
-        # --- 引用 (Blockquote) ---
-        elif t_type == 'blockquote':
-            # 引用里的内容其实也是 Block，递归调用
-            # 暂时简单处理：遍历子元素，把文本加个前缀或颜色
-            # 更好的做法是给 writer 加一个 add_blockquote 方法
-            for child in children:
-                if child['type'] == 'paragraph':
-                    text = _render_inline(child['children'])
-                    # 模拟引用样式：灰色斜体 (需要 writer 支持)
-                    writer.add_text(text)
-
-
-def _render_inline(tokens: list) -> str:
-    """
-    将 Inline Tokens (Text, Strong, Link, Image) 转换为
-    ReportLab 支持的 XML 字符串 (例如 <b>Text</b>)
-    """
-    if not tokens:
-        return ""
-
-    result = []
-    for tok in tokens:
-        t_type = tok.get('type')
-
-        if t_type == 'text':
-            # 必须转义 XML 字符，防止 & < > 破坏 PDF 结构
-            text = tok.get('raw', '').replace('&', '&').replace('<', '<').replace('>', '>')
-            result.append(text)
-
-        elif t_type == 'strong':
-            result.append(f"<b>{_render_inline(tok.get('children'))}</b>")
-
-        elif t_type == 'emphasis':
-            # ReportLab 的 Italic 需要字体支持，否则可能显示方框
-            # 只要你注册了 Italic 字体就可以用 <i>
-            result.append(f"<i>{_render_inline(tok.get('children'))}</i>")
-
-        elif t_type == 'codespan':
-            code = tok.get('raw', '').replace('&', '&').replace('<', '<').replace('>', '>')
-            # 给行内代码加个背景色需要高级设置，这里简单加粗或换字体
-            result.append(f'<font face="Courier" size="10">{code}</font>')
-
-        elif t_type == 'link':
-            text = _render_inline(tok.get('children'))
-            href = tok.get('attrs', {}).get('url', '')
-            # ReportLab 的超链接标签
-            result.append(f'<a href="{href}" color="blue">{text}</a>')
-
-        elif t_type == 'image':
-            # 图片处理比较复杂，ReportLab 需要本地路径
-            # 这里暂时只显示图片 Alt 文本，防止报错
-            alt = tok.get('attrs', {}).get('alt', 'Image')
-            result.append(f'[Image: {alt}]')
-
-        elif t_type == 'softbreak':
-            result.append(" ")  # 换行变空格
-
-        elif t_type == 'linebreak':
-            result.append("<br/>")  # 强制换行
-
-    return "".join(result)
-
-
-def _parse_list_items(list_children: list) -> list:
-    """
-    辅助函数：把 mistune 的 list tokens 解析成 writer.add_list 需要的嵌套列表结构
-    """
-    result = []
-    for item in list_children:
-        if item.get('type') == 'list_item':
-            # list_item 的 children 通常是一个 paragraph 或者是 paragraph + nested list
-            current_item_text = ""
-            sub_list = None
-
-            for child in item.get('children', []):
-                if child.get('type') == 'paragraph':
-                    current_item_text = _render_inline(child.get('children'))
-                elif child.get('type') == 'list':
-                    # 递归处理嵌套列表
-                    sub_list = _parse_list_items(child.get('children'))
-
-            result.append(current_item_text)
-            if sub_list:
-                result.append(sub_list)
-    return result
-
-
-def _parse_table(table_children: list) -> list:
-    """
-    辅助函数：解析表格
-    """
-    rows = []
-    # table_head, table_body
-    for section in table_children:
-        if section.get('type') in ['table_head', 'table_body']:
-            for row in section.get('children', []):
-                current_row = []
-                for cell in row.get('children', []):
-                    # cell -> paragraph / text
-                    # cell 的 children 里通常直接就是 text，或者 paragraph
-                    # 简化处理：直接提取文本
-                    # 注意：Mistune 3 的 table cell 结构可能比较深
-                    cell_content = _render_inline(cell.get('children', []))
-                    current_row.append(cell_content)
-                rows.append(current_row)
-    return rows
 ```
 
 ## 3. 样式层级 (Hierarchy)
@@ -277,4 +184,6 @@ def _parse_table(table_children: list) -> list:
 ```
 
 ## 4. 图片测试
+这是一张孙燕姿的照片：
+
 ![Alt Text](SunYZ.png)

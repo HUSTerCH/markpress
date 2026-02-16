@@ -1,4 +1,5 @@
 import copy
+import io
 import sys
 
 from reportlab.lib import colors, pagesizes
@@ -7,19 +8,24 @@ from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, PageBreak, Spacer, Table, TableStyle  # 引入 Table
-from reportlab.platypus.flowables import HRFlowable
+from reportlab.platypus.flowables import HRFlowable, Image
 
+
+
+from .renders.image import ImageRenderer
+from .renders.formular import FormulaRenderer
+from .renders.katex import KatexRenderer
+from .renders.list import ListRenderer
 from .renders.code import CodeRenderer
 from .renders.heading import HeadingRenderer
 from .renders.text import TextRenderer
-from .renders.image import ImageRenderer
 from .themes import StyleConfig
 from .utils import get_font_path
-
 
 class MarkPressEngine:
     def __init__(self, filename: str, theme_name: str = "academic"):
         self.filename = filename
+        self.auto_save_mode = False  # [NEW] 开关
         print(f"Loading theme: {theme_name}...")
         self.config = StyleConfig.get_pre_build_style(theme_name)
 
@@ -31,6 +37,9 @@ class MarkPressEngine:
         self.heading_renderer = HeadingRenderer(self.config, self.stylesheet)
         self.code_renderer = CodeRenderer(self.config, self.stylesheet)
         self.image_renderer = ImageRenderer(self.config, self.stylesheet)
+        self.formula_renderer = FormulaRenderer(self.config, self.stylesheet)
+        self.katex_renderer = KatexRenderer(self.config, self.stylesheet)
+        self.list_renderer = ListRenderer(self.config, self.stylesheet)
 
         # self.story 是最终输出列表
         # self.context_stack 用于存储嵌套层级的 (list_obj, available_width)
@@ -104,6 +113,42 @@ class MarkPressEngine:
 
         # 计算可用宽度 (用于表格和代码块计算)
         self.avail_width = page_size[0] - (self.config.page.margin_left + self.config.page.margin_right) * mm
+
+    def try_trigger_autosave(self):
+        """
+        尝试执行增量保存。
+        条件：
+        1. 开启了 auto_save_mode
+        2. 当前不在嵌套结构中 (引用块内部保存没有意义，因为主story没更新)
+        """
+        if not self.auto_save_mode:
+            return
+
+        # 如果栈不为空，说明正在引用块/容器内部，此时 self.story 并没有更新
+        # 此时强行 build 只会得到旧的 PDF，浪费性能，且可能引发并发问题
+        if len(self.context_stack) > 0:
+            return
+
+        # print(f"Auto-saving... ({len(self.story)} elements)")
+
+        try:
+            # 使用切片 [:] 传递副本，防止 build 过程修改了原列表状态
+            # 注意：ReportLab 的 build 是比较重的操作
+            # print(self.story[:])
+            if len(self.story) > 0 and self.story[-1] and isinstance(self.story[-1], Spacer):
+                self.story.pop()
+            self.doc.build(self.story[:])
+        except PermissionError:
+            print(f"[Warn] Auto-save failed: File '{self.filename}' is open in another program.")
+        except Exception as e:
+            print(f"[Warn] Auto-save failed: {e}")
+            if "ord() expected a character, but string of length 0 found" in str(e):
+                print(self.story[-1])
+
+    def close_katex_render(self):
+        """显式关闭资源"""
+        if hasattr(self, 'katex_renderer'):
+            self.katex_renderer.close()
 
     # 引用的处理
     def start_quote(self):
@@ -187,9 +232,15 @@ class MarkPressEngine:
         # 这个 Spacer 作用于当前层级之后，但会被上一层切除
         self.current_story.append(Spacer(1, 4 * mm))
 
+    # def render_inline_math(self, latex: str) -> str:
+    #     """渲染行内公式 (Inline) -> 返回 XML 字符串"""
+    #     # Converter 调用此方法获取 <img .../> 标签
+    #     return self.formula_renderer.render_inline(latex)
+
     def add_heading(self, text: str, level: int):
         flowables = self.heading_renderer.render(text, level)
         self.current_story.extend(flowables)
+        self.try_trigger_autosave()
 
     def add_text(self, xml_text: str):
         # 检查当前是否在引用中 (通过栈是否为空判断)
@@ -203,6 +254,7 @@ class MarkPressEngine:
             xml_text = f'<font color="{q_color}">{xml_text}</font>'
         flowables = self.text_renderer.render(xml_text)
         self.current_story.extend(flowables)
+        self.try_trigger_autosave()
 
     # 分割线
     def add_horizontal_rule(self):
@@ -214,9 +266,6 @@ class MarkPressEngine:
             line_color = colors.lightgrey
 
         # 创建分隔线
-        # width="100%": 占满当前可用宽度（会自动适应引用块内的宽度）
-        # thickness=1: 线条粗细
-        # lineCap='round': 圆头线端
         hr = HRFlowable(
             width="100%",
             thickness=1,
@@ -228,8 +277,15 @@ class MarkPressEngine:
             vAlign='CENTER',
             dash=None  # 如果想做虚线，可以设为 [2, 4]
         )
-
         self.current_story.append(hr)
+        self.try_trigger_autosave()
+
+    def add_list(self, items: list, is_ordered: bool = False):
+        """添加列表"""
+        flowables = self.list_renderer.render(items, is_ordered)
+        self.current_story.extend(flowables)
+        # 列表结束后加一点间距
+        self.try_trigger_autosave()
 
     def add_code(self, code: str, language: str = None):
         # 关键：传入当前的 self.avail_width，这样嵌套在引用里的代码块会自动变窄
@@ -247,15 +303,43 @@ class MarkPressEngine:
     def add_page_break(self):
         self.current_story.append(PageBreak())
 
-    def save(self):
+    def add_formula(self, latex: str):
+        """添加行间公式 (Block)"""
+        png_bytes, w, h = self.katex_renderer.render_image(latex, is_block=True)
+
+        if png_bytes:
+            # 走katex
+            # 限制宽度防止溢出
+            if w > self.avail_width:
+                scale = self.avail_width / w
+                w *= scale
+                h *= scale
+
+            # 使用 BytesIO 包装
+            img = Image(io.BytesIO(png_bytes), width=w, height=h)
+            img.hAlign = 'CENTER'
+            self.current_story.append(img)
+            self.current_story.append(Spacer(1, 4 * mm))
+        else:
+            # 走matplot
+            flowables = self.formula_renderer.render_block(latex, avail_width=self.avail_width,avail_height=self.doc.height,)
+            self.current_story.extend(flowables)
+            self.try_trigger_autosave()
+
+
+    def save_pdf(self):
         # print(f"Generating PDF: {self.filename}...")
         # print(self.story)
+        # print(f"有{len(self.story)}个story")
+
         # 去除尾巴的空格
-        if self.story[-1] and isinstance(self.story[-1], Spacer):
+        if len(self.story) > 0 and self.story[-1] and isinstance(self.story[-1], Spacer):
             self.story.pop()
         try:
             self.doc.build(self.story)  # 根 story
             print("Done.")
         except Exception as e:
             print(f"Error building PDF: {e}")
+            if "ord() expected a character, but string of length 0 found" in str(e):
+                print("tips：markdown文件内可能存在超长的行内公式或超出行宽的行间公式，请合理调整间距")
             raise e

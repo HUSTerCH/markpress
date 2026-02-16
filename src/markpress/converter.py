@@ -1,4 +1,5 @@
 import os
+import tempfile
 import mistune
 from .core import MarkPressEngine
 
@@ -47,7 +48,9 @@ def convert_markdown_file(input_path: str, output_path: str, theme: str = "acade
     _render_ast(writer, ast, base_dir)
 
     # 6. 保存
-    writer.save()
+    writer.save_pdf()
+    writer.close_katex_render()
+    # writer.try_trigger_autosave()
 
 
 def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
@@ -65,11 +68,12 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
         # --- 标题 (Heading) ---
         if t_type == 'heading':
             level = attrs.get('level', 1)
-            text = _render_inline(children)
+            text = _render_inline(writer, children)
             writer.add_heading(text, level=level)
 
         # --- 段落 (Paragraph) ---
         elif t_type == 'paragraph':
+# <<<<<<< feat/image_render
             # 检查是否只包含图片（独立图片段落）
             if len(children) == 1 and children[0].get('type') == 'image':
                 img_attrs = children[0].get('attrs', {})
@@ -84,6 +88,12 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
                 # 过滤掉空段落
                 if text.strip():
                     writer.add_text(text)
+# =======
+#             text = _render_inline(writer, children)
+#             # 过滤掉空的图片段落（如果图片被单独处理了）
+#             if text.strip():
+#                 writer.add_text(text)
+# >>>>>>> main
 
         # --- 代码块 (Block Code) ---
         elif t_type == 'block_code':
@@ -93,11 +103,10 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
 
         # --- 列表 (List) ---
         elif t_type == 'list':
-            print("识别到list，暂时跳过")
-            # 列表需要递归处理，这里简化逻辑，把列表项转为 Python list 传给 writer
-            # ordered = attrs.get('ordered', False)
-            # list_items = _parse_list_items(children)
-            # writer.add_list(list_items, is_ordered=attrs.get('ordered', False))
+            # print("识别到list，暂时跳过")
+            ordered = attrs.get('ordered', False)
+            list_items = _parse_list_items(writer, children)
+            writer.add_list(list_items, is_ordered=ordered)
 
         # --- 表格 (Table) ---
         elif t_type == 'table':
@@ -123,10 +132,11 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
             writer.end_quote()
         elif t_type == 'block_math':
             # 行间公式
-            print("行间公式，暂时跳过")
+            # print("行间公式，暂时跳过")
+            writer.add_formula(token.get('raw', ''))
 
 
-def _render_inline(tokens: list) -> str:
+def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
     """
     将 Inline Tokens (Text, Strong, Link, Image) 转换为
     ReportLab 支持的 XML 字符串 (例如 <b>Text</b>)
@@ -139,7 +149,7 @@ def _render_inline(tokens: list) -> str:
         t_type = tok.get('type')
 
         if t_type == 'text':
-            #普通text，必须转义 XML 字符，防止 & < > 破坏 PDF 结构
+            # 普通text，必须转义 XML 字符，防止 & < > 破坏 PDF 结构
             text = tok.get('raw', '').replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
             result.append(text)
         elif t_type == 'inline_html':
@@ -147,12 +157,12 @@ def _render_inline(tokens: list) -> str:
             result.append(tok.get('raw', ''))
         elif t_type == 'strong':
             # 加粗字体
-            result.append(f"<b>{_render_inline(tok.get('children'))}</b>")
+            result.append(f"<b>{_render_inline(writer, tok.get('children'))}</b>")
         elif t_type == 'emphasis':
             # 斜体字体
             # ReportLab 的 Italic 需要字体支持，否则可能显示方框
             # 只要注册了 Italic 字体就可以用 <i>
-            result.append(f"<i>{_render_inline(tok.get('children'))}</i>")
+            result.append(f"<i>{_render_inline(writer, tok.get('children'))}</i>")
 
         elif t_type == 'codespan':
             # 行内代码块，就是被``包裹的文字
@@ -160,11 +170,30 @@ def _render_inline(tokens: list) -> str:
             # 给行内代码加个背景色需要高级设置，这里简单加粗或换字体
             result.append(f'<font face="Courier">{code}</font>')
         elif t_type == 'inline_math':
-            # 行内公式
-            print("行内公式，暂时跳过")
+            # 行内公式，生成 <img/> 标签
+            # 这里的 raw 就是 latex 源码
+            try:
+                latex = tok.get('raw', '')
+                png_bytes, w, h = writer.katex_renderer.render_image(tok.get('raw', ''), is_block=False)
+                if png_bytes:
+                    # 走katex
+                    fd, path = tempfile.mkstemp(suffix=".png")
+                    os.write(fd, png_bytes)
+                    os.close(fd)
+
+                    # 计算下沉 (valign)
+                    # KaTeX 的图片通常重心居中，行内公式需要下沉约 1/3 高度
+                    valign = f"-{h * 0.3}"
+                    xml_img = f'<img src="{path}" width="{w}" height="{h}" valign="{valign}"/>'
+                else:
+                    # 走matplot
+                    xml_img = writer.formula_renderer.render_inline()
+            except Exception:
+                xml_img = f"<font color='red'>${latex}$</font>"
+            result.append(xml_img)
         elif t_type == 'link':
             # 链接
-            text = _render_inline(tok.get('children'))
+            text = _render_inline(writer, tok.get('children'))
             href = tok.get('attrs', {}).get('url', '')
             # ReportLab 的超链接标签
             result.append(f'<a href="{href}" color="blue">{text}</a>')
@@ -185,31 +214,49 @@ def _render_inline(tokens: list) -> str:
     return "".join(result)
 
 
-def _parse_list_items(list_children: list) -> list:
+def _parse_list_items(writer, tokens) -> list:
     """
-    辅助函数：把 mistune 的 list tokens 解析成 writer.add_list 需要的嵌套列表结构
+    将 mistune 的 list_item tokens 转换为 ['Item', ['SubItem'], 'Item'] 格式
     """
     result = []
-    for item in list_children:
-        if item.get('type') == 'list_item':
-            # list_item 的 children 通常是一个 paragraph 或者是 paragraph + nested list
-            current_item_text = ""
+    for tok in tokens:
+        if tok['type'] == 'list_item':
+            # list_item 的 children 可能包含 paragraph, text, 或者是嵌套的 list
+            li_children = tok.get('children', [])
+
+            # 1. 提取当前项的文本 (通常在第一个 paragraph 里)
+            current_text = ""
             sub_list = None
 
-            for child in item.get('children', []):
-                if child.get('type') == 'paragraph':
-                    current_item_text = _render_inline(child.get('children'))
-                elif child.get('type') == 'list':
-                    # 递归处理嵌套列表
-                    sub_list = _parse_list_items(child.get('children'))
+            for child in li_children:
+                if child['type'] == 'block_code':
+                     # 列表里嵌代码块比较麻烦，这里简化处理，或者暂不支持
+                     continue
 
-            result.append(current_item_text)
+                if child['type'] == 'list':
+                    # 发现嵌套列表，递归解析
+                    sub_list = _parse_list_items(writer, child['children'])
+                else:
+                    # 这是一个文本节点 (paragraph 或 text)
+                    # 使用 _render_inline 获取 XML 文本
+                    # 注意：如果是 paragraph，child['children'] 才是 inline tokens
+                    if 'children' in child:
+                         current_text += _render_inline(writer, child['children'])
+                    elif 'raw' in child:
+                         current_text += child['raw']
+
+            # 2. 添加到结果
+            if current_text:
+                result.append(current_text)
+
+            # 3. 如果有子列表，紧跟在文本后面添加
             if sub_list:
                 result.append(sub_list)
+
     return result
 
 
-def _parse_table(table_children: list) -> list:
+def _parse_table(writer: MarkPressEngine, table_children: list) -> list:
     """
     辅助函数：解析表格
     """
@@ -224,7 +271,7 @@ def _parse_table(table_children: list) -> list:
                     # cell 的 children 里通常直接就是 text，或者 paragraph
                     # 简化处理：直接提取文本
                     # 注意：Mistune 3 的 table cell 结构可能比较深
-                    cell_content = _render_inline(cell.get('children', []))
+                    cell_content = _render_inline(writer, cell.get('children', []))
                     current_row.append(cell_content)
                 rows.append(current_row)
     return rows
