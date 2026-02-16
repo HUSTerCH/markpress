@@ -6,6 +6,7 @@ from pathlib import Path
 def get_font_path(filename: str):
     """获取 assets/fonts 下文件的绝对路径。"""
     # 对应 src/markpress/assets/fonts 目录
+    # 下同
     ref = importlib.resources.files('markpress.assets.fonts') / filename
     with importlib.resources.as_file(ref) as path:
         if not path.exists():

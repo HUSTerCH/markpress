@@ -79,8 +79,7 @@ class KatexRenderer(BaseRenderer):
 
         self.page = self.browser.new_page(device_scale_factor=3)
 
-        # [核心修复]：不再通过 HTML 字符串引用资源，而是通过 API 注入
-        # 1. 先设置一个空的骨架 HTML
+        # 通过 API 注入引用资源,先设置一个空的骨架 HTML
         self.page.set_content("""
         <!DOCTYPE html>
         <html>
@@ -96,16 +95,13 @@ class KatexRenderer(BaseRenderer):
         </html>
         """)
 
-        # 2. 注入 CSS (阻塞式)
-        # 注意：path 必须是 str 类型
+        # 注入 CSS (阻塞式)
         self.page.add_style_tag(path=str(self.css_path))
 
-        # 3. 注入 JS (阻塞式 - 彻底解决 katex is not defined)
-        # Playwright 会自动处理文件读取和执行等待
+        # 注入 JS (阻塞式)Playwright 会自动处理文件读取和执行等待
         self.page.add_script_tag(path=str(self.js_path))
 
-        # 4. [双重保险]：等待 katex 对象在 window 中可用
-        # 如果这一步超时，说明 JS 文件本身有问题（路径错或文件坏）
+        # 等待 katex 对象在 window 中可用,如果这一步超时，说明 JS 文件本身有问题（路径错或文件坏）
         try:
             self.page.wait_for_function("() => typeof katex !== 'undefined'", timeout=5000)
             print("KaTeX Engine Loaded Successfully.")
@@ -118,7 +114,7 @@ class KatexRenderer(BaseRenderer):
         调用 JS 渲染 LaTeX，并截图
         """
         try:
-            # 1. 准备 JS 代码
+            # 准备 JS 代码
             # throwOnError: false 防止 JS 报错导致程序崩
             display_mode = "true" if is_block else "false"
             js_script = f"""
@@ -128,10 +124,10 @@ class KatexRenderer(BaseRenderer):
                 }});
             """
 
-            # 2. 执行渲染
+            # 执行渲染
             self.page.evaluate(js_script)
 
-            # 3. 等待容器尺寸稳定 (KaTeX 渲染很快，通常不需要 wait，但为了保险)
+            # 等待容器尺寸稳定 (KaTeX 渲染很快，通常不需要 wait，但为了保险)
             # 获取元素的 bounding box
             locator = self.page.locator("#container")
             box = locator.bounding_box()
@@ -139,8 +135,7 @@ class KatexRenderer(BaseRenderer):
             if not box or box['width'] == 0:
                 raise ValueError("Rendered empty box")
 
-            # 4. 截图 (返回 bytes)
-            # path=None 表示直接返回二进制
+            # 截图，返回 bytes，path=None 表示直接返回二进制
             png_bytes = locator.screenshot(type="png", omit_background=True)
 
             # 5. 清理 DOM 以便下次使用

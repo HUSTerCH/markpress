@@ -7,7 +7,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import SimpleDocTemplate, PageBreak, Spacer, Table, TableStyle  # 引入 Table
+from reportlab.platypus import SimpleDocTemplate, PageBreak, Spacer, Table, TableStyle
 from reportlab.platypus.flowables import HRFlowable, Image
 
 
@@ -24,15 +24,20 @@ from .utils import get_font_path
 
 class MarkPressEngine:
     def __init__(self, filename: str, theme_name: str = "academic"):
+        # 保存的文件名
         self.filename = filename
-        self.auto_save_mode = False  # [NEW] 开关
-        print(f"Loading theme: {theme_name}...")
+
+        # 加载预置的style
         self.config = StyleConfig.get_pre_build_style(theme_name)
 
+        # 自动保存开关，调试时可以启用
+        self.auto_save_mode = False
+        # 加载字体
         self._register_fonts()
+        # 加载样式sheet
         self.stylesheet = getSampleStyleSheet()
 
-        # Renderers
+        # Renderers，从上到下依次是 正文、标题、代码块、图片、公式和公式渲染器、列表
         self.text_renderer = TextRenderer(self.config, self.stylesheet)
         self.heading_renderer = HeadingRenderer(self.config, self.stylesheet)
         self.code_renderer = CodeRenderer(self.config, self.stylesheet)
@@ -68,8 +73,8 @@ class MarkPressEngine:
             ]
             for font_name in fonts_to_load:
                 with get_font_path(font_name + ".ttf") as font_path:
-                    # print(f"加载字体：{font_name}.ttf")
                     pdfmetrics.registerFont(TTFont(font_name, font_path))
+
             pdfmetrics.registerFontFamily(
                 self.config.fonts.regular,
                 normal=self.config.fonts.regular,
@@ -111,7 +116,7 @@ class MarkPressEngine:
             author=self.config.meta.author
         )
 
-        # 计算可用宽度 (用于表格和代码块计算)
+        # 计算可用宽度
         self.avail_width = page_size[0] - (self.config.page.margin_left + self.config.page.margin_right) * mm
 
     def try_trigger_autosave(self):
@@ -124,17 +129,12 @@ class MarkPressEngine:
         if not self.auto_save_mode:
             return
 
-        # 如果栈不为空，说明正在引用块/容器内部，此时 self.story 并没有更新
-        # 此时强行 build 只会得到旧的 PDF，浪费性能，且可能引发并发问题
+        # 如果栈不为空，说明正在引用块/容器内部，此时 self.story 并没有更新，此时强行 build 只会得到旧的 PDF，浪费性能，且可能引发并发问题
         if len(self.context_stack) > 0:
             return
 
-        # print(f"Auto-saving... ({len(self.story)} elements)")
-
         try:
-            # 使用切片 [:] 传递副本，防止 build 过程修改了原列表状态
-            # 注意：ReportLab 的 build 是比较重的操作
-            # print(self.story[:])
+            # 使用切片 [:] 传递副本，防止 build 过程修改了原列表状态，ReportLab 的 build 是比较重的操作
             if len(self.story) > 0 and self.story[-1] and isinstance(self.story[-1], Spacer):
                 self.story.pop()
             self.doc.build(self.story[:])
@@ -152,22 +152,20 @@ class MarkPressEngine:
 
     # 引用的处理
     def start_quote(self):
-        """进入引用：压栈"""
+        """进入引用，压栈"""
         self.context_stack.append((self.current_story, self.avail_width))
         new_buffer = []
         self.current_story = new_buffer
-
-        # 读取配置中的缩进值
+        # 配置中的缩进值
         q_conf = self.config.styles.quote
-
         # 缩减可用宽度
         self.avail_width -= (q_conf.left_indent + q_conf.border_width) * mm
 
     def end_quote(self):
-        """退出引用：打包为 Table (修复嵌套引用的长尾巴问题)"""
+        """退出引用：打包为 Table"""
         if not self.context_stack: return
 
-        # 1. 弹出状态
+        # 弹出状态
         quote_content = self.current_story
         parent_story, parent_width = self.context_stack.pop()
         self.current_story = parent_story
@@ -189,8 +187,7 @@ class MarkPressEngine:
         # 去除最后一段的 spaceAfter
         if quote_content and hasattr(quote_content[-1], 'style'):
             last_item = quote_content[-1]
-            # 如果是 Table (内层引用)，它没有 spaceAfter 属性，忽略即可
-            # 如果是 Paragraph，则去尾
+            # 如果是 Table (内层引用)，它没有 spaceAfter 属性，忽略即可；如果是 Paragraph，则去尾
             if hasattr(last_item.style, 'spaceAfter'):
                 new_style = copy.copy(last_item.style)
                 new_style.spaceAfter = 0
@@ -200,24 +197,20 @@ class MarkPressEngine:
         q_conf = self.config.styles.quote
         border_color = colors.HexColor(q_conf.border_color)
 
-        # 创建容器 Table
         # hAlign='LEFT' 保证引用块紧贴左侧
         t = Table([[quote_content]], colWidths=[self.avail_width], hAlign='LEFT', vAlign='CENTER')
 
         t.setStyle(TableStyle([
-            # 1. 竖线样式
+            # 竖线样式
             ('LINEBEFORE', (0, 0), (0, -1), q_conf.border_width, border_color),
 
-            # 2. 缩进控制
+            # 缩进控制，四个方向的padding
             ('LEFTPADDING', (0, 0), (-1, -1), q_conf.left_indent),
-
-            # 3. [关键] 零间距
-            # 必须全是 0，否则多层嵌套时 Padding 会累加，导致尾巴越来越长
             ('TOPPADDING', (0, 0), (-1, -1), 3),
             ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
             ('RIGHTPADDING', (0, 0), (-1, -1), 11),
 
-            # 4. 强制顶部对齐 (不要用 MIDDLE)
+            # 强制顶部对齐
             ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
             ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
 
@@ -228,14 +221,8 @@ class MarkPressEngine:
         # 将引用块加入父级
         self.current_story.append(t)
 
-        # 在引用块外部添加 Spacer
-        # 这个 Spacer 作用于当前层级之后，但会被上一层切除
+        # 在引用块外部添加 Spacer，该Spacer 作用于当前层级之后，但会被上一层切除
         self.current_story.append(Spacer(1, 4 * mm))
-
-    # def render_inline_math(self, latex: str) -> str:
-    #     """渲染行内公式 (Inline) -> 返回 XML 字符串"""
-    #     # Converter 调用此方法获取 <img .../> 标签
-    #     return self.formula_renderer.render_inline(latex)
 
     def add_heading(self, text: str, level: int):
         flowables = self.heading_renderer.render(text, level)
@@ -259,12 +246,10 @@ class MarkPressEngine:
     # 分割线
     def add_horizontal_rule(self):
         """添加水平分隔线"""
-        # 复用主题中的边框颜色 (self.config.colors.border)
         try:
             line_color = colors.HexColor(self.config.colors.border)
         except:
             line_color = colors.lightgrey
-
         # 创建分隔线
         hr = HRFlowable(
             width="100%",
@@ -288,7 +273,8 @@ class MarkPressEngine:
         self.try_trigger_autosave()
 
     def add_code(self, code: str, language: str = None):
-        # 关键：传入当前的 self.avail_width，这样嵌套在引用里的代码块会自动变窄
+        """添加代码块"""
+        # 传入当前的 self.avail_width，这样嵌套在引用里的代码块会自动变窄
         flowables = self.code_renderer.render(code, language, avail_width=self.avail_width)
         self.current_story.extend(flowables)
 
@@ -315,7 +301,6 @@ class MarkPressEngine:
                 w *= scale
                 h *= scale
 
-            # 使用 BytesIO 包装
             img = Image(io.BytesIO(png_bytes), width=w, height=h)
             img.hAlign = 'CENTER'
             self.current_story.append(img)

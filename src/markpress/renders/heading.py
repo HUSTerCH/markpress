@@ -8,13 +8,13 @@ from .base import BaseRenderer
 
 class HeadingRenderer(BaseRenderer):
     def render(self, text: str, level: int = 1, **kwargs):
-        # 1. 限制层级
+        # 限制层级
         level = max(1, min(4, level))
 
-        # 2. 从 Config 获取样式数据 (例如 config.styles.headings.h1)
+        # 从 Config 获取样式数据 (例如 config.styles.headings.h1)
         h_style_conf = getattr(self.config.styles.headings, f"h{level}")
 
-        # 3. 动态生成/获取 ReportLab 样式
+        # 动态生成/获取 ReportLab 样式
         style_name = f"Heading_{level}"
         if style_name not in self.styles:
             # 映射对齐字符串到 ReportLab 常量
@@ -33,5 +33,5 @@ class HeadingRenderer(BaseRenderer):
             )
             self.styles.add(ps)
 
-        # 4. 返回组件
+        # 返回组件
         return [Paragraph(text, self.styles[style_name])]

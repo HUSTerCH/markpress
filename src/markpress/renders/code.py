@@ -28,9 +28,7 @@ class CodeRenderer(BaseRenderer):
         code = code.strip()
         if not code: return []
 
-        # [核心优化 1]：缩小切片粒度
-        # 15行代码 + 标题栏 ≈ 1/4 A4页。
-        # 这样即使页面只剩 1/3 的空间，也能塞进第一块，利用剩余空间。
+        # 切片粒度
         MAX_LINES_PER_BLOCK = 2
 
         lines = code.split('\n')
@@ -59,9 +57,6 @@ class CodeRenderer(BaseRenderer):
                 flowables.append(KeepTogether([t]))
             else:
                 flowables.append(t)
-
-            # 块之间不需要 Spacer，依靠 TableStyle 去掉边框来实现无缝拼接
-
         return flowables + [Spacer(1, 10)]
 
     def _create_table_card(self, code_text, language, avail_width, is_first, is_last):
@@ -86,8 +81,7 @@ class CodeRenderer(BaseRenderer):
         bg_color = colors.HexColor(code_conf.background_color)
         border_color = colors.HexColor(code_conf.border_color)
 
-        # [核心优化 2]：动态边框逻辑 (Visual Stitching)
-        # 不再使用 BOX (四边全围)，而是分别控制上下左右
+        # 动态边框逻辑，不使用 BOX (四边全围)，而是分别控制上下左右
 
         style_cmds = [
             ('BACKGROUND', (0, 0), (-1, -1), bg_color),

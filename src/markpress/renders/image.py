@@ -18,8 +18,7 @@ class ImageRenderer(BaseRenderer):
             # 获取原始尺寸
             img_width = img.imageWidth
             img_height = img.imageHeight
-            # 计算缩放比例，确保图片不超过可用宽度
-            # 同时限制最大高度为页面的 60%（约 170mm for A4）
+            # 计算缩放比例，确保图片不超过可用宽度，同时限制最大高度为页面的 60%（约 170mm for A4）
             max_height = 170 * mm
 
             if img_width > avail_width:

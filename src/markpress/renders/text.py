@@ -41,7 +41,7 @@ class TextRenderer(BaseRenderer):
         img_heights = [float(h) for h in re.findall(r'height="([\d\.]+)"', clean_text)]
         max_img_h = max(img_heights) if img_heights else 0
 
-        # 2. 获取基础样式
+        # 获取基础样式
         base_style = self.styles["Body_Text"]
         final_style = base_style
         required_leading = max_img_h + 4
@@ -50,7 +50,7 @@ class TextRenderer(BaseRenderer):
             # 必须 copy 一份样式，否则会修改全局单例，导致后面的普通段落也变得很宽
             final_style = copy.copy(base_style)
             final_style.leading = required_leading
-            # 可选：如果公式太高，让它稍微居中一点，可以增加 spaceBefore/After
+            # 如果公式太高，让它稍微居中一点，可以增加 spaceBefore/After
             # final_style.spaceAfter += 2
         if "<img" in clean_text:
             print("这是有img的clean text：",clean_text)
@@ -131,9 +131,9 @@ class TextRenderer(BaseRenderer):
         # --- [Step 4] 最后的防线：清理空标签 ---
         # 空的 font/b/i 标签会导致 CJK Crash，必须清理
         # 使用正则循环清理，直到没有空标签为止 (处理嵌套空标签 <b><i></i></b>)
-        # 1. 清理空 font
+        # 清理空 font
         clean_html = re.sub(r'<font[^>]*>\s*</font>', '', clean_html)
-        # 2. 清理空 b/i/u/strong/em
+        # 清理空 b/i/u/strong/em
         clean_html = re.sub(r'<(b|i|u|strong|em)[^>]*>\s*</\1>', '', clean_html)
         # print("清洗前：", text)
         # print("清洗后：", clean_html)

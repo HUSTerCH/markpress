@@ -5,7 +5,7 @@ from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
 
 from .base import BaseRenderer
-from ..inherited.SafeCJKParagraph import SafeCJKParagraph  # 使用防崩溃段落
+from ..inherited.SafeCJKParagraph import SafeCJKParagraph
 
 
 class ListRenderer(BaseRenderer):
@@ -23,7 +23,7 @@ class ListRenderer(BaseRenderer):
                 parent=body_style,
                 # 列表项通常比正文稍微紧凑一点
                 spaceAfter=2,
-                # 确保行距一致
+                # 行距一致
                 leading=body_style.leading,
                 fontName=body_style.fontName,
                 fontSize=body_style.fontSize,
@@ -61,8 +61,6 @@ class ListRenderer(BaseRenderer):
         cycle = depth % 3
 
         # 优先使用配置字体，如果没有配置则回退到硬编码
-        # 这里保留你的逻辑，但建议 core.py 里必须注册了这些字体
-        # 如果你想更通用，可以用 self.config.fonts.base 和 self.config.fonts.code
         font_sc = self.config.fonts.regular  # 使用正文字体 (通常支持中文)
         font_mono = self.config.fonts.code  # 使用代码字体 (通常包含丰富的符号)
 
@@ -78,8 +76,6 @@ class ListRenderer(BaseRenderer):
                 return f"{self._to_roman(index)}.", font_sc
         else:
             # 无序列表: • -> ◦ -> ▪
-            # 注意：这些特殊符号需要字体支持。
-            # 通常中文字体(HarmonySC/SimSun)或 Code 字体(JetBrainsMono)都包含这些符号
             if cycle == 0:
                 return '•', font_sc  # 实心圆点
             elif cycle == 1:
@@ -110,14 +106,13 @@ class ListRenderer(BaseRenderer):
             # 处理正常 Item
             item_index += 1
 
-            # 1. 获取符号
+            # 1获取符号
             bullet_char, bullet_font = self._get_symbol_and_font(depth, item_index, ordered)
 
-            # 2. 内容 (使用 SafeCJKParagraph 防止崩溃)
-            # 注意：item 是已经转换好的 XML 字符串
+            # 内容 (使用 SafeCJKParagraph 防止崩溃)
             item_content = [SafeCJKParagraph(str(item), self.styles["List_Body"])]
 
-            # 3. 预读下一项，如果是列表，则是当前项的子列表
+            # 预读下一项，如果是列表，则是当前项的子列表
             if i + 1 < len(sub_items) and isinstance(sub_items[i + 1], list):
                 child_data = sub_items[i + 1]
                 # 递归构建子 ListFlowable
@@ -125,7 +120,7 @@ class ListRenderer(BaseRenderer):
                 item_content.append(child_flowable)
                 i += 1  # 跳过已处理的子列表
 
-            # 4. 创建 ListItem
+            # 创建 ListItem
             # bulletOffsetY: 微调符号的垂直位置，防止跟文字对不齐
             flowables.append(ListItem(
                 item_content,
