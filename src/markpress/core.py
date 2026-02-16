@@ -9,11 +9,12 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, PageBreak, Spacer, Table, TableStyle  # 引入 Table
 from reportlab.platypus.flowables import HRFlowable
 
-from src.markpress.renders.code import CodeRenderer
-from src.markpress.renders.heading import HeadingRenderer
-from src.markpress.renders.text import TextRenderer
-from src.markpress.themes import StyleConfig
-from src.markpress.utils import get_font_path
+from .renders.code import CodeRenderer
+from .renders.heading import HeadingRenderer
+from .renders.text import TextRenderer
+from .renders.image import ImageRenderer
+from .themes import StyleConfig
+from .utils import get_font_path
 
 
 class MarkPressEngine:
@@ -29,6 +30,7 @@ class MarkPressEngine:
         self.text_renderer = TextRenderer(self.config, self.stylesheet)
         self.heading_renderer = HeadingRenderer(self.config, self.stylesheet)
         self.code_renderer = CodeRenderer(self.config, self.stylesheet)
+        self.image_renderer = ImageRenderer(self.config, self.stylesheet)
 
         # self.story 是最终输出列表
         # self.context_stack 用于存储嵌套层级的 (list_obj, available_width)
@@ -232,6 +234,11 @@ class MarkPressEngine:
     def add_code(self, code: str, language: str = None):
         # 关键：传入当前的 self.avail_width，这样嵌套在引用里的代码块会自动变窄
         flowables = self.code_renderer.render(code, language, avail_width=self.avail_width)
+        self.current_story.extend(flowables)
+
+    def add_image(self, image_path: str, alt_text: str = ""):
+        """添加图片"""
+        flowables = self.image_renderer.render(image_path, alt_text, avail_width=self.avail_width)
         self.current_story.extend(flowables)
 
     def add_spacer(self, height_mm: float):

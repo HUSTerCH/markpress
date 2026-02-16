@@ -1,3 +1,4 @@
+import os
 import mistune
 from .core import MarkPressEngine
 
@@ -9,6 +10,9 @@ def convert_markdown_file(input_path: str, output_path: str, theme: str = "acade
     # 1. 读取文件
     with open(input_path, "r", encoding="utf-8") as f:
         text = f.read()
+
+    # 获取输入文件的目录，用于解析相对路径
+    base_dir = os.path.dirname(os.path.abspath(input_path))
 
     # 初始化 Mistune
     markdown = mistune.create_markdown(
@@ -40,15 +44,18 @@ def convert_markdown_file(input_path: str, output_path: str, theme: str = "acade
     writer = MarkPressEngine(output_path, theme)
 
     # 5. 遍历 AST 并渲染
-    _render_ast(writer, ast)
+    _render_ast(writer, ast, base_dir)
 
     # 6. 保存
     writer.save()
 
 
-def _render_ast(writer: MarkPressEngine, tokens: list):
+def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
     """
     AST 遍历调度器 (Block Level)
+    :param writer: PDF 引擎
+    :param tokens: AST tokens
+    :param base_dir: 基础目录，用于解析相对路径
     """
     for token in tokens:
         t_type = token.get('type')
@@ -63,10 +70,20 @@ def _render_ast(writer: MarkPressEngine, tokens: list):
 
         # --- 段落 (Paragraph) ---
         elif t_type == 'paragraph':
-            text = _render_inline(children)
-            # 过滤掉空的图片段落（如果图片被单独处理了）
-            if text.strip():
-                writer.add_text(text)
+            # 检查是否只包含图片（独立图片段落）
+            if len(children) == 1 and children[0].get('type') == 'image':
+                img_attrs = children[0].get('attrs', {})
+                img_url = img_attrs.get('url', '')
+                img_alt = img_attrs.get('alt', '')
+                # 处理相对路径
+                if not os.path.isabs(img_url) and not img_url.startswith(('http://', 'https://')):
+                    img_url = os.path.join(base_dir, img_url)
+                writer.add_image(img_url, img_alt)
+            else:
+                text = _render_inline(children)
+                # 过滤掉空段落
+                if text.strip():
+                    writer.add_text(text)
 
         # --- 代码块 (Block Code) ---
         elif t_type == 'block_code':
@@ -100,7 +117,7 @@ def _render_ast(writer: MarkPressEngine, tokens: list):
 
             # 2. 递归：把子元素（可能是 paragraph，也可能是更深层的 block_quote）
             #    再次扔给 _render_ast 处理
-            _render_ast(writer, children)
+            _render_ast(writer, children, base_dir)
 
             # 3. 弹栈：告诉 Writer 退出引用模式
             writer.end_quote()
