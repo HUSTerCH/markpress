@@ -182,3 +182,8 @@ def convert_markdown_file(input_path: str, output_path: str, theme: str = "acade
     ]
 }
 ```
+
+## 4. 图片测试
+这是一张孙燕姿的照片：
+
+![Alt Text](SunYZ.png)

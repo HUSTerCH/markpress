@@ -10,14 +10,17 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, PageBreak, Spacer, Table, TableStyle  # 引入 Table
 from reportlab.platypus.flowables import HRFlowable, Image
 
-from markpress.renders.formular import FormulaRenderer
-from markpress.renders.katex import KatexRenderer
-from markpress.renders.list import ListRenderer
-from src.markpress.renders.code import CodeRenderer
-from src.markpress.renders.heading import HeadingRenderer
-from src.markpress.renders.text import TextRenderer
-from src.markpress.themes import StyleConfig
-from src.markpress.utils import get_font_path
+
+
+from .renders.image import ImageRenderer
+from .renders.formular import FormulaRenderer
+from .renders.katex import KatexRenderer
+from .renders.list import ListRenderer
+from .renders.code import CodeRenderer
+from .renders.heading import HeadingRenderer
+from .renders.text import TextRenderer
+from .themes import StyleConfig
+from .utils import get_font_path
 
 class MarkPressEngine:
     def __init__(self, filename: str, theme_name: str = "academic"):
@@ -33,6 +36,7 @@ class MarkPressEngine:
         self.text_renderer = TextRenderer(self.config, self.stylesheet)
         self.heading_renderer = HeadingRenderer(self.config, self.stylesheet)
         self.code_renderer = CodeRenderer(self.config, self.stylesheet)
+        self.image_renderer = ImageRenderer(self.config, self.stylesheet)
         self.formula_renderer = FormulaRenderer(self.config, self.stylesheet)
         self.katex_renderer = KatexRenderer(self.config, self.stylesheet)
         self.list_renderer = ListRenderer(self.config, self.stylesheet)
@@ -286,6 +290,11 @@ class MarkPressEngine:
     def add_code(self, code: str, language: str = None):
         # 关键：传入当前的 self.avail_width，这样嵌套在引用里的代码块会自动变窄
         flowables = self.code_renderer.render(code, language, avail_width=self.avail_width)
+        self.current_story.extend(flowables)
+
+    def add_image(self, image_path: str, alt_text: str = ""):
+        """添加图片"""
+        flowables = self.image_renderer.render(image_path, alt_text, avail_width=self.avail_width)
         self.current_story.extend(flowables)
 
     def add_spacer(self, height_mm: float):

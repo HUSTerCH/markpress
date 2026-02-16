@@ -2,7 +2,10 @@
 name = "markpress"
 version = "0.1.0"
 description = "A high-quality Markdown to PDF converter."
-authors = ["Chang Luo, skyfengsheng@icloud.com", "Fulin Zhao,154126756@qq.com"]
+authors = [
+    "Chang Luo <skyfengsheng@icloud.com>",
+    "Fulin Zhao <154126756@qq.com>"
+]
 readme = "README.md"
 packages = [{include = "markpress", from = "src"}]
 
