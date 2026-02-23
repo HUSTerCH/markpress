@@ -18,6 +18,7 @@ from .renders.katex import KatexRenderer
 from .renders.list import ListRenderer
 from .renders.code import CodeRenderer
 from .renders.heading import HeadingRenderer
+from .renders.table import TableRenderer
 from .renders.text import TextRenderer
 from .themes import StyleConfig
 from .utils import get_font_path
@@ -45,6 +46,7 @@ class MarkPressEngine:
         self.formula_renderer = FormulaRenderer(self.config, self.stylesheet)
         self.katex_renderer = KatexRenderer(self.config, self.stylesheet)
         self.list_renderer = ListRenderer(self.config, self.stylesheet)
+        self.table_renderer = TableRenderer(self.config, self.stylesheet)
 
         # self.story 是最终输出列表
         # self.context_stack 用于存储嵌套层级的 (list_obj, available_width)
@@ -270,6 +272,12 @@ class MarkPressEngine:
         flowables = self.list_renderer.render(items, is_ordered)
         self.current_story.extend(flowables)
         # 列表结束后加一点间距
+        self.try_trigger_autosave()
+
+    def add_table(self, table_data: dict):
+        """添加表格"""
+        flowables = self.table_renderer.render(table_data, avail_width=self.avail_width)
+        self.current_story.extend(flowables)
         self.try_trigger_autosave()
 
     def add_code(self, code: str, language: str = None):
