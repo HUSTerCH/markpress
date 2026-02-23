@@ -1,6 +1,8 @@
 import copy
 import io
+import os
 import sys
+import tempfile
 
 from reportlab.lib import colors, pagesizes
 from reportlab.lib.styles import getSampleStyleSheet
@@ -10,8 +12,6 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, PageBreak, Spacer, Table, TableStyle
 from reportlab.platypus.flowables import HRFlowable, Image
 
-
-
 from .renders.image import ImageRenderer
 from .renders.formular import FormulaRenderer
 from .renders.katex import KatexRenderer
@@ -20,10 +20,14 @@ from .renders.code import CodeRenderer
 from .renders.heading import HeadingRenderer
 from .renders.text import TextRenderer
 from .themes import StyleConfig
-from .utils import get_font_path
+from .utils import get_font_path, clear_temp_files, APP_TMP
+
 
 class MarkPressEngine:
     def __init__(self, filename: str, theme_name: str = "academic"):
+        # 创建临时文件夹
+
+        os.makedirs(APP_TMP, exist_ok=True)
         # 保存的文件名
         self.filename = filename
 
@@ -307,10 +311,9 @@ class MarkPressEngine:
             self.current_story.append(Spacer(1, 4 * mm))
         else:
             # 走matplot
-            flowables = self.formula_renderer.render_block(latex, avail_width=self.avail_width,avail_height=self.doc.height,)
+            flowables = self.formula_renderer.render_block(latex, avail_width=self.avail_width, avail_height=self.doc.height, )
             self.current_story.extend(flowables)
             self.try_trigger_autosave()
-
 
     def save_pdf(self):
         # print(f"Generating PDF: {self.filename}...")
@@ -322,8 +325,10 @@ class MarkPressEngine:
             self.story.pop()
         try:
             self.doc.build(self.story)  # 根 story
+            clear_temp_files()
             print("Done.")
         except Exception as e:
+            clear_temp_files()
             print(f"Error building PDF: {e}")
             if "ord() expected a character, but string of length 0 found" in str(e):
                 print("tips：markdown文件内可能存在超长的行内公式或超出行宽的行间公式，请合理调整间距")

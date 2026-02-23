@@ -9,11 +9,12 @@ from reportlab.lib.units import mm
 from reportlab.platypus import Image, Paragraph, Spacer, Flowable
 
 from .base import BaseRenderer
+from ..utils import APP_TMP
 
-# [Global Cache]
-# Matplotlib 渲染开销极大，必须缓存已渲染的公式
-# Key: (latex_str, fontsize), Value: (image_path, width_pt, height_pt)
-_FORMULA_CACHE = {}
+# # [Global Cache]
+# # Matplotlib 渲染开销极大，必须缓存已渲染的公式
+# # Key: (latex_str, fontsize), Value: (image_path, width_pt, height_pt)
+# _FORMULA_CACHE = {}
 
 
 class FormulaRenderer(BaseRenderer):
@@ -76,9 +77,9 @@ class FormulaRenderer(BaseRenderer):
         """
         核心渲染引擎 (Matplotlib -> Temp File)
         """
-        cache_key = (latex, fontsize)
-        if cache_key in _FORMULA_CACHE:
-            return _FORMULA_CACHE[cache_key]
+        # cache_key = (latex, fontsize)
+        # if cache_key in _FORMULA_CACHE:
+        #     return _FORMULA_CACHE[cache_key]
 
         # 配置 Matplotlib，stix' 字体风格最接近标准 LaTeX
         plt.rc('mathtext', fontset='stix')
@@ -90,8 +91,9 @@ class FormulaRenderer(BaseRenderer):
         fig.text(0, 0, f"${latex}$", fontsize=fontsize)
 
         # 保存到临时文件，使用 tempfile 生成唯一路径，且不自动删除 (ReportLab 读取需要文件存在)
-        # todo: 在生产环境中，这些临时文件应该在程序结束时清理，或者定期清理 /tmp
-        fd, path = tempfile.mkstemp(suffix=".png")
+        # to do: 在生产环境中，这些临时文件应该在程序结束时清理，或者定期清理 /tmp
+        # 已经完成to do
+        fd, path = tempfile.mkstemp(suffix=".png",dir=APP_TMP)
         os.close(fd)  # 关闭文件描述符，释放给 plt 使用
 
         # 渲染保存，transparent=True 保证背景透明，融合纸张颜色，pad_inches=0.02 留极少量的白边，防止切掉积分号等大符号的边缘
@@ -109,5 +111,5 @@ class FormulaRenderer(BaseRenderer):
 
         # 存入缓存
         result = (path, pt_w, pt_h)
-        _FORMULA_CACHE[cache_key] = result
+        # _FORMULA_CACHE[cache_key] = result
         return result
