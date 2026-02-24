@@ -99,10 +99,9 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
 
         # 表格 (Table)
         elif t_type == 'table':
-            print("识别到table，暂时跳过")
-            # table_data = _parse_table(children)
-            # if table_data:
-            #     writer.add_table(table_data)
+            table_data = _parse_table(writer, children, attrs)
+            if table_data:
+                writer.add_table(table_data)
 
         # 分隔线 (Thematic Break)
         elif t_type == 'thematic_break':
@@ -229,22 +228,35 @@ def _parse_list_items(writer, tokens) -> list:
     return result
 
 
-def _parse_table(writer: MarkPressEngine, table_children: list) -> list:
+def _parse_table(writer: MarkPressEngine, table_children: list, table_attrs: dict = None) -> dict:
     """
-    辅助函数：解析表格
+    解析 mistune 表格 AST，返回 {'header': [...], 'body': [[...], ...], 'aligns': [...]}
     """
-    rows = []
-    # table_head, table_body
+    header = []
+    body = []
+    aligns = []
+
     for section in table_children:
-        if section.get('type') in ['table_head', 'table_body']:
+        sec_type = section.get('type')
+        if sec_type == 'table_head':
+            # mistune 3 中 table_head 的 children 直接是 table_cell（无 table_row 包裹）
+            for child in section.get('children', []):
+                if child.get('type') == 'table_cell':
+                    header.append(_render_inline(writer, child.get('children', [])))
+                    aligns.append(child.get('attrs', {}).get('align'))
+                elif child.get('type') == 'table_row':
+                    for cell in child.get('children', []):
+                        header.append(_render_inline(writer, cell.get('children', [])))
+                        aligns.append(cell.get('attrs', {}).get('align'))
+
+        elif sec_type == 'table_body':
             for row in section.get('children', []):
                 current_row = []
                 for cell in row.get('children', []):
-                    # cell -> paragraph / text
-                    # cell 的 children 里通常直接就是 text，或者 paragraph
-                    # 简化处理：直接提取文本
-                    # Mistune 3 的 table cell 结构可能比较深
-                    cell_content = _render_inline(writer, cell.get('children', []))
-                    current_row.append(cell_content)
-                rows.append(current_row)
-    return rows
+                    current_row.append(_render_inline(writer, cell.get('children', [])))
+                body.append(current_row)
+
+    if not header and not body:
+        return {}
+
+    return {"header": header, "body": body, "aligns": aligns}
