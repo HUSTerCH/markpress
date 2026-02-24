@@ -1,14 +1,16 @@
-from reportlab.platypus import Paragraph
-from reportlab.lib.utils import open_and_read
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
+from markpress.inherited.SafeCJKParagraph import SafeCJKParagraph
 
-class SmartInlineImgParagraph(Paragraph):
+
+class SmartInlineImgParagraph(SafeCJKParagraph):
+    def __init__(self, text, style, **kwargs):
+        super().__init__(text=text, style=style, **kwargs)
+
     """
     在 wrap 阶段根据当前行剩余宽度，决定 inline <img> 是否强制换行。
     适用于你的场景：文本里夹多个 <img .../>（公式图）。
     """
-
     def _estimate_frag_width(self, frag) -> float:
         # img frag：直接用 frag.width
         if getattr(frag, "__tag__", None) == "img":
@@ -117,13 +119,9 @@ class SmartInlineImgParagraph(Paragraph):
         return changed
 
     def wrap(self, availWidth, availHeight):
-        # 先在 wrap 阶段决定是否需要给 img 注入 <br/>
         if self._inject_br_before_imgs_if_needed(availWidth):
-            # 用注入后的文本重建一次 Paragraph（保持 style 等一致）
             new_text = self._smart_new_text
-            # 重要：用同一个 style
-            rebuilt = Paragraph(new_text, self.style, bulletText=getattr(self, "bulletText", None))
-            # 把 rebuilt 的内部状态“接管”到 self（最少侵入）
+            rebuilt = self.__class__(new_text, self.style, bulletText=getattr(self, "bulletText", None))
             self.__dict__.update(rebuilt.__dict__)
 
         return super().wrap(availWidth, availHeight)

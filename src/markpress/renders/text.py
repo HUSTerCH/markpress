@@ -1,7 +1,8 @@
 import copy
 import re
-
+import emoji
 from bs4 import BeautifulSoup  # [NEW]
+from bs4 import NavigableString
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
 from reportlab.lib.styles import ParagraphStyle
@@ -9,6 +10,7 @@ from reportlab.platypus import Paragraph
 
 from .base import BaseRenderer
 from ..inherited.SmartInlineImgParagraph import SmartInlineImgParagraph
+from ..utils import replace_to_twemoji
 
 
 class TextRenderer(BaseRenderer):
@@ -35,7 +37,7 @@ class TextRenderer(BaseRenderer):
                 keepWithNext=False
             ))
 
-    def render(self, xml_text: str, **kwargs):
+    def render(self, xml_text: str, align: str = 'left', **kwargs):
         # 清洗并修复 HTML 结构
         clean_text = self._sanitize_html_for_reportlab(xml_text).replace("\n", "")
         img_heights = [float(h) for h in re.findall(r'height="([\d\.]+)"', clean_text)]
@@ -52,14 +54,23 @@ class TextRenderer(BaseRenderer):
             final_style.leading = required_leading
             # 如果公式太高，让它稍微居中一点，可以增加 spaceBefore/After
             # final_style.spaceAfter += 2
-        if "<img" in clean_text:
-            print("这是有img的clean text：",clean_text)
+        if align == 'center':
+            final_style.alignment = TA_CENTER
+        elif align == 'right':
+            final_style.alignment = TA_RIGHT
+        else:
+            final_style.alignment = TA_LEFT
+
+        if "<img" in clean_text :
+            # print("这是有img的clean text：", clean_text)
+            # print("其style的alignment为：", final_style.alignment)
+            # if align == "center":
+            #     clean_text = f"&nbsp;{clean_text}&nbsp;"
+            # elif align == "right":
+            #     clean_text = f"&nbsp;{clean_text}"
             return [SmartInlineImgParagraph(clean_text, final_style)]
         else:
             return [Paragraph(clean_text, self.styles["Body_Text"])]
-
-
-
 
     def _sanitize_html_for_reportlab(self, text: str) -> str:
         """
@@ -71,6 +82,8 @@ class TextRenderer(BaseRenderer):
         """
         if not text:
             return ""
+
+        text = emoji.replace_emoji(text, replace=replace_to_twemoji)
 
         # --- [Step 1] 保护 <img /> 标签 ---
         protected_imgs = {}
@@ -121,10 +134,9 @@ class TextRenderer(BaseRenderer):
 
             # 如果是 <img ...> (没闭合) -> <img ... />
             if not tag_content.endswith("/>"):
-                tag_content = tag_content.rstrip(">") + " />"
-            # 如果是 <img .../> (紧凑闭合) -> <img ... /> (加空格)
-            elif tag_content.endswith("/>") and not tag_content.endswith(" />"):
-                tag_content = tag_content[:-2] + " />"
+                tag_content = tag_content.rstrip(">") + "/>"
+            elif tag_content.endswith("/>") and not tag_content.endswith("/>"):
+                tag_content = tag_content[:-2] + "/>"
 
             clean_html = clean_html.replace(key, tag_content)
 

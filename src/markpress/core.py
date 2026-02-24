@@ -235,7 +235,7 @@ class MarkPressEngine:
         self.current_story.extend(flowables)
         self.try_trigger_autosave()
 
-    def add_text(self, xml_text: str):
+    def add_text(self, xml_text: str, align: str = None):
         # 检查当前是否在引用中 (通过栈是否为空判断)
         is_in_quote = len(self.context_stack) > 0
 
@@ -245,7 +245,7 @@ class MarkPressEngine:
             # 嵌套一层 font 标签来变色
             # 如果 xml_text 里已经有了 color 设置，内层会覆盖外层，这是合理的
             xml_text = f'<font color="{q_color}">{xml_text}</font>'
-        flowables = self.text_renderer.render(xml_text)
+        flowables = self.text_renderer.render(xml_text, align=align)
         self.current_story.extend(flowables)
         self.try_trigger_autosave()
 
@@ -292,9 +292,30 @@ class MarkPressEngine:
 
     def add_image(self, image_path: str, alt_text: str = ""):
         """添加图片"""
+        # 拦截 SVG 和 shields.io
+        if '.svg' in image_path.lower() or 'shields.io' in image_path.lower():
+            # 调用浏览器截图
+            png_bytes, w, h = self.katex_renderer.render_svg_url_to_png(image_path)
+            if png_bytes:
+                # 限制宽度防溢出
+                if w > self.avail_width:
+                    scale = self.avail_width / w
+                    w *= scale
+                    h *= scale
+
+                img = Image(io.BytesIO(png_bytes), width=w, height=h)
+                self.current_story.append(img)
+                return
+            else:
+                # 如果网络请求失败或截图失败，做文本降级兜底
+                self.add_text(f"<font color='gray'>[{alt_text or 'Badge'}]</font>")
+                return
         flowables = self.image_renderer.render(image_path, alt_text, avail_width=self.avail_width)
         self.current_story.extend(flowables)
 
+    def rasterize_svg(self, url: str):
+        """将 SVG 转换为本地 PNG 文件路径及尺寸"""
+        return self.katex_renderer.render_svg_url_to_file(url)
     def add_spacer(self, height_mm: float):
         self.current_story.append(Spacer(1, height_mm * mm))
 
@@ -325,7 +346,6 @@ class MarkPressEngine:
 
     def save_pdf(self):
         # print(f"Generating PDF: {self.filename}...")
-        # print(self.story)
         # print(f"有{len(self.story)}个story")
 
         # 去除尾巴的空格
