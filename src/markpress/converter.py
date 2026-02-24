@@ -2,6 +2,7 @@ import os
 import tempfile
 import mistune
 from .core import MarkPressEngine
+from .utils import APP_TMP
 
 
 def convert_markdown_file(input_path: str, output_path: str, theme: str = "academic"):
@@ -156,7 +157,7 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
                 png_bytes, w, h = writer.katex_renderer.render_image(tok.get('raw', ''), is_block=False)
                 if png_bytes:
                     # 走katex
-                    fd, path = tempfile.mkstemp(suffix=".png")
+                    fd, path = tempfile.mkstemp(suffix=".png",dir=APP_TMP)
                     os.write(fd, png_bytes)
                     os.close(fd)
                     # 计算下沉 (valign)

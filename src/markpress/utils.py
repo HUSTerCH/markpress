@@ -1,6 +1,11 @@
 import importlib.resources
+import os
+import tempfile
 from contextlib import contextmanager
 from pathlib import Path
+
+
+APP_TMP = os.path.join(tempfile.gettempdir(), "markpress")
 
 @contextmanager
 def get_font_path(filename: str):
@@ -12,7 +17,6 @@ def get_font_path(filename: str):
         if not path.exists():
             raise FileNotFoundError(f"Font missing: {filename} in {path}")
         yield str(path)
-
 
 
 @contextmanager
@@ -33,3 +37,11 @@ def get_katex_path():
         yield str(path)
 
 
+def clear_temp_files():
+    print(f"清理临时文件夹：{APP_TMP}")
+    for f in os.listdir(APP_TMP):
+        if f.startswith("tmp") and f.endswith(".png"):
+            try:
+                os.remove(os.path.join(APP_TMP, f))
+            except:
+                pass
