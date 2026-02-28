@@ -69,6 +69,7 @@ class FormulaRenderer(BaseRenderer):
             return f'<img src="{img_path}" width="{w}" height="{h}" valign="{valign}"/>'
 
         except Exception as e:
+            print("FormularRender出现错误：",e)
             # 降级：显示红色 LaTeX 源码，转义 latex 中的特殊字符，防止 XML 错误
             safe_latex = latex.replace('<', '&lt;').replace('>', '&gt;')
             return f"<font color='red'>${safe_latex}$</font>"

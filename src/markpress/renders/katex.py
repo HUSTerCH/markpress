@@ -1,12 +1,13 @@
-import os
 from pathlib import Path
 from typing import Any, List
+import os
+import tempfile
 
 from playwright.sync_api import sync_playwright
 from reportlab.platypus import Flowable
 
 from .base import BaseRenderer
-from ..utils import get_katex_path
+from ..utils import get_katex_path, APP_TMP
 
 
 class KatexRenderer(BaseRenderer):
@@ -152,10 +153,57 @@ class KatexRenderer(BaseRenderer):
             return png_bytes, width_pt, height_pt
 
         except Exception as e:
-            print(f"KaTeX Render Error: {e}")
+            print(f"KaTeX Render Error Happens: {e}")
             return None, 0, 0
 
+    def render_svg_url_to_png(self, url: str):
+        """
+        光栅化：让 Chromium 打开 SVG 链接并截图为 PNG
+        """
+        if not self.browser or not self.page:
+            return None, 0, 0
+
+        try:
+            # print(f"Rasterizing SVG: {url}")
+            # 直接让浏览器访问这个 SVG 链接或 API
+            self.page.goto(url, wait_until="networkidle")
+
+            # 定位页面上的 svg 元素 (通常浏览器直接打开 svg 文件，根节点就是 svg)
+            locator = self.page.locator("svg").first
+            box = locator.bounding_box()
+
+            if not box:
+                return None, 0, 0
+
+            # 截图为 PNG 内存流
+            png_bytes = locator.screenshot(type="png", omit_background=True)
+
+            # 转换为 ReportLab 的 Point 单位 (1px ≈ 0.75pt)
+            width_pt = box['width'] * 0.75
+            height_pt = box['height'] * 0.75
+
+            return png_bytes, width_pt, height_pt
+
+        except Exception as e:
+            print(f"[Warn] Failed to rasterize SVG {url}: {e}")
+            return None, 0, 0
+
+    def render_svg_url_to_file(self, url: str):
+        """光栅化 SVG 并保存为临时文件供行内标签调用"""
+
+        png_bytes, w, h = self.render_svg_url_to_png(url)
+        if not png_bytes:
+            return None, 0, 0
+
+        # 写入临时文件
+        fd, path = tempfile.mkstemp(suffix=".png",dir=APP_TMP)
+        os.write(fd, png_bytes)
+        os.close(fd)
+
+        return path, w, h
+
     def close(self):
+        print("关闭Katex渲染器.")
         if self.browser:
             self.browser.close()
         if self.playwright:
