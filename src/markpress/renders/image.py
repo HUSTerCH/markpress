@@ -37,9 +37,9 @@ class ImageRenderer(BaseRenderer):
                 img.drawWidth = img.drawWidth * scale
             img.hAlign = 'CENTER'
             return [
-                Spacer(1, 3 * mm),  # 图片前的间距
+                Spacer(1, 6 * mm),  # 图片前的间距
                 img,
-                Spacer(1, 3 * mm)   # 图片后的间距
+                # Spacer(1, 3 * mm)   # 图片后的间距
             ]
         except Exception as e:
             print(f"错误: 无法加载图片 {image_path}: {e}")

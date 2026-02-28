@@ -6,7 +6,7 @@ from pprint import pprint
 import mistune
 from bs4 import BeautifulSoup
 from .core import MarkPressEngine
-from .utils import APP_TMP, _get_raw_text, _slugify, strip_front_matter
+from .utils import APP_TMP, _get_raw_text, _slugify, strip_front_matter, _optimize_ast_html_blocks
 
 
 def convert_markdown_file(input_path: str, output_path: str, theme: str = "academic"):
@@ -43,16 +43,19 @@ def convert_markdown_file(input_path: str, output_path: str, theme: str = "acade
 
     # 获取 AST (Abstract Syntax Tree)，这是一个由字典组成的列表，每个字典代表一个 Block (段落, 标题, 代码块等)
     ast = markdown(clean_md)
+    optimized_ast = _optimize_ast_html_blocks(ast)
 
     # 初始化 PDF 引擎
     writer = MarkPressEngine(output_path, theme)
 
     # 遍历 AST 并渲染
-    _render_ast(writer, ast, base_dir)
+    # _render_ast(writer, ast, base_dir)
+    _render_ast(writer, optimized_ast, base_dir)
 
     # 保存并关闭katex引擎
     writer.save_pdf()
     writer.close_katex_render()
+    print("Done.")
 
 
 def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
@@ -138,11 +141,11 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
             writer.add_formula(token.get('raw', ''))
         elif t_type == 'block_html':
             raw_html = token.get('raw', '')
-            raw_html = raw_html.replace("</div>\n<div", "</div></div>\n<div<div")
-            raw_html_spilt = raw_html.split("</div>\n<div")
-            for raw_part in raw_html_spilt:
-                if raw_part.strip() != "":
-                    _process_block_html(writer, raw_part.strip())
+            # raw_html = raw_html.replace("</div>\n<div", "</div></div>\n<div<div")
+            # raw_html_spilt = raw_html.split("</div>\n<div")
+            # for raw_part in raw_html_spilt:
+            # if raw_html.strip() != "":
+            _parse_block_html(writer, raw_html.strip())
 
 
 def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
@@ -178,7 +181,7 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
         elif t_type == 'inline_math':
             try:
                 latex = tok.get('raw', '')  # latex源码
-                png_bytes, w, h = writer.katex_renderer.render_image(tok.get('raw', ''), is_block=False)
+                png_bytes, w, h = writer.katex_renderer.render_image(latex, is_block=False)
                 if png_bytes:
                     # 走katex
                     fd, path = tempfile.mkstemp(suffix=".png", dir=APP_TMP)
@@ -190,7 +193,7 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
                     xml_img = f'<img src="{path}" width="{w}" height="{h}" valign="{valign}"/>'
                 else:
                     # 走matplot
-                    xml_img = writer.formula_renderer.render_inline()
+                    xml_img = writer.formula_renderer.render_inline(latex)
             except Exception:
                 xml_img = f"<font color='red'>${latex}$</font>"
             result.append(xml_img)
@@ -287,9 +290,7 @@ def _parse_table(writer: MarkPressEngine, table_children: list, table_attrs: dic
     return {"header": header, "body": body, "aligns": aligns}
 
 
-def _process_block_html(writer, raw_html: str):
-    if """<p align="center">""" in raw_html:
-        print("""<p align="center">""")
+def _parse_block_html(writer, raw_html: str):
     # 1. 剔除注释
     html = re.sub(r'', '', raw_html, flags=re.DOTALL)
     if not html.strip():
@@ -297,10 +298,9 @@ def _process_block_html(writer, raw_html: str):
 
     soup = BeautifulSoup(html, 'html.parser')
 
-    # 3. 【核心修复：超链接上色与属性净化】
+    # 超链接上色与属性净化
     for a in soup.find_all('a'):
-        # [新增防崩逻辑]：ReportLab 极其脆弱，必须扒光除了 href 和 name 之外的所有属性
-        # 比如 target="_blank", style="margin: 2px;", class="..." 都会导致崩溃
+        # 扒光除了 href 和 name 之外的所有属性,比如 target="_blank", style="margin: 2px;", class="..." 都会导致崩溃
         safe_attrs = {}
         if a.get('href'):
             safe_attrs['href'] = a.get('href')
@@ -315,13 +315,10 @@ def _process_block_html(writer, raw_html: str):
             if a.find('img'):
                 continue
 
-            # 给纯文本加上蓝色和下划线 <font color="blue"><u>...</u></font>
+            # 给纯文本加上蓝色 <font color="blue">...</font>
             font_tag = soup.new_tag('font', color='blue')
             font_tag.extend(a.contents)
-            # u_tag = soup.new_tag('u')
-            # u_tag.extend(a.contents)
             a.clear()
-            # font_tag.append(u_tag)
             a.append(font_tag)
     # 4. 图片分拣 (内联徽章 vs 块级大图)
     valid_images = {}
@@ -332,8 +329,13 @@ def _process_block_html(writer, raw_html: str):
         if '.svg' in src.lower() or 'shields.io' in src.lower():
             img_path, w, h = writer.rasterize_svg(src)
             if img_path:
-                new_img = soup.new_tag('img', src=img_path, width=str(w), height=str(h), valign="-3")
-                img.replace_with(new_img)
+                new_img = soup.new_tag('img', src=img_path, width=str(w), height=str(h), valign="-5")
+                if img.find_parent('a'):
+                    img.replace_with(new_img)
+                else:
+                    marker = f"__IMG_{len(valid_images)}__"
+                    valid_images[marker] = (src, alt)
+                    img.replace_with(marker)
             else:
                 new_tag = soup.new_tag('font', color='#666666')
                 new_tag.string = f"[{alt}]"
@@ -343,69 +345,43 @@ def _process_block_html(writer, raw_html: str):
             valid_images[marker] = (src, alt)
             img.replace_with(marker)
 
-    # # 5. 【核心修复：提取并保留居中属性】
-    # for tag in soup.find_all(['div', 'p', 'center']):
-    #     is_center = (tag.name == 'center' or tag.get('align') == 'center')
-    #     if is_center:
-    #         # 放弃使用标签，改为插入纯文本信标，免疫一切大小写转换和洗标机
-    #         tag.insert_before('__CENTER_START__')
-    #         tag.insert_after('__CENTER_END__')
-    #     tag.unwrap()
-    #
-    # for hr in soup.find_all('hr'):
-    #     hr.replace_with('__HR__')
-    #
-    # clean_text = str(soup).replace('\n', ' ')
-    #
-    # # 6. 流式分发
-    # pattern = re.compile(r'(__HR__|__IMG_\d+__)')
-    # parts = pattern.split(clean_text)
-    #
-    # for part in parts:
-    #     part = part.strip()
-    #     if not part:
-    #         continue
-    #
-    #     if part == '__HR__':
-    #         writer.add_horizontal_rule()
-    #     elif part in valid_images:
-    #         src, alt = valid_images[part]
-    #         writer.add_image(image_path=src, alt_text=alt)
-    #     else:
-    #         # 检查是否有居中标记
-    #         is_centered = False
-    #         # 用 or 匹配：即使因为图片插入导致 START 和 END 被切到了两个 part 里，
-    #         # 这两个 part 依然都能继承居中属性！这叫“断点续传”。
-    #         if '__CENTER_START__' in part or '__CENTER_END__' in part:
-    #             is_centered = True
-    #             # 阅后即焚
-    #             part = part.replace('__CENTER_START__', '').replace('__CENTER_END__', '')
-    #
-    #         # 清理信标后，如果还有内容，再交给渲染器
-    #         part = part.strip()
-    #         if part:
-    #             writer.add_text(part, align="center" if is_centered else None)
-
-    # 5. 【核心修复：提取并保留居中属性】
-    for tag in soup.find_all(['div', 'p', 'center']):
+    # 5. 【核心修复：提取并保留格式属性与标题层级】
+    for tag in soup.find_all(['div', 'p', 'center', 'right', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
         is_center = (tag.name == 'center' or tag.get('align') == 'center')
         is_right = (tag.name == 'right' or tag.get('align') == 'right')
+
+        prefix = ""
+        suffix = ""
+
+        # 提取标题层级 (h1~h6)
+        if tag.name in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+            level = tag.name[1]
+            prefix += f"__H{level}_START__"
+            suffix = f"__H{level}_END__" + suffix
+
+        # 提取对齐属性
         if is_center:
-            # 改为我们的私有占位标记
-            tag.name = 'CENTER_MARKER'
-            tag.attrs = {}
+            prefix += "__CENTER_START__"
+            suffix = "__CENTER_END__" + suffix
         elif is_right:
-            tag.name = 'RIGHT_MARKER'
-            tag.attrs = {}
-        else:
-            tag.unwrap()
+            prefix += "__RIGHT_START__"
+            suffix = "__RIGHT_END__" + suffix
+
+        # 放弃使用标签，改为插入极度安全的纯文本信标
+        if prefix:
+            tag.insert_before(prefix)
+        if suffix:
+            tag.insert_after(suffix)
+
+        # 剥离原始标签
+        tag.unwrap()
 
     for hr in soup.find_all('hr'):
         hr.replace_with('__HR__')
 
     clean_text = str(soup).replace('\n', ' ')
 
-    # 6. 流式分发
+    # 6. 流式分发与渲染路由
     pattern = re.compile(r'(__HR__|__IMG_\d+__)')
     parts = pattern.split(clean_text)
 
@@ -420,22 +396,46 @@ def _process_block_html(writer, raw_html: str):
             src, alt = valid_images[part]
             writer.add_image(image_path=src, alt_text=alt)
         else:
-            # 检查是否有居中标记
+            # 解析对齐信标
             is_centered = False
             is_right = False
-            if '<CENTER_MARKER>' in part:
-                is_centered = True
-                # 阅后即焚
-                part = part.replace('<CENTER_MARKER>', '').replace('</CENTER_MARKER>', '')
-            elif '<RIGHT_MARKER>' in part:
-                is_right = True
-                part = part.replace('<RIGHT_MARKER>', '').replace('</RIGHT_MARKER>', '')
+            heading_level = 0
 
-            # 传给 writer (新增 align 参数)
+            if '__CENTER_START__' in part or '__CENTER_END__' in part:
+                is_centered = True
+                part = part.replace('__CENTER_START__', '').replace('__CENTER_END__', '')
+            if '__RIGHT_START__' in part or '__RIGHT_END__' in part:
+                is_right = True
+                part = part.replace('__RIGHT_START__', '').replace('__RIGHT_END__', '')
+
+            # 解析标题信标
+            for i in range(1, 7):
+                if f'__H{i}_START__' in part or f'__H{i}_END__' in part:
+                    heading_level = i
+                    part = part.replace(f'__H{i}_START__', '').replace(f'__H{i}_END__', '')
+                    break
+
+            part = part.strip()
+            if not part:
+                continue
+
+            # 决定对齐方式
             if is_centered:
                 align = "center"
             elif is_right:
                 align = "right"
             else:
                 align = "left"
-            writer.add_text(part, align=align)
+
+            # 路由分发机制
+            if heading_level > 0:
+                # 兼容性防御：如果底层的 writer.add_heading 还没有支持 align 参数，自动降级
+                try:
+                    writer.add_heading(part, level=heading_level, align=align)
+                except TypeError as e:
+                    if "align" in str(e):
+                        writer.add_heading(part, level=heading_level)
+                    else:
+                        raise e
+            else:
+                writer.add_text(part, align=align)

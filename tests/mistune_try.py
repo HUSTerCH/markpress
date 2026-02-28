@@ -2,6 +2,8 @@ from pprint import pprint
 
 import mistune
 
+from markpress.utils import _optimize_ast_html_blocks
+
 
 # --- 核心可视化代码 (直接追加) ---
 
@@ -38,7 +40,7 @@ def dump_ast_tree(node, prefix="", is_last=True):
             dump_ast_tree(child, new_prefix, is_last=(i == len(children) - 1))
 
 
-with open("DeepSeekV3_2.md", "r", encoding="utf-8") as f:
+with open("DeepSeek-R1-0528.md", "r", encoding="utf-8") as f:
     text = f.read()
     f.close()
 
@@ -63,7 +65,8 @@ markdown = mistune.create_markdown(
     ]
 )
 ast = markdown(text)
-pprint(ast)
+optimized_ast = _optimize_ast_html_blocks(ast)
+pprint(optimized_ast)
 # --- 执行 ---
 print("\nAST Structure:")
-dump_ast_tree(ast)
+dump_ast_tree(optimized_ast)

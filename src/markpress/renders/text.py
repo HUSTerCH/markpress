@@ -10,7 +10,7 @@ from reportlab.platypus import Paragraph
 
 from .base import BaseRenderer
 from ..inherited.SmartInlineImgParagraph import SmartInlineImgParagraph
-from ..utils import replace_to_twemoji
+from ..utils import replace_to_twemoji, replace_to_local_twemoji
 
 
 class TextRenderer(BaseRenderer):
@@ -83,7 +83,8 @@ class TextRenderer(BaseRenderer):
         if not text:
             return ""
 
-        text = emoji.replace_emoji(text, replace=replace_to_twemoji)
+        # text = emoji.replace_emoji(text, replace=replace_to_twemoji)
+        text = emoji.replace_emoji(text, replace=replace_to_local_twemoji)
 
         # --- [Step 1] 保护 <img /> 标签 ---
         protected_imgs = {}

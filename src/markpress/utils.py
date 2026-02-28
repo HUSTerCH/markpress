@@ -3,8 +3,8 @@ import os
 import re
 import tempfile
 from contextlib import contextmanager
-from pathlib import Path
 
+from bs4 import BeautifulSoup, Tag, Comment
 
 APP_TMP = os.path.join(tempfile.gettempdir(), "markpress")
 
@@ -35,6 +35,15 @@ def get_katex_path():
     with importlib.resources.as_file(ref) as path:
         if not path.exists():
             raise FileNotFoundError(f"KaTeX assets directory missing at: {path}")
+        yield str(path)
+
+
+@contextmanager
+def get_twemoji_path():
+    ref = importlib.resources.files('markpress.assets') / 'twemoji_72'
+    with importlib.resources.as_file(ref) as path:
+        if not path.exists():
+            raise FileNotFoundError(f"twemoji assets directory missing at: {path}")
         yield str(path)
 
 
@@ -86,6 +95,17 @@ def replace_to_twemoji(chars, data_dict):
     # 高度设为 12，valign 设为 -2 恰好可以与中文字体基线完美对齐
     return f'<img src="{url}" width="12.01" height="12.01" valign="-2.01" />'
 
+def replace_to_local_twemoji(chars, data_dict):
+    hex_str = '-'.join(f"{ord(c):x}" for c in chars if ord(c) != 0xfe0f)
+    with get_twemoji_path() as twemoji_path:
+        local_img_path = os.path.join(twemoji_path, f"{hex_str}.png")
+
+    # 如果本地没这个表情（比如刚出的新 Emoji），降级为空或占位符
+    if not os.path.exists(local_img_path):
+        return ""  # 或者返回一个默认的问号图片路径
+
+    return f'<img src="{local_img_path}" width="12.01" height="12.01" valign="-2.01" />'
+
 def strip_front_matter(md_text: str) -> str:
     """
     硬核防线：精准切除文件头部的 YAML Front Matter。
@@ -93,3 +113,66 @@ def strip_front_matter(md_text: str) -> str:
     """
     pattern = re.compile(r'\A---\n.*?\n---\n', re.DOTALL)
     return pattern.sub('', md_text)
+
+
+def _optimize_ast_html_blocks(tokens: list) -> list:
+    """
+    AST 核心中间件：
+    1. 缝合被 Markdown 规范错切的 HTML 碎块。
+    2. 使用 DOM 树解析，按“根 HTML 标签”重新精准切割。
+    """
+    if not tokens:
+        return []
+
+    optimized = []
+    html_buffer = []
+
+    def flush_html_buffer():
+        """执行重组与切割手术"""
+        if not html_buffer:
+            return
+
+        merged_html = "".join(html_buffer)
+
+        # 核心逻辑：利用 BS4 的容错解析能力，把字符串还原为严格的 DOM 树
+        soup = BeautifulSoup(merged_html, 'html.parser')
+
+        # 遍历根节点
+        for child in soup.contents:
+            if isinstance(child, Tag):
+                # 完整的 HTML 标签块
+                optimized.append({'type': 'block_html', 'raw': str(child)})
+            elif isinstance(child, Comment):
+                # 拦截注释对象，手动复原 外壳
+                # 这样后续的 _process_block_html 里的正则清理就能精准定位并安全销毁它，而不会污染正文
+                optimized.append({'type': 'block_html', 'raw': f''})
+            else:
+                # 纯文本或其他字符
+                text = str(child).strip()
+                if text:
+                    optimized.append({'type': 'block_html', 'raw': text})
+
+        html_buffer.clear()
+
+    for tok in tokens:
+        t_type = tok.get('type')
+
+        if t_type == 'block_html':
+            html_buffer.append(tok.get('raw', ''))
+        elif t_type == 'blank_line' and html_buffer:
+            # 维持收集状态
+            html_buffer.append('\n\n')
+        else:
+            # 遇到正规 Markdown 节点，清空并结算缓冲池
+            flush_html_buffer()
+
+            # 递归处理子节点
+            if 'children' in tok and tok['children']:
+                tok['children'] = _optimize_ast_html_blocks(tok['children'])
+
+            optimized.append(tok)
+
+    # 循环结束，最后结算一次
+    flush_html_buffer()
+
+    return optimized

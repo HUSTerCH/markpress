@@ -347,14 +347,13 @@ class MarkPressEngine:
     def save_pdf(self):
         # print(f"Generating PDF: {self.filename}...")
         # print(f"有{len(self.story)}个story")
-
+        # print(self.story[:5])
         # 去除尾巴的空格
         if len(self.story) > 0 and self.story[-1] and isinstance(self.story[-1], Spacer):
             self.story.pop()
         try:
             self.doc.build(self.story)  # 根 story
             clear_temp_files()
-            print("Done.")
         except Exception as e:
             clear_temp_files()
             print(f"Error building PDF: {e}")

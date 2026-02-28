@@ -153,7 +153,7 @@ class KatexRenderer(BaseRenderer):
             return png_bytes, width_pt, height_pt
 
         except Exception as e:
-            print(f"KaTeX Render Error: {e}")
+            print(f"KaTeX Render Error Happens: {e}")
             return None, 0, 0
 
     def render_svg_url_to_png(self, url: str):
@@ -203,6 +203,7 @@ class KatexRenderer(BaseRenderer):
         return path, w, h
 
     def close(self):
+        print("关闭Katex渲染器.")
         if self.browser:
             self.browser.close()
         if self.playwright:
