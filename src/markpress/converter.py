@@ -13,6 +13,7 @@ def convert_markdown_file(input_path: str, output_path: str, theme: str = "acade
     """
     读取 Markdown 文件，解析为 AST，驱动 Writer 生成 PDF。
     """
+    print(f"开始处理Markdown文件：{input_path}")
     with open(input_path, "r", encoding="utf-8") as f:
         text = f.read()
     clean_md = strip_front_matter(text)
@@ -115,8 +116,9 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
         # 列表 (List)
         elif t_type == 'list':
             ordered = attrs.get('ordered', False)
+            start_index = attrs.get('start', 1)
             list_items = _parse_list_items(writer, children)
-            writer.add_list(list_items, is_ordered=ordered)
+            writer.add_list(list_items, is_ordered=ordered,start_index=start_index)
 
         # 表格 (Table)
         elif t_type == 'table':

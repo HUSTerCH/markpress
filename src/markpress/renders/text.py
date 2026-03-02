@@ -45,29 +45,46 @@ class TextRenderer(BaseRenderer):
 
         # 获取基础样式
         base_style = self.styles["Body_Text"]
-        final_style = base_style
         required_leading = max_img_h + 4
 
-        if required_leading > base_style.leading:
-            # 必须 copy 一份样式，否则会修改全局单例，导致后面的普通段落也变得很宽
-            final_style = copy.copy(base_style)
-            final_style.leading = required_leading
-            # 如果公式太高，让它稍微居中一点，可以增加 spaceBefore/After
-            # final_style.spaceAfter += 2
-        if align == 'center':
-            final_style.alignment = TA_CENTER
-        elif align == 'right':
-            final_style.alignment = TA_RIGHT
+        # if required_leading > base_style.leading:
+        #     # 必须 copy 一份样式，否则会修改全局单例，导致后面的普通段落也变得很宽
+        #     final_style = copy.copy(base_style)
+        #     final_style.leading = required_leading
+        #     # 如果公式太高，让它稍微居中一点，可以增加 spaceBefore/After
+        #     # final_style.spaceAfter += 2
+        # if align == 'center':
+        #     final_style.alignment = TA_CENTER
+        # elif align == 'right':
+        #     final_style.alignment = TA_RIGHT
+        # else:
+        #     final_style.alignment = TA_LEFT
+
+        # 判断是否需要派生新样式 (行高变大，或者对齐方式不是默认的左对齐)
+        needs_new_style = (required_leading > base_style.leading) or (align != 'left')
+
+        if needs_new_style:
+            # 确定对齐的枚举值
+            if align == 'center':
+                alignment_val = TA_CENTER
+            elif align == 'right':
+                alignment_val = TA_RIGHT
+            else:
+                alignment_val = TA_LEFT
+
+            # 【核心修复：绝对安全的样式派生】
+            # 使用 parent 继承，生成一个拥有独立内存地址的临时样式
+            final_style = ParagraphStyle(
+                name=f"DynamicBodyStyle_{id(clean_text)}_{align}",
+                parent=base_style,
+                leading=required_leading if required_leading > base_style.leading else base_style.leading,
+                alignment=alignment_val
+            )
         else:
-            final_style.alignment = TA_LEFT
+            # 如果什么都不需要改，安全地复用全局单例
+            final_style = base_style
 
         if "<img" in clean_text :
-            # print("这是有img的clean text：", clean_text)
-            # print("其style的alignment为：", final_style.alignment)
-            # if align == "center":
-            #     clean_text = f"&nbsp;{clean_text}&nbsp;"
-            # elif align == "right":
-            #     clean_text = f"&nbsp;{clean_text}"
             return [SmartInlineImgParagraph(clean_text, final_style)]
         else:
             return [Paragraph(clean_text, self.styles["Body_Text"])]

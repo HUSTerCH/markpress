@@ -1,4 +1,5 @@
 # 列表，包括有序和无序
+import re
 from typing import List, Union, Tuple
 from reportlab.platypus import ListFlowable, ListItem
 from reportlab.lib import colors
@@ -30,14 +31,15 @@ class ListRenderer(BaseRenderer):
                 textColor=body_style.textColor
             ))
 
-    def render(self, items: List[Union[str, list]], is_ordered: bool = False):
+    def render(self, items: List[Union[str, list]], is_ordered: bool = False, start_index: int = 1):
         """
         渲染入口
+        :param start_index: 起始编号，只在有序列表中生效
         :param items: 嵌套列表数据 ['Item 1', ['Sub 1'], 'Item 2']
         :param is_ordered: 是否有序
         """
         # 构建 ListFlowable
-        list_flowable = self._build_level(items, depth=0, ordered=is_ordered)
+        list_flowable = self._build_level(items, depth=0, ordered=is_ordered, start_index=start_index)
         return [list_flowable]
 
     def _to_roman(self, n: int) -> str:
@@ -83,12 +85,12 @@ class ListRenderer(BaseRenderer):
             else:
                 return '▪', font_mono  # 实心方块
 
-    def _build_level(self, sub_items: list, depth: int = 0, ordered: bool = False) -> ListFlowable:
+    def _build_level(self, sub_items: list, depth: int = 0, ordered: bool = False, start_index: int = 1) -> ListFlowable:
         """
         递归构建列表层级
         """
         flowables = []
-        item_index = 0
+        item_index = start_index - 1
         i = 0
 
         # 获取当前主题的文本颜色
@@ -106,11 +108,32 @@ class ListRenderer(BaseRenderer):
             # 处理正常 Item
             item_index += 1
 
-            # 1获取符号
+            # 获取符号
             bullet_char, bullet_font = self._get_symbol_and_font(depth, item_index, ordered)
 
+            raw_text = str(item)
+            img_heights = [float(h) for h in re.findall(r'height="([\d\.]+)"', raw_text)]
+            max_img_h = max(img_heights) if img_heights else 0
+            print("raw_text:", raw_text)
+            print("最大img高度：", max_img_h)
+
+            base_style = self.styles["List_Body"]
+            final_style = base_style
+
+            # 给公式图上下留出 4pt 的呼吸空间
+            required_leading = max_img_h + 2
+            if required_leading > base_style.leading:
+                extra_space_before = required_leading - base_style.leading
+                final_style = ParagraphStyle(
+                    name=f"List_Body_Dynamic_{id(raw_text)}",
+                    parent=base_style,
+                    leading=required_leading,
+                    spaceBefore=base_style.spaceBefore + extra_space_before,
+                )
+
             # 内容 (使用 SafeCJKParagraph 防止崩溃)
-            item_content = [SafeCJKParagraph(str(item), self.styles["List_Body"])]
+            item_content = [SafeCJKParagraph(raw_text, final_style)]
+            print(item_content)
 
             # 预读下一项，如果是列表，则是当前项的子列表
             if i + 1 < len(sub_items) and isinstance(sub_items[i + 1], list):
@@ -127,8 +150,8 @@ class ListRenderer(BaseRenderer):
                 bulletColor=text_color,  # 适配深色模式
                 value=bullet_char,
                 bulletFontName=bullet_font,
-                bulletFontSize=10,  # 稍微比正文小一点更精致
-                bulletOffsetY=-1  # 视觉微调
+                bulletFontSize=11,  # 稍微比正文小一点更精致
+                bulletOffsetY=0.5
             ))
 
             i += 1
@@ -141,6 +164,6 @@ class ListRenderer(BaseRenderer):
             # 缩进控制
             leftIndent=18,  # 整体向右缩进
             bulletIndent=0,  # 符号相对于 leftIndent 的位置
-            spaceBefore=2,  # 列表项之间的间距
+            spaceBefore=2,
             spaceAfter=2
         )

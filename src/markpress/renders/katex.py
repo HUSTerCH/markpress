@@ -80,35 +80,74 @@ class KatexRenderer(BaseRenderer):
 
         self.page = self.browser.new_page(device_scale_factor=3)
 
-        # 通过 API 注入引用资源,先设置一个空的骨架 HTML
-        self.page.set_content("""
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <style>
-                body { margin: 0; padding: 0; background: transparent; }
-                #container { display: inline-block; padding: 1px; }
-            </style>
-        </head>
-        <body>
-            <div id="container"></div>
-        </body>
-        </html>
-        """)
+        html_path = Path(APP_TMP) / "_katex_env.html"
 
-        # 注入 CSS (阻塞式)
-        self.page.add_style_tag(path=str(self.css_path))
+        # 获取静态资源的 file:// URL，必须保证以 / 结尾
+        base_url = self.assets_dir.as_uri()
+        if not base_url.endswith('/'):
+            base_url += '/'
 
-        # 注入 JS (阻塞式)Playwright 会自动处理文件读取和执行等待
-        self.page.add_script_tag(path=str(self.js_path))
+        html_content = f"""
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <base href="{base_url}">
+                    <link rel="stylesheet" href="katex.min.css">
+                    <script src="katex.min.js"></script>
+                    <style>
+                        body {{ margin: 0; padding: 0; background: transparent; }}
+                        #container {{ display: inline-block; padding: 1px; }}
+                    </style>
+                </head>
+                <body>
+                    <div id="container"></div>
+                </body>
+                </html>
+                """
 
-        # 等待 katex 对象在 window 中可用,如果这一步超时，说明 JS 文件本身有问题（路径错或文件坏）
+        # 写入临时目录
+        html_path.write_text(html_content, encoding="utf-8")
+
+        # 让无头浏览器访问真实的本地文件
+        # 因为此时页面是 file:// 协议，且 base 指向了 assets 目录，字体加载将 100% 成功
+        self.page.goto(html_path.as_uri(), wait_until="networkidle")
+
+        # 等待 katex 对象在 window 中可用
         try:
             self.page.wait_for_function("() => typeof katex !== 'undefined'", timeout=5000)
             print("KaTeX Engine Loaded Successfully.")
         except Exception as e:
-            print(f"CRITICAL: KaTeX JS failed to load. Path: {self.js_path}")
+            print(f"CRITICAL: KaTeX JS failed to load via base_url: {base_url}")
             raise e
+        # # 通过 API 注入引用资源,先设置一个空的骨架 HTML
+        # self.page.set_content("""
+        # <!DOCTYPE html>
+        # <html>
+        # <head>
+        #     <style>
+        #         body { margin: 0; padding: 0; background: transparent; }
+        #         #container { display: inline-block; padding: 1px; }
+        #     </style>
+        # </head>
+        # <body>
+        #     <div id="container"></div>
+        # </body>
+        # </html>
+        # """)
+        #
+        # # 注入 CSS (阻塞式)
+        # self.page.add_style_tag(path=str(self.css_path))
+        #
+        # # 注入 JS (阻塞式)Playwright 会自动处理文件读取和执行等待
+        # self.page.add_script_tag(path=str(self.js_path))
+        #
+        # # 等待 katex 对象在 window 中可用,如果这一步超时，说明 JS 文件本身有问题（路径错或文件坏）
+        # try:
+        #     self.page.wait_for_function("() => typeof katex !== 'undefined'", timeout=5000)
+        #     print("KaTeX Engine Loaded Successfully.")
+        # except Exception as e:
+        #     print(f"CRITICAL: KaTeX JS failed to load. Path: {self.js_path}")
+        #     raise e
 
     def render_image(self, latex: str, is_block: bool = False):
         """

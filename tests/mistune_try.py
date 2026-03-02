@@ -40,7 +40,7 @@ def dump_ast_tree(node, prefix="", is_last=True):
             dump_ast_tree(child, new_prefix, is_last=(i == len(children) - 1))
 
 
-with open("DeepSeek-R1-0528.md", "r", encoding="utf-8") as f:
+with open("随机过程试卷.md", "r", encoding="utf-8") as f:
     text = f.read()
     f.close()
 

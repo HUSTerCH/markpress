@@ -271,9 +271,9 @@ class MarkPressEngine:
         self.current_story.append(hr)
         self.try_trigger_autosave()
 
-    def add_list(self, items: list, is_ordered: bool = False):
+    def add_list(self, items: list, is_ordered: bool = False, start_index: int = 1):
         """添加列表"""
-        flowables = self.list_renderer.render(items, is_ordered)
+        flowables = self.list_renderer.render(items, is_ordered, start_index=start_index)
         self.current_story.extend(flowables)
         # 列表结束后加一点间距
         self.try_trigger_autosave()
@@ -316,6 +316,7 @@ class MarkPressEngine:
     def rasterize_svg(self, url: str):
         """将 SVG 转换为本地 PNG 文件路径及尺寸"""
         return self.katex_renderer.render_svg_url_to_file(url)
+
     def add_spacer(self, height_mm: float):
         self.current_story.append(Spacer(1, height_mm * mm))
 
