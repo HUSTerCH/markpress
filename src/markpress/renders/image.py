@@ -5,6 +5,13 @@ from .base import BaseRenderer
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
 from reportlab.lib.styles import ParagraphStyle
+import tempfile
+import urllib.request
+from PIL import Image as PILImage
+from ..utils import APP_TMP
+
+# 本地文档转换工具，允许加载高分辨率图片
+PILImage.MAX_IMAGE_PIXELS = None
 
 
 class ImageRenderer(BaseRenderer):
@@ -34,9 +41,16 @@ class ImageRenderer(BaseRenderer):
 
     # 图片渲染器
     def render(self, image_path: str, alt_text: str = "", **kwargs):
-        # 获取可用宽度
         avail_width = kwargs.get('avail_width', 160 * mm)
-        # 检查图片文件是否存在
+
+        # 在线图片：下载到本地临时文件
+        if image_path.startswith(('http://', 'https://')):
+            local_path = self._download_image(image_path)
+            if not local_path:
+                print(f"警告: 无法下载图片: {image_path}")
+                return []
+            image_path = local_path
+
         if not os.path.exists(image_path):
             print(f"警告: 图片文件不存在或无法访问: {image_path}")
             return [Paragraph(f"<b><font color='red'>加载图片{alt_text}失败</font></b>",self.styles["Body_Text"])]
@@ -71,3 +85,20 @@ class ImageRenderer(BaseRenderer):
         except Exception as e:
             print(f"错误: 无法加载图片 {image_path}: {e}")
             return []
+
+    @staticmethod
+    def _download_image(url: str) -> str:
+        """下载在线图片到临时文件，返回本地路径；失败返回 None"""
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                data = resp.read()
+            # 从 URL 提取扩展名，默认 .png
+            suffix = os.path.splitext(url.split('?')[0])[-1] or '.png'
+            fd, path = tempfile.mkstemp(suffix=suffix, dir=APP_TMP)
+            os.write(fd, data)
+            os.close(fd)
+            return path
+        except Exception as e:
+            print(f"[Warn] 下载图片失败 {url}: {e}")
+            return None

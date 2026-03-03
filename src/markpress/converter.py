@@ -92,6 +92,14 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
 
         # 段落 (Paragraph)
         elif t_type == 'paragraph':
+            # 检测 mistune 未能解析的管道表格（不规则列数等情况）
+            raw_text = _get_raw_text(children)
+            if '\n' in raw_text and '|' in raw_text:
+                table_data = _try_parse_pipe_table(raw_text)
+                if table_data:
+                    writer.add_table(table_data)
+                    continue
+
             # 检查是否只包含图片（独立图片段落）
             if len(children) == 1 and children[0].get('type') == 'image':
                 img_attrs = children[0].get('attrs', {})
@@ -204,12 +212,36 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
             text = _render_inline(writer, tok.get('children'))
             href = tok.get('attrs', {}).get('url', '')
             result.append(f'<a href="{href}" color="blue">{text}</a>')
-        # 行内图片
+        # 行内图片（如徽章、小图标等嵌在段落/链接里的图片）
         elif t_type == 'image':
-            # 图片处理比较复杂，ReportLab 需要本地路径
-            # 这里暂时只显示图片 Alt 文本，防止报错
-            alt = tok.get('attrs', {}).get('alt', 'Image')
-            result.append(f'[Image: {alt}]')
+            img_attrs = tok.get('attrs', {})
+            src = img_attrs.get('url', '')
+            alt = img_attrs.get('alt', 'Image')
+
+            if '.svg' in src.lower() or 'shields.io' in src.lower():
+                # SVG 徽章：通过浏览器光栅化
+                img_path, w, h = writer.rasterize_svg(src)
+                if img_path:
+                    valign = f"-{h * 0.3}"
+                    result.append(f'<img src="{img_path}" width="{w}" height="{h}" valign="{valign}"/>')
+                else:
+                    result.append(f'<font color="#666666">[{alt}]</font>')
+            elif src.startswith(('http://', 'https://')):
+                # 在线普通图片：下载后内联
+                local_path = writer.image_renderer._download_image(src)
+                if local_path:
+                    from reportlab.platypus import Image as RLImage
+                    try:
+                        tmp_img = RLImage(local_path)
+                        w, h = tmp_img.imageWidth * 0.75, tmp_img.imageHeight * 0.75
+                        valign = f"-{h * 0.3}"
+                        result.append(f'<img src="{local_path}" width="{w}" height="{h}" valign="{valign}"/>')
+                    except Exception:
+                        result.append(f'[{alt}]')
+                else:
+                    result.append(f'[{alt}]')
+            else:
+                result.append(f'[{alt}]')
         # 软换行，好像没遇到过
         elif t_type == 'softbreak':
             result.append("")
@@ -292,6 +324,194 @@ def _parse_table(writer: MarkPressEngine, table_children: list, table_attrs: dic
     return {"header": header, "body": body, "aligns": aligns}
 
 
+def _try_parse_pipe_table(raw_text: str) -> dict:
+    """尝试将原始文本解析为管道表格（应对 mistune 无法解析的非标准表格）"""
+    lines = [l for l in raw_text.strip().split('\n') if l.strip()]
+    if len(lines) < 2:
+        return {}
+
+    # 查找分隔线 (包含 |---|)
+    sep_idx = -1
+    for i, line in enumerate(lines):
+        cells = [c.strip() for c in line.strip().strip('|').split('|')]
+        if cells and all(re.match(r'^:?-+:?$', c) for c in cells if c):
+            sep_idx = i
+            break
+
+    if sep_idx < 1:
+        return {}
+
+    def split_row(line):
+        line = line.strip()
+        if line.startswith('|'):
+            line = line[1:]
+        if line.endswith('|'):
+            line = line[:-1]
+        return [c.strip() for c in line.split('|')]
+
+    header_cells = split_row(lines[sep_idx - 1])
+    num_cols = len(header_cells)
+    header = [c.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;') for c in header_cells]
+
+    # 解析对齐方式
+    sep_cells = split_row(lines[sep_idx])
+    aligns = []
+    for cell in sep_cells:
+        cell = cell.strip()
+        if cell.startswith(':') and cell.endswith(':'):
+            aligns.append('center')
+        elif cell.endswith(':'):
+            aligns.append('right')
+        else:
+            aligns.append('left')
+    while len(aligns) < num_cols:
+        aligns.append('left')
+
+    body = []
+    for line in lines[sep_idx + 1:]:
+        cells = split_row(line)
+        cells = [c.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;') for c in cells]
+        while len(cells) < num_cols:
+            cells.append('')
+        body.append(cells[:num_cols])
+
+    if not header and not body:
+        return {}
+    return {"header": header, "body": body, "aligns": aligns}
+
+
+def _extract_css_text_color(style: str):
+    """从 CSS style 中提取文本颜色（排除 background-color）"""
+    for part in style.split(';'):
+        part = part.strip()
+        if part.startswith('color:') or part.startswith('color :'):
+            val = part.split(':', 1)[1].strip()
+            if val.startswith('#'):
+                return val
+    return None
+
+
+def _css_rgba_to_hex(rgba_str: str):
+    """将 CSS rgba() 与白色背景混合后转换为十六进制颜色"""
+    match = re.match(r'rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+))?\s*\)', rgba_str)
+    if not match:
+        return None
+    r, g, b = int(match.group(1)), int(match.group(2)), int(match.group(3))
+    a = float(match.group(4)) if match.group(4) else 1.0
+    r = int(255 * (1 - a) + r * a)
+    g = int(255 * (1 - a) + g * a)
+    b = int(255 * (1 - a) + b * a)
+    return f'#{r:02x}{g:02x}{b:02x}'
+
+
+def _extract_css_bg_color(style: str):
+    """从 CSS style 中提取背景颜色"""
+    for part in style.split(';'):
+        part = part.strip()
+        if part.startswith('background:') or part.startswith('background-color:'):
+            val = part.split(':', 1)[1].strip()
+            if val.startswith('#'):
+                return val
+            if val.startswith('rgb'):
+                return _css_rgba_to_hex(val)
+    return None
+
+
+def _parse_html_table(writer, table_tag) -> dict:
+    """解析 HTML <table> 标签为表格数据字典，支持 colspan 和颜色提取"""
+    header = []
+    body = []
+    aligns = []
+    spans = []
+
+    thead = table_tag.find('thead')
+    tbody = table_tag.find('tbody')
+
+    # 解析表头
+    if thead:
+        first_row = thead.find('tr')
+        if first_row:
+            for cell in first_row.find_all(['th', 'td']):
+                text = cell.get_text(strip=True)
+                text = text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+                style = cell.get('style', '')
+                if 'text-align:center' in style or 'text-align: center' in style:
+                    aligns.append('center')
+                elif 'text-align:right' in style or 'text-align: right' in style:
+                    aligns.append('right')
+                else:
+                    aligns.append('left')
+                text_color = _extract_css_text_color(style)
+                if text_color:
+                    text = f'<font color="{text_color}">{text}</font>'
+                header.append(text)
+
+    num_cols = len(header) if header else 0
+
+    # 解析数据行
+    rows_src = tbody.find_all('tr') if tbody else table_tag.find_all('tr')
+    # 若无 thead，取第一行 <th> 作为表头
+    if not thead and rows_src:
+        first = rows_src[0]
+        if first.find('th'):
+            for th in first.find_all('th'):
+                text = th.get_text(strip=True).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+                header.append(text)
+                aligns.append('left')
+            num_cols = len(header)
+            rows_src = rows_src[1:]
+
+    row_backgrounds = {}
+
+    for row_idx, tr in enumerate(rows_src):
+        cells_tags = tr.find_all(['td', 'th'])
+        row_data = []
+        col_pos = 0
+        data_row_idx = row_idx + (1 if header else 0)
+        row_bg = None
+
+        for cell in cells_tags:
+            text = cell.get_text(strip=True)
+            text = text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+            colspan = int(cell.get('colspan', 1))
+
+            style = cell.get('style', '')
+            if 'font-weight:600' in style or 'font-weight: 600' in style or 'font-weight:bold' in style:
+                text = f'<b>{text}</b>'
+            text_color = _extract_css_text_color(style)
+            if text_color:
+                text = f'<font color="{text_color}">{text}</font>'
+            bg_color = _extract_css_bg_color(style)
+            if bg_color:
+                row_bg = bg_color
+
+            row_data.append(text)
+            if colspan > 1:
+                for _ in range(colspan - 1):
+                    row_data.append('')
+                spans.append(((col_pos, data_row_idx), (col_pos + colspan - 1, data_row_idx)))
+            col_pos += colspan
+
+        # 补齐列数
+        if num_cols == 0 and row_data:
+            num_cols = len(row_data)
+        while len(row_data) < num_cols:
+            row_data.append('')
+        body.append(row_data[:num_cols] if num_cols > 0 else row_data)
+        if row_bg:
+            row_backgrounds[data_row_idx] = row_bg
+
+    if not header and not body:
+        return {}
+
+    result = {"header": header, "body": body, "aligns": aligns}
+    if spans:
+        result["spans"] = spans
+    if row_backgrounds:
+        result["row_backgrounds"] = row_backgrounds
+    return result
+
+
 def _parse_block_html(writer, raw_html: str):
     # 1. 剔除注释
     html = re.sub(r'', '', raw_html, flags=re.DOTALL)
@@ -299,6 +519,13 @@ def _parse_block_html(writer, raw_html: str):
         return
 
     soup = BeautifulSoup(html, 'html.parser')
+
+    # 处理 HTML 表格（在其他 DOM 操作之前提取）
+    for table_tag in soup.find_all('table'):
+        table_data = _parse_html_table(writer, table_tag)
+        if table_data:
+            writer.add_table(table_data)
+        table_tag.decompose()
 
     # 超链接上色与属性净化
     for a in soup.find_all('a'):

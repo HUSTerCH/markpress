@@ -78,7 +78,8 @@ class TableRenderer(BaseRenderer):
 
         for row in body:
             data_row = []
-            for i, cell_text in enumerate(row):
+            for i in range(num_cols):
+                cell_text = row[i] if i < len(row) else ""
                 style = self._cell_style("Table_Cell", aligns, i)
                 data_row.append(Paragraph(cell_text or "", style))
             table_data.append(data_row)
@@ -108,12 +109,20 @@ class TableRenderer(BaseRenderer):
         if header:
             style_cmds.append(('BACKGROUND', (0, 0), (-1, 0), header_bg))
 
-        # 数据行斑马纹，起始行号取决于是否有表头
+        # 数据行斑马纹（自定义行背景色优先）
+        row_backgrounds = data.get("row_backgrounds", {})
         data_start = 1 if header else 0
         total_rows = len(table_data)
         for row_idx in range(data_start, total_rows):
-            bg = row_even if (row_idx - data_start) % 2 == 0 else row_odd
+            if row_idx in row_backgrounds:
+                bg = colors.HexColor(row_backgrounds[row_idx])
+            else:
+                bg = row_even if (row_idx - data_start) % 2 == 0 else row_odd
             style_cmds.append(('BACKGROUND', (0, row_idx), (-1, row_idx), bg))
+
+        # 处理单元格合并 (colspan)
+        for (col_start, row_start), (col_end, row_end) in data.get("spans", []):
+            style_cmds.append(('SPAN', (col_start, row_start), (col_end, row_end)))
 
         t.setStyle(TableStyle(style_cmds))
 
