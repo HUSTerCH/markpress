@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarkPress</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'system-ui', 'sans-serif'],
+            mono: ['Geist Mono', 'monospace'],
+          },
+          colors: {
+            zinc: {
+              50: '#fafafa', 100: '#f4f4f5', 200: '#e4e4e7',
+              300: '#d4d4d8', 400: '#a1a1aa', 500: '#71717a',
+              600: '#52525b', 700: '#3f3f46', 800: '#27272a',
+              900: '#18181b', 950: '#09090b',
+            },
+          },
+          animation: {
+            'slide-up': 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both',
+            'fade-in': 'fadeIn 0.3s ease both',
+            'shimmer': 'shimmer 1.8s infinite linear',
+            'spin-slow': 'spin 2s linear infinite',
+          },
+          keyframes: {
+            slideUp: {
+              '0%': { opacity: '0', transform: 'translateY(16px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    [x-cloak] { display: none !important; }
+
+    body { -webkit-font-smoothing: antialiased; }
+
+    .drop-zone-active {
+      border-color: #2563eb !important;
+      background-color: #eff6ff !important;
+    }
+
+    .shimmer-bar {
+      background: linear-gradient(90deg, #e4e4e7 25%, #f4f4f5 50%, #e4e4e7 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.8s infinite linear;
+    }
+
+    .btn-primary {
+      transition: transform 0.1s cubic-bezier(0.16, 1, 0.3, 1),
+                  background-color 0.2s ease,
+                  box-shadow 0.2s ease;
+    }
+    .btn-primary:active { transform: scale(0.98) translateY(1px); }
+
+    .option-chip {
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .option-chip:hover:not(.selected) {
+      border-color: #a1a1aa;
+      background-color: #fafafa;
+    }
+
+    /* 滚动条美化 */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 2px; }
+  </style>
+</head>
+<body class="bg-zinc-50 text-zinc-900 font-sans min-h-[100dvh]" x-data="markpress()" x-init="init()">
+
+  <!-- Top bar -->
+  <header class="fixed top-0 left-0 right-0 z-30 border-b border-zinc-200/80 bg-white/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <!-- Logo mark -->
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="22" height="22" rx="5" fill="#18181b"/>
+          <path d="M5 16V6l4.5 5.5L14 6v10" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 11h3" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="text-sm font-semibold tracking-tight text-zinc-900">MarkPress</span>
+      </div>
+      <span class="text-xs text-zinc-400 font-mono hidden sm:block">Markdown → PDF</span>
+    </div>
+  </header>
+
+  <!-- Main layout: split screen -->
+  <main class="max-w-7xl mx-auto px-6 pt-24 pb-16 grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-8 lg:gap-12 items-start">
+
+    <!-- LEFT: Upload + Config -->
+    <div class="space-y-6 animate-slide-up">
+
+      <!-- Upload zone -->
+      <div>
+        <label class="block text-xs font-medium text-zinc-500 uppercase tracking-widest mb-3">Markdown 文件</label>
+        <div
+          class="relative border-2 border-dashed border-zinc-200 rounded-2xl transition-all duration-200 cursor-pointer overflow-hidden"
+          :class="{ 'drop-zone-active': isDragging }"
+          @dragover.prevent="isDragging = true"
+          @dragleave.prevent="isDragging = false"
+          @drop.prevent="onDrop($event)"
+          @click="$refs.fileInput.click()"
+          x-cloak
+        >
+          <input
+            type="file"
+            accept=".md"
+            class="hidden"
+            x-ref="fileInput"
+            @change="onFileSelect($event)"
+          />
+
+          <!-- Empty state -->
+          <div x-show="!file" class="py-14 px-8 flex flex-col items-center gap-3 select-none">
+            <div class="w-12 h-12 rounded-xl bg-zinc-100 flex items-center justify-center">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+            </div>
+            <div class="text-center">
+              <p class="text-sm font-medium text-zinc-700">拖拽文件到此处，或点击选择</p>
+              <p class="text-xs text-zinc-400 mt-1">仅支持 .md 格式</p>
+            </div>
+          </div>
+
+          <!-- File selected state -->
+          <div x-show="file" x-cloak class="py-5 px-6 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-zinc-800 truncate" x-text="file?.name"></p>
+              <p class="text-xs text-zinc-400 mt-0.5" x-text="formatBytes(file?.size)"></p>
+            </div>
+            <button
+              class="text-zinc-300 hover:text-zinc-600 transition-colors p-1"
+              @click.stop="clearFile()"
+              title="移除文件"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Local image supplement -->
+      <div x-show="requiredImages.length > 0" x-cloak class="animate-fade-in">
+        <div class="flex items-center justify-between mb-3">
+          <label class="text-xs font-medium text-zinc-500 uppercase tracking-widest">
+            检测到本地图片引用
+          </label>
+          <span class="text-[10px] text-zinc-400" x-text="`${uploadedImages.length} / ${requiredImages.length} 已上传`"></span>
+        </div>
+        <div class="border border-amber-200 bg-amber-50/60 rounded-xl p-4 space-y-2">
+          <p class="text-xs text-amber-700 leading-relaxed">
+            文档中引用了以下本地图片，请上传后一并转换：
+          </p>
+          <ul class="space-y-1.5">
+            <template x-for="req in requiredImages" :key="req.path">
+              <li class="flex items-center gap-2.5">
+                <!-- status dot -->
+                <span
+                  class="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                  :class="uploadedImages.find(f => f.name === req.name) ? 'bg-emerald-500' : 'bg-amber-400'"
+                ></span>
+                <span class="text-xs font-mono text-zinc-600 flex-1 truncate" x-text="req.path"></span>
+                <span x-show="uploadedImages.find(f => f.name === req.name)"
+                  class="text-[10px] text-emerald-600 font-medium">已上传</span>
+              </li>
+            </template>
+          </ul>
+          <!-- image file picker -->
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            class="hidden"
+            x-ref="imageInput"
+            @change="onImageSelect($event)"
+          />
+          <button
+            class="mt-1 w-full h-8 rounded-lg border border-amber-300 bg-white text-xs font-medium text-amber-700 hover:bg-amber-50 transition-colors"
+            @click="$refs.imageInput.click()"
+          >
+            选择图片文件
+          </button>
+        </div>
+      </div>
+
+      <!-- Theme selector -->
+      <div>
+        <label class="block text-xs font-medium text-zinc-500 uppercase tracking-widest mb-3">主题</label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <template x-for="t in themes" :key="t.id">
+            <button
+              class="option-chip border rounded-xl px-3 py-3 text-left transition-all"
+              :class="theme === t.id
+                ? 'border-zinc-900 bg-zinc-900 text-white shadow-sm selected'
+                : 'border-zinc-200 bg-white text-zinc-700'"
+              @click="theme = t.id"
+            >
+              <span class="block text-xs font-semibold" x-text="t.label"></span>
+              <span
+                class="block text-[10px] mt-0.5 leading-tight"
+                :class="theme === t.id ? 'text-zinc-300' : 'text-zinc-400'"
+                x-text="t.description"
+              ></span>
+            </button>
+          </template>
+        </div>
+      </div>
+
+      <!-- Page orientation selector -->
+      <div>
+        <label class="block text-xs font-medium text-zinc-500 uppercase tracking-widest mb-3">页面方向</label>
+        <div class="flex gap-2">
+          <template x-for="o in orientations" :key="o.id">
+            <button
+              class="option-chip border rounded-xl px-4 py-3 text-left flex-1"
+              :class="orientation === o.id
+                ? 'border-zinc-900 bg-zinc-900 text-white selected'
+                : 'border-zinc-200 bg-white text-zinc-700'"
+              @click="orientation = o.id"
+            >
+              <span class="block text-xs font-semibold" x-text="o.label"></span>
+              <span
+                class="block text-[10px] mt-0.5"
+                :class="orientation === o.id ? 'text-zinc-300' : 'text-zinc-400'"
+                x-text="o.description"
+              ></span>
+            </button>
+          </template>
+        </div>
+      </div>
+
+      <!-- Page size selector -->
+      <div>
+        <label class="block text-xs font-medium text-zinc-500 uppercase tracking-widest mb-3">页面尺寸</label>
+        <div class="flex gap-2">
+          <template x-for="s in pageSizes" :key="s">
+            <button
+              class="option-chip border rounded-xl px-5 py-2.5 text-xs font-medium"
+              :class="pageSize === s
+                ? 'border-zinc-900 bg-zinc-900 text-white selected'
+                : 'border-zinc-200 bg-white text-zinc-600'"
+              @click="pageSize = s"
+              x-text="s"
+            ></button>
+          </template>
+        </div>
+      </div>
+
+      <!-- Convert button -->
+      <button
+        class="btn-primary w-full h-12 rounded-xl text-sm font-semibold flex items-center justify-center gap-2.5"
+        :class="canConvert && !loading
+          ? 'bg-zinc-900 text-white hover:bg-zinc-800 shadow-sm'
+          : 'bg-zinc-100 text-zinc-400 cursor-not-allowed'"
+        :disabled="!canConvert || loading"
+        @click="convert()"
+      >
+        <template x-if="!loading">
+          <span class="flex items-center gap-2">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+            转换为 PDF
+          </span>
+        </template>
+        <template x-if="loading">
+          <span class="flex items-center gap-2.5">
+            <svg class="animate-spin-slow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+            </svg>
+            正在转换...
+          </span>
+        </template>
+      </button>
+    </div>
+
+    <!-- RIGHT: Status panel -->
+    <div class="lg:sticky lg:top-24 space-y-4 animate-slide-up" style="animation-delay: 0.08s">
+
+      <!-- Idle / empty -->
+      <div x-show="status === 'idle'" x-cloak class="animate-fade-in">
+        <div class="border border-zinc-200 rounded-2xl bg-white p-8 flex flex-col items-center gap-4 text-center">
+          <div class="w-14 h-14 rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 8 12 12 14 14"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-zinc-700">等待转换</p>
+            <p class="text-xs text-zinc-400 mt-1 leading-relaxed">上传 .md 文件后点击<br/>「转换为 PDF」开始</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading skeleton -->
+      <div x-show="status === 'loading'" x-cloak class="animate-fade-in">
+        <div class="border border-zinc-200 rounded-2xl bg-white p-6 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg shimmer-bar"></div>
+            <div class="flex-1 space-y-2">
+              <div class="h-3 rounded shimmer-bar w-3/4"></div>
+              <div class="h-2.5 rounded shimmer-bar w-1/2"></div>
+            </div>
+          </div>
+          <div class="space-y-2 pt-2">
+            <div class="h-2.5 rounded shimmer-bar"></div>
+            <div class="h-2.5 rounded shimmer-bar w-5/6"></div>
+            <div class="h-2.5 rounded shimmer-bar w-4/6"></div>
+            <div class="h-2.5 rounded shimmer-bar w-3/4"></div>
+          </div>
+          <div class="pt-1">
+            <div class="h-2 rounded-full bg-zinc-100 overflow-hidden">
+              <div class="h-full w-2/3 shimmer-bar rounded-full"></div>
+            </div>
+          </div>
+          <p class="text-xs text-zinc-400 text-center pt-1">正在生成 PDF，请稍候...</p>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div x-show="status === 'success'" x-cloak class="animate-fade-in">
+        <div class="border border-emerald-200 rounded-2xl bg-emerald-50/50 p-6 space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-zinc-800">转换成功</p>
+              <p class="text-xs text-zinc-500 mt-0.5" x-text="resultMeta"></p>
+            </div>
+          </div>
+          <button
+            class="btn-primary w-full h-10 rounded-xl text-xs font-semibold bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center gap-2"
+            @click="downloadPdf()"
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            下载 PDF
+          </button>
+          <button
+            class="w-full text-xs text-zinc-400 hover:text-zinc-600 transition-colors py-1"
+            @click="reset()"
+          >
+            转换新文件
+          </button>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div x-show="status === 'error'" x-cloak class="animate-fade-in">
+        <div class="border border-red-200 rounded-2xl bg-red-50/50 p-6 space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-zinc-800">转换失败</p>
+              <p class="text-xs text-zinc-500 mt-1 leading-relaxed break-words" x-text="errorMsg"></p>
+            </div>
+          </div>
+          <button
+            class="w-full text-xs text-zinc-400 hover:text-zinc-600 transition-colors py-1"
+            @click="reset()"
+          >
+            重试
+          </button>
+        </div>
+      </div>
+
+      <!-- Config summary (always visible when file selected) -->
+      <div x-show="file && status !== 'loading'" x-cloak class="border border-zinc-100 rounded-xl bg-white p-4 space-y-2.5">
+        <p class="text-[10px] font-medium text-zinc-400 uppercase tracking-widest">当前配置</p>
+        <div class="space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-zinc-500">主题</span>
+            <span class="text-xs font-medium text-zinc-700 font-mono" x-text="theme"></span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-zinc-500">方向</span>
+            <span class="text-xs font-medium text-zinc-700 font-mono" x-text="orientation === 'portrait' ? '竖向' : '横向'"></span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-zinc-500">页面</span>
+            <span class="text-xs font-medium text-zinc-700 font-mono" x-text="pageSize"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project info -->
+      <div class="border border-zinc-100 rounded-xl bg-white p-4 space-y-2.5">
+        <p class="text-[10px] font-medium text-zinc-400 uppercase tracking-widest">项目</p>
+        <a
+          href="https://github.com/HUSTerCH/markpress"
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2.5 group"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-zinc-400 flex-shrink-0">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="text-xs text-zinc-600 group-hover:text-zinc-900 transition-colors truncate font-mono">
+            HUSTerCH/markpress
+          </span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-300 group-hover:text-zinc-500 transition-colors flex-shrink-0 ml-auto">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Authors -->
+      <div class="border border-zinc-100 rounded-xl bg-white p-4 space-y-3">
+        <p class="text-[10px] font-medium text-zinc-400 uppercase tracking-widest">作者</p>
+
+        <!-- Chang Luo -->
+        <div class="flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-zinc-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="text-[10px] font-semibold text-zinc-500">CL</span>
+          </div>
+          <div class="flex-1 min-w-0 space-y-1">
+            <p class="text-xs font-semibold text-zinc-700">Chang Luo</p>
+            <div class="flex flex-wrap gap-x-3 gap-y-0.5">
+              <a href="https://github.com/HUSTerCH" target="_blank" rel="noopener"
+                class="text-[11px] text-zinc-400 hover:text-zinc-700 transition-colors flex items-center gap-1">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" class="flex-shrink-0">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                HUSTerCH
+              </a>
+              <a href="mailto:skyfengsheng@icloud.com"
+                class="text-[11px] text-zinc-400 hover:text-zinc-700 transition-colors flex items-center gap-1">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                skyfengsheng@icloud.com
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-zinc-100"></div>
+
+        <!-- Fulin Zhao -->
+        <div class="flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-zinc-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="text-[10px] font-semibold text-zinc-500">FZ</span>
+          </div>
+          <div class="flex-1 min-w-0 space-y-1">
+            <p class="text-xs font-semibold text-zinc-700">Fulin Zhao</p>
+            <div class="flex flex-wrap gap-x-3 gap-y-0.5">
+              <a href="https://github.com/Holidayrabbit" target="_blank" rel="noopener"
+                class="text-[11px] text-zinc-400 hover:text-zinc-700 transition-colors flex items-center gap-1">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" class="flex-shrink-0">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                Holidayrabbit
+              </a>
+              <a href="mailto:zhaoqie888@icloud.com"
+                class="text-[11px] text-zinc-400 hover:text-zinc-700 transition-colors flex items-center gap-1">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                zhaoqie888@icloud.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function markpress() {
+      return {
+        file: null,
+        theme: 'academic',
+        orientation: 'portrait',
+        pageSize: 'A4',
+        themes: [],
+        orientations: [],
+        pageSizes: [],
+        status: 'idle',   // idle | loading | success | error
+        loading: false,
+        errorMsg: '',
+        resultMeta: '',
+        pdfBlob: null,
+        isDragging: false,
+        requiredImages: [],   // 从 md 内容中扫描出的本地图片文件名列表
+        uploadedImages: [],   // 用户已上传的图片 File 对象列表
+
+        get canConvert() {
+          return !!this.file && !this.loading;
+        },
+
+        async init() {
+          try {
+            const res = await fetch('/api/themes');
+            const data = await res.json();
+            this.themes = data.themes;
+            this.orientations = data.orientations;
+            this.pageSizes = data.page_sizes;
+          } catch (e) {
+            console.error('Failed to load config:', e);
+          }
+        },
+
+        onFileSelect(e) {
+          const f = e.target.files[0];
+          if (f) this.setFile(f);
+        },
+
+        onDrop(e) {
+          this.isDragging = false;
+          const f = e.dataTransfer.files[0];
+          if (f && f.name.endsWith('.md')) this.setFile(f);
+        },
+
+        setFile(f) {
+          this.file = f;
+          this.status = 'idle';
+          this.pdfBlob = null;
+          this.errorMsg = '';
+          this.uploadedImages = [];
+          this.requiredImages = [];
+          this.scanLocalImages(f);
+        },
+
+        clearFile() {
+          this.file = null;
+          this.status = 'idle';
+          this.pdfBlob = null;
+          this.requiredImages = [];
+          this.uploadedImages = [];
+          this.$refs.fileInput.value = '';
+        },
+
+        // 读取 md 内容，提取所有本地图片引用（排除 http/https/data: 开头的）
+        // requiredImages 存储完整相对路径，如 "assets/fig1.png"
+        scanLocalImages(f) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const text = e.target.result;
+            // 用 Map<basename, fullRelPath> 去重，同名文件保留第一次出现的完整路径
+            const found = new Map();
+
+            // Markdown 图片语法：![alt](path)
+            const mdImg = /!\[.*?\]\((?!https?:\/\/)(?!data:)([^)\s]+)\)/g;
+            let m;
+            while ((m = mdImg.exec(text)) !== null) {
+              const raw = m[1].split('?')[0].trim();
+              if (!raw) continue;
+              const name = raw.split('/').pop();
+              if (!found.has(name)) found.set(name, raw);
+            }
+
+            // HTML img 标签：<img src="path">
+            const htmlImg = /<img[^>]+src=["'](?!https?:\/\/)(?!data:)([^"']+)["']/g;
+            while ((m = htmlImg.exec(text)) !== null) {
+              const raw = m[1].split('?')[0].trim();
+              if (!raw) continue;
+              const name = raw.split('/').pop();
+              if (!found.has(name)) found.set(name, raw);
+            }
+
+            // requiredImages: [{name, path}]，path 是 MD 内的完整相对路径
+            this.requiredImages = [...found.entries()].map(([name, path]) => ({ name, path }));
+          };
+          reader.readAsText(f);
+        },
+
+        onImageSelect(e) {
+          const files = Array.from(e.target.files);
+          // 合并去重，同名文件以新上传的为准
+          const merged = [...this.uploadedImages];
+          for (const f of files) {
+            const idx = merged.findIndex(x => x.name === f.name);
+            if (idx >= 0) merged[idx] = f; else merged.push(f);
+          }
+          this.uploadedImages = merged;
+        },
+
+        async convert() {
+          if (!this.canConvert) return;
+          this.loading = true;
+          this.status = 'loading';
+          this.pdfBlob = null;
+          this.errorMsg = '';
+
+          const form = new FormData();
+          form.append('file', this.file);
+          form.append('theme', this.theme);
+          form.append('page_size', this.pageSize);
+          form.append('orientation', this.orientation);
+
+          // 用 FormData.append 的第三个参数把 MD 内的相对路径作为文件名传给后端
+          // 后端通过 img.filename 直接取到 "assets/fig1.png" 等完整路径
+          for (const req of this.requiredImages) {
+            const f = this.uploadedImages.find(u => u.name === req.name);
+            if (f) form.append('images', f, req.path);
+          }
+
+          try {
+            const res = await fetch('/api/convert', { method: 'POST', body: form });
+            if (!res.ok) {
+              const err = await res.json().catch(() => ({ detail: res.statusText }));
+              throw new Error(err.detail || '未知错误');
+            }
+            this.pdfBlob = await res.blob();
+            const sizeKB = (this.pdfBlob.size / 1024).toFixed(1);
+            this.resultMeta = `${this.file.name.replace('.md', '.pdf')}  ·  ${sizeKB} KB`;
+            this.status = 'success';
+          } catch (e) {
+            this.errorMsg = e.message;
+            this.status = 'error';
+          } finally {
+            this.loading = false;
+          }
+        },
+
+        downloadPdf() {
+          if (!this.pdfBlob) return;
+          const url = URL.createObjectURL(this.pdfBlob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = this.file.name.replace('.md', '.pdf');
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+        },
+
+        reset() {
+          this.status = 'idle';
+          this.pdfBlob = null;
+          this.errorMsg = '';
+        },
+
+        formatBytes(bytes) {
+          if (!bytes) return '';
+          if (bytes < 1024) return bytes + ' B';
+          if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+          return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        },
+      };
+    }
+  </script>
+</body>
+</html>

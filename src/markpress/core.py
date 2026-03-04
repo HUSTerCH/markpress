@@ -26,15 +26,15 @@ from .utils.utils import get_font_path, clear_temp_files, APP_TMP
 
 
 class MarkPressEngine:
-    def __init__(self, filename: str, theme_name: str = "academic"):
+    def __init__(self, filename: str, theme_name: str = "academic", config: StyleConfig = None):
         # 创建临时文件夹
 
         os.makedirs(APP_TMP, exist_ok=True)
         # 保存的文件名
         self.filename = filename
 
-        # 加载预置的style
-        self.config = StyleConfig.get_pre_build_style(theme_name)
+        # 若外部传入已构建的 config，则直接使用，否则按 theme_name 加载预置主题
+        self.config = config if config is not None else StyleConfig.get_pre_build_style(theme_name)
 
         # 自动保存开关，调试时可以启用
         self.auto_save_mode = False

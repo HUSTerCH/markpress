@@ -9,9 +9,10 @@ from .core import MarkPressEngine
 from .utils.utils import APP_TMP, get_raw_text, slugify, strip_front_matter, optimize_ast_html_blocks
 
 
-def convert_markdown_file(input_path: str, output_path: str, theme: str = "academic"):
+def convert_markdown_file(input_path: str, output_path: str, theme: str = "academic", config=None):
     """
     读取 Markdown 文件，解析为 AST，驱动 Writer 生成 PDF。
+    config 为可选的 StyleConfig 对象，若传入则忽略 theme 参数直接使用该配置。
     """
     print(f"开始处理Markdown文件：{input_path}")
     with open(input_path, "r", encoding="utf-8") as f:
@@ -47,7 +48,7 @@ def convert_markdown_file(input_path: str, output_path: str, theme: str = "acade
     optimized_ast = optimize_ast_html_blocks(ast)
 
     # 初始化 PDF 引擎
-    writer = MarkPressEngine(output_path, theme)
+    writer = MarkPressEngine(output_path, theme, config=config)
 
     # 遍历 AST 并渲染
     # _render_ast(writer, ast, base_dir)
@@ -155,7 +156,7 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
             # raw_html_spilt = raw_html.split("</div>\n<div")
             # for raw_part in raw_html_spilt:
             # if raw_html.strip() != "":
-            _parse_block_html(writer, raw_html.strip())
+            _parse_block_html(writer, raw_html.strip(), base_dir)
 
 
 def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
@@ -512,7 +513,7 @@ def _parse_html_table(writer, table_tag) -> dict:
     return result
 
 
-def _parse_block_html(writer, raw_html: str):
+def _parse_block_html(writer, raw_html: str, base_dir: str = "."):
     # 1. 剔除注释
     html = re.sub(r'', '', raw_html, flags=re.DOTALL)
     if not html.strip():
@@ -570,6 +571,9 @@ def _parse_block_html(writer, raw_html: str):
                 new_tag.string = f"[{alt}]"
                 img.replace_with(new_tag)
         else:
+            # 对非网络、非绝对路径的本地图片拼接 base_dir
+            if src and not os.path.isabs(src) and not src.startswith(('http://', 'https://')):
+                src = os.path.join(base_dir, src)
             marker = f"__IMG_{len(valid_images)}__"
             valid_images[marker] = (src, alt)
             img.replace_with(marker)
