@@ -7,16 +7,21 @@ authors = [
     "Fulin Zhao <154126756@qq.com>"
 ]
 readme = "README.md"
+# 强制白名单：只打包 src/markpress
 packages = [{include = "markpress", from = "src"}]
 
-# [关键点 1]：显式包含字体文件，否则 pip install 后会丢失字体
-include = ["src/markpress/assets/fonts/*.ttf"]
+# 把整个 assets 文件夹打包
+include = [
+    { path = "src/markpress/assets/**/*", format = ["sdist", "wheel"] }
+]
+
+exclude = ["managePDF", "dev-journal.md", "tests", ".github"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 reportlab = "^4.0"
 mistune = "^3.0"  # 推荐使用 mistune 解析 Markdown，速度快且容易扩展
-click = "^8.1"  # 如果想写更优雅的命令行，建议加上 click
+#click = "^8.1"  # 如果想写更优雅的命令行，建议加上 click
 pygments = "^2.19.2"
 matplotlib = "^3.10.8"
 beautifulsoup4 = "^4.14.3"
