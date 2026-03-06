@@ -26,7 +26,7 @@ from .utils.utils import get_font_path, clear_temp_files, APP_TMP
 
 
 class MarkPressEngine:
-    def __init__(self, filename: str, theme_name: str = "academic", config: StyleConfig = None):
+    def __init__(self, filename: str, theme_name: str = "academic", config: StyleConfig = None,shared_katex=None):
         # 创建临时文件夹
 
         os.makedirs(APP_TMP, exist_ok=True)
@@ -49,9 +49,16 @@ class MarkPressEngine:
         self.code_renderer = CodeRenderer(self.config, self.stylesheet)
         self.image_renderer = ImageRenderer(self.config, self.stylesheet)
         self.formula_renderer = FormulaRenderer(self.config, self.stylesheet)
-        self.katex_renderer = KatexRenderer(self.config, self.stylesheet)
+        # self.katex_renderer = KatexRenderer(self.config, self.stylesheet)
         self.list_renderer = ListRenderer(self.config, self.stylesheet)
         self.table_renderer = TableRenderer(self.config, self.stylesheet)
+
+        # 【防抖改造】：如果有现成的，直接接管；如果没有，再走昂贵的初始化逻辑
+        if shared_katex is not None:
+            self.katex_renderer = shared_katex
+        else:
+            # 原本你初始化 KatexRenderer 的代码
+            self.katex_renderer = KatexRenderer(self.config, self.stylesheet)
 
         # self.story 是最终输出列表
         # self.context_stack 用于存储嵌套层级的 (list_obj, available_width)

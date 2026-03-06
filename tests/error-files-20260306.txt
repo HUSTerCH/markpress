@@ -1,0 +1,610 @@
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/sample/义务教育教科书·科学·学生活动手册二年级上册/vlm/义务教育教科书·科学·学生活动手册二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/sample/同济大学《线性代数》（第五版）教材电子版/vlm/同济大学《线性代数》（第五版）教材电子版.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/人文地理/统编版-人民教育出版社/七年级/义务教育教科书·人文地理上册/vlm/义务教育教科书·人文地理上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/体育与健康/教科版-教育科学出版社/九年级/义务教育教科书·体育与健康九年级全一册.pdf_merge_folder/义务教育教科书·体育与健康九年级全一册/vlm/义务教育教科书·体育与健康九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/体育与健康/教科版-教育科学出版社/八年级/义务教育教科书·体育与健康八年级全一册.pdf_merge_folder/义务教育教科书·体育与健康八年级全一册/vlm/义务教育教科书·体育与健康八年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/俄语/人教版-人民教育出版社/七年级/义务教育教科书·俄语七年级全一册/vlm/义务教育教科书·俄语七年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/俄语/人教版-人民教育出版社/九年级/义务教育教科书·俄语九年级全一册/vlm/义务教育教科书·俄语九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/俄语/人教版-人民教育出版社/八年级/义务教育教科书·俄语八年级全一册/vlm/义务教育教科书·俄语八年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/化学/北京版-北京出版社/九年级/义务教育教科书·化学九年级上册/vlm/义务教育教科书·化学九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/化学/沪教版-上海教育出版社/九年级/义务教育教科书·化学九年级上册/vlm/义务教育教科书·化学九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/化学/科学粤教版-科学出版社、广东教育出版社/九年级/义务教育教科书·化学九年级上册/vlm/义务教育教科书·化学九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/化学/科学粤教版-科学出版社、广东教育出版社/九年级/义务教育教科书·化学九年级下册/vlm/义务教育教科书·化学九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/化学/鲁教版-山东教育出版社/九年级/义务教育教科书·化学九年级上册/vlm/义务教育教科书·化学九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/地理/中图版（主编：王民）-中国地图出版社/七年级/义务教育教科书·地理七年级下册（主编：王民）/vlm/义务教育教科书·地理七年级下册（主编：王民）.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/地理/商务星图版-商务印书馆、星球地图出版社/八年级/义务教育教科书·地理八年级上册/vlm/义务教育教科书·地理八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/地理图册/配套中图版（主编：王民&田忠）-中国地图出版社/八年级/义务教育教科书·地理图册八年级上册（主编：王民&田忠）/vlm/义务教育教科书·地理图册八年级上册（主编：王民&田忠）.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/地理图册/配套湘教版-星球地图出版社/七年级/义务教育教科书·地理图册七年级上册（主编：朱翔&周瑞祥&刘新民）/vlm/义务教育教科书·地理图册七年级上册（主编：朱翔&周瑞祥&刘新民）.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/地理图册/配套粤教粤人版-星球地图出版社、广东人民出版社/七年级/义务教育教科书·地理图册七年级上册/vlm/义务教育教科书·地理图册七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/冀教版-河北教育出版社/七年级/义务教育教科书·数学七年级上册/vlm/义务教育教科书·数学七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/北京版-北京出版社/九年级/义务教育教科书·数学九年级上册.pdf_merge_folder/义务教育教科书·数学九年级上册/vlm/义务教育教科书·数学九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/北京版-北京出版社/九年级/义务教育教科书·数学九年级下册/vlm/义务教育教科书·数学九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/北京版-北京出版社/八年级/义务教育教科书·数学八年级下册/vlm/义务教育教科书·数学八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/北师大版-北京师范大学出版社/八年级/义务教育教科书·数学八年级上册.pdf_merge_folder/义务教育教科书·数学八年级上册/vlm/义务教育教科书·数学八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/北师大版-北京师范大学出版社/八年级/义务教育教科书·数学八年级下册.pdf_merge_folder/义务教育教科书·数学八年级下册/vlm/义务教育教科书·数学八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/沪科技版-上海科学技术出版社/七年级/义务教育教科书·数学七年级上册/vlm/义务教育教科书·数学七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/沪科技版-上海科学技术出版社/九年级/义务教育教科书·数学九年级上册/vlm/义务教育教科书·数学九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/沪科技版-上海科学技术出版社/八年级/义务教育教科书·数学八年级下册/vlm/义务教育教科书·数学八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/浙教版-浙江教育出版社/七年级/义务教育教科书·数学七年级下册/vlm/义务教育教科书·数学七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/浙教版-浙江教育出版社/九年级/义务教育教科书·数学九年级下册/vlm/义务教育教科书·数学九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/浙教版-浙江教育出版社/八年级/义务教育教科书·数学八年级下册/vlm/义务教育教科书·数学八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/湘教版-湖南教育出版社/八年级/义务教育教科书·数学八年级上册/vlm/义务教育教科书·数学八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/青岛版-青岛出版社/七年级/义务教育教科书·数学七年级下册/vlm/义务教育教科书·数学七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/日语/人教版-人民教育出版社/七年级/义务教育教科书·日语七年级全一册/vlm/义务教育教科书·日语七年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/日语/人教版-人民教育出版社/九年级/义务教育教科书·日语九年级全一册/vlm/义务教育教科书·日语九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/日语/人教版-人民教育出版社/八年级/义务教育教科书·日语八年级全一册/vlm/义务教育教科书·日语八年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/物理/北师大版（主编：郭玉英）-北京师范大学出版社/九年级/义务教育教科书·物理九年级全一册/vlm/义务教育教科书·物理九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/物理/北师大版（主编：郭玉英）-北京师范大学出版社/九年级/义务教育教科书·物理九年级全一册.pdf_merge_folder/义务教育教科书·物理九年级全一册/vlm/义务教育教科书·物理九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/物理/北师大版（主编：闫金铎）-北京师范大学出版社/九年级/义务教育教科书·物理九年级全一册/vlm/义务教育教科书·物理九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/物理/北师大版（主编：闫金铎）-北京师范大学出版社/九年级/义务教育教科书·物理九年级全一册.pdf_merge_folder/义务教育教科书·物理九年级全一册/vlm/义务教育教科书·物理九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/物理/北师大版（主编：闫金铎）-北京师范大学出版社/八年级/义务教育教科书·物理八年级上册/vlm/义务教育教科书·物理八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/物理/北师大版（主编：闫金铎）-北京师范大学出版社/八年级/义务教育教科书·物理八年级上册.pdf_merge_folder/义务教育教科书·物理八年级上册/vlm/义务教育教科书·物理八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/物理/沪科技版-上海科学技术出版社/九年级/义务教育教科书·物理九年级全一册/vlm/义务教育教科书·物理九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/物理/沪科技版-上海科学技术出版社/八年级/义务教育教科书·物理八年级全一册/vlm/义务教育教科书·物理八年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/物理/苏科版-江苏凤凰科学技术出版社/八年级/义务教育教科书·物理八年级上册/vlm/义务教育教科书·物理八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/生物学/人教版-人民教育出版社/七年级/义务教育教科书·生物学七年级下册/vlm/义务教育教科书·生物学七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/科学/华东师大版-华东师范大学出版社/九年级/义务教育教科书·科学九年级上册/vlm/义务教育教科书·科学九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/科学/沪教版-上海教育出版社/九年级/义务教育教科书·科学九年级上册/vlm/义务教育教科书·科学九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/人教版-人民教育出版社/七年级/义务教育教科书·美术七年级下册/vlm/义务教育教科书·美术七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/人教版-人民教育出版社/八年级/义务教育教科书·美术八年级下册/vlm/义务教育教科书·美术八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/人美版（主编：常锐伦&欧京海）-人民美术出版社/八年级/义务教育教科书·美术八年级上册/vlm/义务教育教科书·美术八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/冀美版-河北美术出版社/七年级/义务教育教科书·美术七年级下册/vlm/义务教育教科书·美术七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/冀美版-河北美术出版社/八年级/义务教育教科书·美术八年级上册/vlm/义务教育教科书·美术八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/苏少版-江苏凤凰少年儿童出版社/七年级/义务教育教科书·美术七年级上册/vlm/义务教育教科书·美术七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/苏少版-江苏凤凰少年儿童出版社/七年级/义务教育教科书·美术七年级下册/vlm/义务教育教科书·美术七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/苏少版-江苏凤凰少年儿童出版社/九年级/义务教育教科书·美术九年级上册/vlm/义务教育教科书·美术九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/苏少版-江苏凤凰少年儿童出版社/九年级/义务教育教科书·美术九年级下册/vlm/义务教育教科书·美术九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/苏少版-江苏凤凰少年儿童出版社/八年级/义务教育教科书·美术八年级上册/vlm/义务教育教科书·美术八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/苏少版-江苏凤凰少年儿童出版社/八年级/义务教育教科书·美术八年级下册/vlm/义务教育教科书·美术八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/美术/赣美版-江西美术出版社/七年级/义务教育教科书·美术七年级下册/vlm/义务教育教科书·美术七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/艺术/鄂教版-湖北教育出版社/七年级/义务教育教科书·艺术七年级上册/vlm/义务教育教科书·艺术七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/艺术/鄂教版-湖北教育出版社/七年级/义务教育教科书·艺术七年级下册/vlm/义务教育教科书·艺术七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/人教版-人民教育出版社/七年级/义务教育教科书·英语七年级上册/vlm/义务教育教科书·英语七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/人教版-人民教育出版社/七年级/义务教育教科书·英语七年级下册/vlm/义务教育教科书·英语七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/人教版-人民教育出版社/九年级/义务教育教科书·英语九年级全一册/vlm/义务教育教科书·英语九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/人教版-人民教育出版社/八年级/义务教育教科书·英语八年级上册/vlm/义务教育教科书·英语八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/人教版-人民教育出版社/八年级/义务教育教科书·英语八年级下册/vlm/义务教育教科书·英语八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/冀教版-河北教育出版社/七年级/义务教育教科书·英语七年级下册/vlm/义务教育教科书·英语七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/冀教版-河北教育出版社/九年级/义务教育教科书·英语九年级全一册/vlm/义务教育教科书·英语九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/冀教版-河北教育出版社/八年级/义务教育教科书·英语八年级下册/vlm/义务教育教科书·英语八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/北师大版-北京师范大学出版社/七年级/义务教育教科书·英语七年级下册.pdf_merge_folder/义务教育教科书·英语七年级下册/vlm/义务教育教科书·英语七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/北师大版-北京师范大学出版社/九年级/义务教育教科书·英语九年级全一册.pdf_merge_folder/义务教育教科书·英语九年级全一册/vlm/义务教育教科书·英语九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/北师大版-北京师范大学出版社/八年级/义务教育教科书·英语八年级下册.pdf_merge_folder/义务教育教科书·英语八年级下册/vlm/义务教育教科书·英语八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/外研社版-外语教学与研究出版社/八年级/义务教育教科书·英语八年级下册/vlm/义务教育教科书·英语八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/沪外教版-上海外语教育出版社/八年级/义务教育教科书·英语八年级上册/vlm/义务教育教科书·英语八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/沪教版-上海教育出版社/七年级/义务教育教科书·英语七年级下册/vlm/义务教育教科书·英语七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/沪教版-上海教育出版社/九年级/义务教育教科书·英语九年级上册/vlm/义务教育教科书·英语九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/沪教版-上海教育出版社/八年级/义务教育教科书·英语八年级上册/vlm/义务教育教科书·英语八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/沪教版-上海教育出版社/八年级/义务教育教科书·英语八年级下册/vlm/义务教育教科书·英语八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/科普版-科学普及出版社/七年级/义务教育教科书·英语七年级上册/vlm/义务教育教科书·英语七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/科普版-科学普及出版社/七年级/义务教育教科书·英语七年级下册/vlm/义务教育教科书·英语七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/科普版-科学普及出版社/九年级/义务教育教科书·英语九年级上册/vlm/义务教育教科书·英语九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/科普版-科学普及出版社/九年级/义务教育教科书·英语九年级下册/vlm/义务教育教科书·英语九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/科普版-科学普及出版社/八年级/义务教育教科书·英语八年级上册/vlm/义务教育教科书·英语八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/科普版-科学普及出版社/八年级/义务教育教科书·英语八年级下册/vlm/义务教育教科书·英语八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/译林版-译林出版社/七年级/义务教育教科书·英语七年级上册.pdf_merge_folder/义务教育教科书·英语七年级上册/vlm/义务教育教科书·英语七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/英语/译林版-译林出版社/九年级/义务教育教科书·英语九年级下册.pdf_merge_folder/义务教育教科书·英语九年级下册/vlm/义务教育教科书·英语九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/语文/统编版-人民教育出版社/九年级/义务教育教科书·语文九年级下册/vlm/义务教育教科书·语文九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/道德与法治/统编版-人民教育出版社/七年级/义务教育教科书·道德与法治七年级下册/vlm/义务教育教科书·道德与法治七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/道德与法治/统编版-人民教育出版社/九年级/义务教育教科书·道德与法治九年级上册/vlm/义务教育教科书·道德与法治九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（五线谱）-人民教育出版社/七年级/义务教育教科书·音乐（五线谱）七年级上册/vlm/义务教育教科书·音乐（五线谱）七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（五线谱）-人民教育出版社/七年级/义务教育教科书·音乐（五线谱）七年级下册/vlm/义务教育教科书·音乐（五线谱）七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（五线谱）-人民教育出版社/九年级/义务教育教科书·音乐（五线谱）九年级上册/vlm/义务教育教科书·音乐（五线谱）九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（五线谱）-人民教育出版社/九年级/义务教育教科书·音乐（五线谱）九年级下册/vlm/义务教育教科书·音乐（五线谱）九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（五线谱）-人民教育出版社/八年级/义务教育教科书·音乐（五线谱）八年级上册/vlm/义务教育教科书·音乐（五线谱）八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（五线谱）-人民教育出版社/八年级/义务教育教科书·音乐（五线谱）八年级下册/vlm/义务教育教科书·音乐（五线谱）八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（简谱）-人民教育出版社/七年级/义务教育教科书·音乐（简谱）七年级上册/vlm/义务教育教科书·音乐（简谱）七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（简谱）-人民教育出版社/七年级/义务教育教科书·音乐（简谱）七年级下册/vlm/义务教育教科书·音乐（简谱）七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（简谱）-人民教育出版社/九年级/义务教育教科书·音乐（简谱）九年级上册/vlm/义务教育教科书·音乐（简谱）九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（简谱）-人民教育出版社/九年级/义务教育教科书·音乐（简谱）九年级下册/vlm/义务教育教科书·音乐（简谱）九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（简谱）-人民教育出版社/八年级/义务教育教科书·音乐（简谱）八年级上册/vlm/义务教育教科书·音乐（简谱）八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人教版（简谱）-人民教育出版社/八年级/义务教育教科书·音乐（简谱）八年级下册/vlm/义务教育教科书·音乐（简谱）八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人音版（主编：敬谱）-人民音乐出版社/七年级/义务教育教科书·音乐七年级上册（主编：敬谱）/vlm/义务教育教科书·音乐七年级上册（主编：敬谱）.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人音版（主编：敬谱）-人民音乐出版社/七年级/义务教育教科书·音乐七年级下册（主编：敬谱）/vlm/义务教育教科书·音乐七年级下册（主编：敬谱）.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人音版（主编：敬谱）-人民音乐出版社/九年级/义务教育教科书·音乐九年级上册（主编：敬谱）/vlm/义务教育教科书·音乐九年级上册（主编：敬谱）.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人音版（五线谱）（主编：吴斌）-人民音乐出版社/七年级/义务教育教科书·音乐（五线谱）七年级上册（主编：吴斌）/vlm/义务教育教科书·音乐（五线谱）七年级上册（主编：吴斌）.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/人音版（简谱）（主编：吴斌）-人民音乐出版社/九年级/义务教育教科书·音乐（简谱）九年级上册（主编：吴斌）/vlm/义务教育教科书·音乐（简谱）九年级上册（主编：吴斌）.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/桂教版-广西教育出版社/九年级/义务教育教科书·音乐九年级上册/vlm/义务教育教科书·音乐九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/桂教版-广西教育出版社/九年级/义务教育教科书·音乐九年级下册/vlm/义务教育教科书·音乐九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/桂教版-广西教育出版社/八年级/义务教育教科书·音乐八年级下册/vlm/义务教育教科书·音乐八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/沪教版-上海教育出版社/七年级/义务教育教科书·音乐七年级上册/vlm/义务教育教科书·音乐七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/沪教版-上海教育出版社/七年级/义务教育教科书·音乐七年级下册/vlm/义务教育教科书·音乐七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/沪教版-上海教育出版社/八年级/义务教育教科书·音乐八年级上册/vlm/义务教育教科书·音乐八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/沪教版-上海教育出版社/八年级/义务教育教科书·音乐八年级下册/vlm/义务教育教科书·音乐八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/湘文艺版-湖南文艺出版社/七年级/义务教育教科书·音乐七年级上册/vlm/义务教育教科书·音乐七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/湘文艺版-湖南文艺出版社/八年级/义务教育教科书·音乐八年级上册/vlm/义务教育教科书·音乐八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/粤教花城版-广东教育出版社、花城出版社/九年级/义务教育教科书·音乐（简谱）九年级下册/vlm/义务教育教科书·音乐（简谱）九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/苏少版（五线谱）-江苏凤凰少年儿童出版社/七年级/义务教育教科书·音乐（五线谱）七年级上册/vlm/义务教育教科书·音乐（五线谱）七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/苏少版（五线谱）-江苏凤凰少年儿童出版社/七年级/义务教育教科书·音乐（五线谱）七年级上册.pdf_merge_folder/义务教育教科书·音乐（五线谱）七年级上册/vlm/义务教育教科书·音乐（五线谱）七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/苏少版（五线谱）-江苏凤凰少年儿童出版社/八年级/义务教育教科书·音乐（五线谱）八年级下册/vlm/义务教育教科书·音乐（五线谱）八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/苏少版（简谱）-江苏凤凰少年儿童出版社/七年级/义务教育教科书·音乐（简谱）七年级上册/vlm/义务教育教科书·音乐（简谱）七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/苏少版（简谱）-江苏凤凰少年儿童出版社/七年级/义务教育教科书·音乐（简谱）七年级上册.pdf_merge_folder/义务教育教科书·音乐（简谱）七年级上册/vlm/义务教育教科书·音乐（简谱）七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/苏少版（简谱）-江苏凤凰少年儿童出版社/七年级/义务教育教科书·音乐（简谱）七年级上册.pdf_merge_folder/义务教育教科书·音乐（简谱）七年级上册.pdf/vlm/义务教育教科书·音乐（简谱）七年级上册.pdf.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/音乐/苏少版（简谱）-江苏凤凰少年儿童出版社/八年级/义务教育教科书·音乐（简谱）八年级下册/vlm/义务教育教科书·音乐（简谱）八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/化学/鲁教版-山东教育出版社/八年级/义务教育教科书（五•四学制）·化学八年级全一册/vlm/义务教育教科书（五•四学制）·化学八年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/数学/鲁教版-山东教育出版社/七年级/义务教育教科书（五•四学制）·数学七年级上册/vlm/义务教育教科书（五•四学制）·数学七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/数学/鲁教版-山东教育出版社/九年级/义务教育教科书（五•四学制）·数学九年级上册/vlm/义务教育教科书（五•四学制）·数学九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/教科版-教育科学出版社/七年级/义务教育教科书（五•四学制）·英语七年级上册/vlm/义务教育教科书（五•四学制）·英语七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/教科版-教育科学出版社/七年级/义务教育教科书（五•四学制）·英语七年级下册/vlm/义务教育教科书（五•四学制）·英语七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/教科版-教育科学出版社/九年级/义务教育教科书（五•四学制）·英语九年级下册/vlm/义务教育教科书（五•四学制）·英语九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/教科版-教育科学出版社/八年级/义务教育教科书（五•四学制）·英语八年级上册/vlm/义务教育教科书（五•四学制）·英语八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/教科版-教育科学出版社/八年级/义务教育教科书（五•四学制）·英语八年级下册/vlm/义务教育教科书（五•四学制）·英语八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/教科版-教育科学出版社/六年级/义务教育教科书（五•四学制）·英语六年级上册/vlm/义务教育教科书（五•四学制）·英语六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/教科版-教育科学出版社/六年级/义务教育教科书（五•四学制）·英语六年级下册/vlm/义务教育教科书（五•四学制）·英语六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/鲁教版-山东教育出版社/七年级/义务教育教科书（五•四学制）·英语七年级上册/vlm/义务教育教科书（五•四学制）·英语七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/鲁教版-山东教育出版社/七年级/义务教育教科书（五•四学制）·英语七年级下册/vlm/义务教育教科书（五•四学制）·英语七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/鲁教版-山东教育出版社/九年级/义务教育教科书（五•四学制）·英语九年级全一册/vlm/义务教育教科书（五•四学制）·英语九年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/鲁教版-山东教育出版社/八年级/义务教育教科书（五•四学制）·英语八年级下册/vlm/义务教育教科书（五•四学制）·英语八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/鲁教版-山东教育出版社/六年级/义务教育教科书（五•四学制）·英语六年级上册/vlm/义务教育教科书（五•四学制）·英语六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/鲁教版-山东教育出版社/六年级/义务教育教科书（五•四学制）·英语六年级下册/vlm/义务教育教科书（五•四学制）·英语六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/音乐/鲁教版-山东教育出版社/七年级/义务教育教科书（五•四学制）·音乐七年级上册/vlm/义务教育教科书（五•四学制）·音乐七年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/音乐/鲁教版-山东教育出版社/七年级/义务教育教科书（五•四学制）·音乐七年级下册/vlm/义务教育教科书（五•四学制）·音乐七年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/音乐/鲁教版-山东教育出版社/九年级/义务教育教科书（五•四学制）·音乐九年级上册/vlm/义务教育教科书（五•四学制）·音乐九年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/音乐/鲁教版-山东教育出版社/九年级/义务教育教科书（五•四学制）·音乐九年级下册/vlm/义务教育教科书（五•四学制）·音乐九年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/音乐/鲁教版-山东教育出版社/八年级/义务教育教科书（五•四学制）·音乐八年级上册/vlm/义务教育教科书（五•四学制）·音乐八年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/音乐/鲁教版-山东教育出版社/八年级/义务教育教科书（五•四学制）·音乐八年级下册/vlm/义务教育教科书（五•四学制）·音乐八年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/音乐/鲁教版-山东教育出版社/六年级/义务教育教科书（五•四学制）·音乐六年级上册/vlm/义务教育教科书（五•四学制）·音乐六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/音乐/鲁教版-山东教育出版社/六年级/义务教育教科书（五•四学制）·音乐六年级下册/vlm/义务教育教科书（五•四学制）·音乐六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/概率论/概率论与数理统计(浙大四版)/vlm/概率论与数理统计(浙大四版).md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/离散数学/6版奇数练习题答案/vlm/6版奇数练习题答案.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/离散数学/离散数学及其应用(第6版)-中文版/vlm/离散数学及其应用(第6版)-中文版.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/离散数学/离散数学及其应用（原书第6版）/vlm/离散数学及其应用（原书第6版）.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/离散数学/离散数学及其应用（英文第七版）Discrete Mathematics and Its Applications 7th Edition 2011/vlm/离散数学及其应用（英文第七版）Discrete Mathematics and Its Applications 7th Edition 2011.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/线性代数/同济大学《线性代数》（第五版）教材电子版/vlm/同济大学《线性代数》（第五版）教材电子版.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/线性代数/同济线性代数第五版附册——学习辅导与习题全解/vlm/同济线性代数第五版附册——学习辅导与习题全解.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第七版/同济高 等数学 第七版下册/vlm/同济高 等数学 第七版下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第七版/高等数学 同济第7版 下册 习题全解指南 课后习题答案解析/vlm/高等数学 同济第7版 下册 习题全解指南 课后习题答案解析.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/同济高等数学第六版上册习题全解指南/vlm/同济高等数学第六版上册习题全解指南.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/同济高等数学第六版下册习题全解指南/vlm/同济高等数学第六版下册习题全解指南.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册  下册/vlm/高等数学 第六册  下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册 上册/vlm/高等数学 第六册 上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/学数学最重要的刷习题在这里/初中练习题_带答案/18北京中考数学试卷及答案/2018北京市中考数学试题(含答案解析版)/vlm/2018北京市中考数学试题(含答案解析版).md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/人教版/义务教育教科书·体育与健康 1至2年级全一册/vlm/义务教育教科书·体育与健康 1至2年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/人教版/义务教育教科书·体育与健康 3至4年级全一册/vlm/义务教育教科书·体育与健康 3至4年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/人教版/义务教育教科书·体育与健康 5至6年级全一册/vlm/义务教育教科书·体育与健康 5至6年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/冀教版/义务教育教科书·体育与健康教师用书水平三水平三/vlm/义务教育教科书·体育与健康教师用书水平三水平三.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/冀教版/义务教育教科书·体育与健康教师用书水平二水平二/vlm/义务教育教科书·体育与健康教师用书水平二水平二.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/北京版/义务教育教科书·体育与健康教师用书一年级全一册/vlm/义务教育教科书·体育与健康教师用书一年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/北京版/义务教育教科书·体育与健康教师用书三年级全一册/vlm/义务教育教科书·体育与健康教师用书三年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/北京版/义务教育教科书·体育与健康教师用书二年级全一册/vlm/义务教育教科书·体育与健康教师用书二年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/北京版/义务教育教科书·体育与健康教师用书五年级全一册/vlm/义务教育教科书·体育与健康教师用书五年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/北京版/义务教育教科书·体育与健康教师用书六年级全一册/vlm/义务教育教科书·体育与健康教师用书六年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/北京版/义务教育教科书·体育与健康教师用书四年级全一册/vlm/义务教育教科书·体育与健康教师用书四年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/华东师大版/义务教育教科书·体育与健康教师用书水平三水平三/vlm/义务教育教科书·体育与健康教师用书水平三水平三.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/未来社版/义务教育教科书·体育与健康教师用书水平一水平一/vlm/义务教育教科书·体育与健康教师用书水平一水平一.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/未来社版/义务教育教科书·体育与健康教师用书水平二水平二/vlm/义务教育教科书·体育与健康教师用书水平二水平二.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/科学社版/义务教育教科书·体育与健康教师用书一年级全一册/vlm/义务教育教科书·体育与健康教师用书一年级全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/人教版/义务教育教科书 · 数学一年级上册/vlm/义务教育教科书 · 数学一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/人教版/义务教育教科书 · 数学三年级上册/vlm/义务教育教科书 · 数学三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/人教版/义务教育教科书 · 数学二年级上册/vlm/义务教育教科书 · 数学二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/人教版/义务教育教科书 · 数学五年级上册/vlm/义务教育教科书 · 数学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/人教版/义务教育教科书 · 数学六年级上册/vlm/义务教育教科书 · 数学六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/人教版/义务教育教科书 · 数学四年级上册/vlm/义务教育教科书 · 数学四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/人教版/义务教育教科书·数学一年级下册/vlm/义务教育教科书·数学一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/人教版/义务教育教科书·数学三年级下册/vlm/义务教育教科书·数学三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/人教版/义务教育教科书·数学二年级下册/vlm/义务教育教科书·数学二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/人教版/义务教育教科书·数学五年级下册/vlm/义务教育教科书·数学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/人教版/义务教育教科书·数学四年级下册/vlm/义务教育教科书·数学四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/冀教版/义务教育教科书·数学一年级上册/vlm/义务教育教科书·数学一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/冀教版/义务教育教科书·数学一年级下册/vlm/义务教育教科书·数学一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/冀教版/义务教育教科书·数学三年级上册/vlm/义务教育教科书·数学三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/冀教版/义务教育教科书·数学三年级下册/vlm/义务教育教科书·数学三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/冀教版/义务教育教科书·数学二年级上册/vlm/义务教育教科书·数学二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/冀教版/义务教育教科书·数学二年级下册/vlm/义务教育教科书·数学二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/冀教版/义务教育教科书·数学五年级上册/vlm/义务教育教科书·数学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/冀教版/义务教育教科书·数学六年级上册/vlm/义务教育教科书·数学六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/冀教版/义务教育教科书·数学六年级下册/vlm/义务教育教科书·数学六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/冀教版/义务教育教科书·数学四年级下册/vlm/义务教育教科书·数学四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学一年级上册/vlm/义务教育教科书·数学一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学一年级下册/vlm/义务教育教科书·数学一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学三年级上册/vlm/义务教育教科书·数学三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学三年级下册/vlm/义务教育教科书·数学三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学二年级上册/vlm/义务教育教科书·数学二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学二年级下册/vlm/义务教育教科书·数学二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学五年级上册/vlm/义务教育教科书·数学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学五年级下册/vlm/义务教育教科书·数学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学六年级上册/vlm/义务教育教科书·数学六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学六年级下册/vlm/义务教育教科书·数学六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学四年级上册/vlm/义务教育教科书·数学四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北京版/义务教育教科书·数学四年级下册/vlm/义务教育教科书·数学四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学一年级上册/vlm/义务教育教科书·数学一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学一年级下册/vlm/义务教育教科书·数学一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学三年级上册/vlm/义务教育教科书·数学三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学三年级下册/vlm/义务教育教科书·数学三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学二年级上册/vlm/义务教育教科书·数学二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学二年级下册/vlm/义务教育教科书·数学二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学五年级上册/vlm/义务教育教科书·数学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学五年级下册/vlm/义务教育教科书·数学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学六年级上册/vlm/义务教育教科书·数学六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学六年级下册/vlm/义务教育教科书·数学六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学四年级上册/vlm/义务教育教科书·数学四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学四年级下册/vlm/义务教育教科书·数学四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学一年级上册/vlm/义务教育教科书·数学一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学一年级下册/vlm/义务教育教科书·数学一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学三年级上册/vlm/义务教育教科书·数学三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学三年级下册/vlm/义务教育教科书·数学三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学二年级上册/vlm/义务教育教科书·数学二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学二年级下册/vlm/义务教育教科书·数学二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学五年级上册/vlm/义务教育教科书·数学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学五年级下册/vlm/义务教育教科书·数学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学六年级上册/vlm/义务教育教科书·数学六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学六年级下册/vlm/义务教育教科书·数学六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学四年级上册/vlm/义务教育教科书·数学四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/苏教版/义务教育教科书·数学四年级下册/vlm/义务教育教科书·数学四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南大学版/义务教育教科书·数学一年级上册/vlm/义务教育教科书·数学一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南大学版/义务教育教科书·数学三年级上册/vlm/义务教育教科书·数学三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南大学版/义务教育教科书·数学三年级下册/vlm/义务教育教科书·数学三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南大学版/义务教育教科书·数学二年级上册/vlm/义务教育教科书·数学二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南大学版/义务教育教科书·数学五年级上册/vlm/义务教育教科书·数学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南大学版/义务教育教科书·数学五年级下册/vlm/义务教育教科书·数学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南大学版/义务教育教科书·数学四年级上册/vlm/义务教育教科书·数学四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南大学版/义务教育教科书·数学四年级下册/vlm/义务教育教科书·数学四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南师大版/义务教育教科书·数学一年级上册/vlm/义务教育教科书·数学一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南师大版/义务教育教科书·数学三年级上册/vlm/义务教育教科书·数学三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南师大版/义务教育教科书·数学三年级下册/vlm/义务教育教科书·数学三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南师大版/义务教育教科书·数学二年级上册/vlm/义务教育教科书·数学二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南师大版/义务教育教科书·数学五年级上册/vlm/义务教育教科书·数学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南师大版/义务教育教科书·数学五年级下册/vlm/义务教育教科书·数学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南师大版/义务教育教科书·数学四年级上册/vlm/义务教育教科书·数学四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/西南师大版/义务教育教科书·数学四年级下册/vlm/义务教育教科书·数学四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学一年级上册/vlm/义务教育教科书·数学一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学一年级下册/vlm/义务教育教科书·数学一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学三年级上册/vlm/义务教育教科书·数学三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学三年级下册/vlm/义务教育教科书·数学三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学二年级上册/vlm/义务教育教科书·数学二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学二年级下册/vlm/义务教育教科书·数学二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学五年级上册/vlm/义务教育教科书·数学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学五年级下册/vlm/义务教育教科书·数学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学六年级上册/vlm/义务教育教科书·数学六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学六年级下册/vlm/义务教育教科书·数学六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学四年级上册/vlm/义务教育教科书·数学四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/青岛版/义务教育教科书·数学四年级下册/vlm/义务教育教科书·数学四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/人教鄂教版/义务教育教科书·科学三年级下册/vlm/义务教育教科书·科学三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/人教鄂教版/义务教育教科书·科学四年级上册/vlm/义务教育教科书·科学四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/冀人版/义务教育教科书·科学·学生活动手册三年级上册/vlm/义务教育教科书·科学·学生活动手册三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/冀人版/义务教育教科书·科学·学生活动手册三年级下册/vlm/义务教育教科书·科学·学生活动手册三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/冀人版/义务教育教科书·科学·学生活动手册五年级上册/vlm/义务教育教科书·科学·学生活动手册五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/冀人版/义务教育教科书·科学·学生活动手册五年级下册/vlm/义务教育教科书·科学·学生活动手册五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/冀人版/义务教育教科书·科学·学生活动手册六年级上册/vlm/义务教育教科书·科学·学生活动手册六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/冀人版/义务教育教科书·科学·学生活动手册四年级上册/vlm/义务教育教科书·科学·学生活动手册四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/冀人版/义务教育教科书·科学·学生活动手册四年级下册/vlm/义务教育教科书·科学·学生活动手册四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/冀人版/义务教育教科书·科学五年级上册/vlm/义务教育教科书·科学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/冀人版/义务教育教科书·科学四年级下册/vlm/义务教育教科书·科学四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/大象社版/义务教育教科书·科学·学生活动手册一年级下册/vlm/义务教育教科书·科学·学生活动手册一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/大象社版/义务教育教科书·科学·学生活动手册三年级上册/vlm/义务教育教科书·科学·学生活动手册三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/大象社版/义务教育教科书·科学·学生活动手册二年级上册/vlm/义务教育教科书·科学·学生活动手册二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/大象社版/义务教育教科书·科学·学生活动手册二年级下册/vlm/义务教育教科书·科学·学生活动手册二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/大象社版/义务教育教科书·科学·学生活动手册五年级下册/vlm/义务教育教科书·科学·学生活动手册五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/大象社版/义务教育教科书·科学·学生活动手册四年级上册/vlm/义务教育教科书·科学·学生活动手册四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/大象社版/义务教育教科书·科学二年级下册/vlm/义务教育教科书·科学二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/大象社版/义务教育教科书·科学五年级下册/vlm/义务教育教科书·科学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/教科版/义务教育教科书·科学五年级下册/vlm/义务教育教科书·科学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/湘科版/义务教育教科书·科学三年级上册/vlm/义务教育教科书·科学三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/湘科版/义务教育教科书·科学四年级上册/vlm/义务教育教科书·科学四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/湘科版/义务教育教科书·科学四年级下册/vlm/义务教育教科书·科学四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/苏教版/义务教育教科书·科学·学生活动手册四年级上册/vlm/义务教育教科书·科学·学生活动手册四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/青岛版/义务教育教科书·科学·学生活动手册二年级下册/vlm/义务教育教科书·科学·学生活动手册二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/青岛版/义务教育教科书·科学三年级上册/vlm/义务教育教科书·科学三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/青岛版/义务教育教科书·科学五年级上册/vlm/义务教育教科书·科学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/青岛版/义务教育教科书·科学五年级下册/vlm/义务教育教科书·科学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/科学/青岛版/义务教育教科书·科学六年级上册/vlm/义务教育教科书·科学六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/冀美版/义务教育教科书·美术一年级上册/vlm/义务教育教科书·美术一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/冀美版/义务教育教科书·美术一年级下册/vlm/义务教育教科书·美术一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/冀美版/义务教育教科书·美术三年级下册/vlm/义务教育教科书·美术三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/岭南美版/义务教育教科书·美术三年级下册/vlm/义务教育教科书·美术三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/岭南美版/义务教育教科书·美术二年级下册/vlm/义务教育教科书·美术二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/桂美版/义务教育教科书·美术一年级下册/vlm/义务教育教科书·美术一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/浙人美版/义务教育教科书·美术三年级下册/vlm/义务教育教科书·美术三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/浙人美版/义务教育教科书·美术六年级下册/vlm/义务教育教科书·美术六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/浙人美版/义务教育教科书·美术四年级上册/vlm/义务教育教科书·美术四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/湘美版/义务教育教科书·美术三年级上册/vlm/义务教育教科书·美术三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/苏少版/义务教育教科书·美术二年级下册/vlm/义务教育教科书·美术二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/苏少版/义务教育教科书·美术五年级下册/vlm/义务教育教科书·美术五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/美术/苏少版/义务教育教科书·美术四年级上册/vlm/义务教育教科书·美术四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/艺术/教科版/义务教育教科书·艺术二年级上册/vlm/义务教育教科书·艺术二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/艺术/教科版/义务教育教科书·艺术六年级上册/vlm/义务教育教科书·艺术六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/艺术/教科版/义务教育教科书·艺术六年级下册/vlm/义务教育教科书·艺术六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/艺术/教科版/义务教育教科书·艺术四年级上册/vlm/义务教育教科书·艺术四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/艺术/鄂教版/义务教育教科书·艺术一年级上册/vlm/义务教育教科书·艺术一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/艺术/鄂教版/义务教育教科书·艺术一年级下册/vlm/义务教育教科书·艺术一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/艺术/鄂教版/义务教育教科书·艺术四年级上册/vlm/义务教育教科书·艺术四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/人教版（PEP）（三年级起点）（主编：吴欣）/义务教育教科书·英语（PEP）（三年级起点）三年级上册/vlm/义务教育教科书·英语（PEP）（三年级起点）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/人教版（PEP）（三年级起点）（主编：吴欣）/义务教育教科书·英语（PEP）（三年级起点）五年级上册/vlm/义务教育教科书·英语（PEP）（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/人教版（PEP）（三年级起点）（主编：吴欣）/义务教育教科书·英语（PEP）（三年级起点）六年级上册/vlm/义务教育教科书·英语（PEP）（三年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/人教版（PEP）（三年级起点）（主编：吴欣）/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/人教版（PEP）（三年级起点）（主编：吴欣）/义务教育教科书·英语（三年级起点）六年级下册/vlm/义务教育教科书·英语（三年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/人教版（PEP）（三年级起点）（主编：吴欣）/义务教育教科书·英语（三年级起点）四年级下册/vlm/义务教育教科书·英语（三年级起点）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/人教版（一年级起点）（主编：吴欣）/义务教育教科书·英语（一年级起点）一年级上册/vlm/义务教育教科书·英语（一年级起点）一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/人教版（一年级起点）（主编：吴欣）/义务教育教科书·英语（一年级起点）六年级下册/vlm/义务教育教科书·英语（一年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/人教版（精通）（三年级起点）（主编：郝建平）/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/人教版（精通）（三年级起点）（主编：郝建平）/义务教育教科书·英语（三年级起点）六年级下册/vlm/义务教育教科书·英语（三年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/人教版（精通）（三年级起点）（主编：郝建平）/义务教育教科书·英语（精通）（三年级起点）六年级上册/vlm/义务教育教科书·英语（精通）（三年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/冀教版（一年级起点）/义务教育教科书·英语（一年级起点）三年级下册/vlm/义务教育教科书·英语（一年级起点）三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/冀教版（一年级起点）/义务教育教科书·英语（一年级起点）六年级上册/vlm/义务教育教科书·英语（一年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/冀教版（三年级起点）/义务教育教科书·英语（三年级起点）三年级下册/vlm/义务教育教科书·英语（三年级起点）三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/冀教版（三年级起点）/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/冀教版（三年级起点）/义务教育教科书·英语（三年级起点）六年级下册/vlm/义务教育教科书·英语（三年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）一年级上册/vlm/义务教育教科书·英语（一年级起点）一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）一年级下册/vlm/义务教育教科书·英语（一年级起点）一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）三年级上册/vlm/义务教育教科书·英语（一年级起点）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）三年级下册/vlm/义务教育教科书·英语（一年级起点）三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）二年级上册/vlm/义务教育教科书·英语（一年级起点）二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）二年级下册/vlm/义务教育教科书·英语（一年级起点）二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）五年级上册/vlm/义务教育教科书·英语（一年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）五年级下册/vlm/义务教育教科书·英语（一年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）六年级上册/vlm/义务教育教科书·英语（一年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）六年级下册/vlm/义务教育教科书·英语（一年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）四年级上册/vlm/义务教育教科书·英语（一年级起点）四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北京版/义务教育教科书·英语（一年级起点）四年级下册/vlm/义务教育教科书·英语（一年级起点）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北师大版/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北师大版/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/北师大版/义务教育教科书·英语（三年级起点）六年级下册/vlm/义务教育教科书·英语（三年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（一年级起点）（主编：陈琳）/义务教育教科书·英语（一年级起点）一年级下册/vlm/义务教育教科书·英语（一年级起点）一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（一年级起点）（主编：陈琳）/义务教育教科书·英语（一年级起点）二年级下册/vlm/义务教育教科书·英语（一年级起点）二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（一年级起点）（主编：陈琳）/义务教育教科书·英语（一年级起点）五年级上册/vlm/义务教育教科书·英语（一年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（一年级起点）（主编：陈琳）/义务教育教科书·英语（一年级起点）四年级下册/vlm/义务教育教科书·英语（一年级起点）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：刘兆义）/义务教育教科书·英语（三年级起点）三年级上册/vlm/义务教育教科书·英语（三年级起点）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：刘兆义）/义务教育教科书·英语（三年级起点）三年级下册/vlm/义务教育教科书·英语（三年级起点）三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：刘兆义）/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：刘兆义）/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：刘兆义）/义务教育教科书·英语（三年级起点）六年级上册/vlm/义务教育教科书·英语（三年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：刘兆义）/义务教育教科书·英语（三年级起点）四年级上册/vlm/义务教育教科书·英语（三年级起点）四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：桂诗春）/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：桂诗春）/义务教育教科书·英语（三年级起点）四年级上册/vlm/义务教育教科书·英语（三年级起点）四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：陈琳）/义务教育教科书·英语（三年级起点）三年级上册/vlm/义务教育教科书·英语（三年级起点）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：陈琳）/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：陈琳）/义务教育教科书·英语（三年级起点）四年级下册/vlm/义务教育教科书·英语（三年级起点）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/川教版/义务教育教科书·英语（三年级起点）三年级下册/vlm/义务教育教科书·英语（三年级起点）三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/川教版/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/川教版/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/接力版三年级起点/义务教育教科书·英语（三年级起点）三年级上册/vlm/义务教育教科书·英语（三年级起点）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/接力版三年级起点/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/接力版三年级起点/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/接力版三年级起点/义务教育教科书·英语（三年级起点）六年级上册/vlm/义务教育教科书·英语（三年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/教科版（主编：龚亚夫&鲁宗干）/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/教科版（主编：龚亚夫&鲁宗干）/义务教育教科书·英语（三年级起点）四年级上册/vlm/义务教育教科书·英语（三年级起点）四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/沪教版/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/沪教版/义务教育教科书·英语（三年级起点）四年级下册/vlm/义务教育教科书·英语（三年级起点）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/湘少版/义务教育教科书·英语（三年级起点）三年级上册/vlm/义务教育教科书·英语（三年级起点）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/湘少版/义务教育教科书·英语（三年级起点）三年级下册/vlm/义务教育教科书·英语（三年级起点）三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/湘少版/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/湘少版/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/湘少版/义务教育教科书·英语（三年级起点）六年级上册/vlm/义务教育教科书·英语（三年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/科普版/义务教育教科书·英语（三年级起点）六年级上册/vlm/义务教育教科书·英语（三年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/科普版/义务教育教科书·英语（三年级起点）六年级下册/vlm/义务教育教科书·英语（三年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/科普版/义务教育教科书·英语（三年级起点）四年级上册/vlm/义务教育教科书·英语（三年级起点）四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/科普版/义务教育教科书·英语（三年级起点）四年级下册/vlm/义务教育教科书·英语（三年级起点）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/粤教粤人版/义务教育教科书·英语（三年级起点）三年级下册/vlm/义务教育教科书·英语（三年级起点）三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/粤教粤人版/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/粤教粤人版/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/粤教粤人版/义务教育教科书·英语（三年级起点）六年级上册/vlm/义务教育教科书·英语（三年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/粤教粤人版/义务教育教科书·英语（三年级起点）六年级下册/vlm/义务教育教科书·英语（三年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/辽宁师大版/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/辽宁师大版/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/辽宁师大版/义务教育教科书·英语（三年级起点）六年级下册/vlm/义务教育教科书·英语（三年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/重庆大学版/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/重庆大学版/义务教育教科书·英语（三年级起点）六年级上册/vlm/义务教育教科书·英语（三年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/重庆大学版/义务教育教科书·英语（三年级起点）六年级下册/vlm/义务教育教科书·英语（三年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/重庆大学版/义务教育教科书·英语（三年级起点）四年级上册/vlm/义务教育教科书·英语（三年级起点）四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/重庆大学版/义务教育教科书·英语（三年级起点）四年级下册/vlm/义务教育教科书·英语（三年级起点）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/闽教版/义务教育教科书·英语（三年级起点）三年级上册/vlm/义务教育教科书·英语（三年级起点）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/闽教版/义务教育教科书·英语（三年级起点）三年级下册/vlm/义务教育教科书·英语（三年级起点）三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/闽教版/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/闽教版/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/闽教版/义务教育教科书·英语（三年级起点）六年级上册/vlm/义务教育教科书·英语（三年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/闽教版/义务教育教科书·英语（三年级起点）六年级下册/vlm/义务教育教科书·英语（三年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/闽教版/义务教育教科书·英语（三年级起点）四年级下册/vlm/义务教育教科书·英语（三年级起点）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/陕旅版/义务教育教科书·英语（三年级起点）三年级上册/vlm/义务教育教科书·英语（三年级起点）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/陕旅版/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/陕旅版/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/陕旅版/义务教育教科书·英语（三年级起点）六年级上册/vlm/义务教育教科书·英语（三年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/陕旅版/义务教育教科书·英语（三年级起点）四年级下册/vlm/义务教育教科书·英语（三年级起点）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/鲁教湘教版/义务教育教科书·英语（三年级起点）五年级上册/vlm/义务教育教科书·英语（三年级起点）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/鲁教湘教版/义务教育教科书·英语（三年级起点）五年级下册/vlm/义务教育教科书·英语（三年级起点）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/鲁教湘教版/义务教育教科书·英语（三年级起点）六年级上册/vlm/义务教育教科书·英语（三年级起点）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/鲁教湘教版/义务教育教科书·英语（三年级起点）六年级下册/vlm/义务教育教科书·英语（三年级起点）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/语文/统编版/义务教育教科书·语文四年级下册/vlm/义务教育教科书·语文四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/语文·书法练习指导/粤教版/义务教育三至六年级·书法练习指导（实验）六年级下册/vlm/义务教育三至六年级·书法练习指导（实验）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/语文·书法练习指导/苏少版/义务教育三至六年级·书法练习指导（实验）六年级下册/vlm/义务教育三至六年级·书法练习指导（实验）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/语文·书法练习指导/青岛版/义务教育三至六年级·书法练习指导（实验）五年级上册/vlm/义务教育三至六年级·书法练习指导（实验）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/道德与法治/统编版/义务教育教科书·道德与法治三年级上册/vlm/义务教育教科书·道德与法治三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/道德与法治/统编版/义务教育教科书·道德与法治二年级下册/vlm/义务教育教科书·道德与法治二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/道德与法治/统编版/义务教育教科书·道德与法治四年级上册/vlm/义务教育教科书·道德与法治四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/道德与法治/统编版/义务教育教科书·道德与法治四年级下册/vlm/义务教育教科书·道德与法治四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/道德与法治/统编版/习近平新时代中国特色社会主义思想学生读本·小学高年级/vlm/习近平新时代中国特色社会主义思想学生读本·小学高年级.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（五线谱）/义务教育教科书·音乐（五线谱）三年级上册/vlm/义务教育教科书·音乐（五线谱）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（五线谱）/义务教育教科书·音乐（五线谱）三年级下册/vlm/义务教育教科书·音乐（五线谱）三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（五线谱）/义务教育教科书·音乐（五线谱）五年级上册/vlm/义务教育教科书·音乐（五线谱）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（五线谱）/义务教育教科书·音乐（五线谱）五年级下册/vlm/义务教育教科书·音乐（五线谱）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（五线谱）/义务教育教科书·音乐（五线谱）六年级上册/vlm/义务教育教科书·音乐（五线谱）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（五线谱）/义务教育教科书·音乐（五线谱）六年级下册/vlm/义务教育教科书·音乐（五线谱）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（五线谱）/义务教育教科书·音乐（五线谱）四年级上册/vlm/义务教育教科书·音乐（五线谱）四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（五线谱）/义务教育教科书·音乐（五线谱）四年级下册/vlm/义务教育教科书·音乐（五线谱）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（简谱）/义务教育教科书·音乐（简谱）三年级上册/vlm/义务教育教科书·音乐（简谱）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（简谱）/义务教育教科书·音乐（简谱）三年级下册/vlm/义务教育教科书·音乐（简谱）三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（简谱）/义务教育教科书·音乐（简谱）二年级上册/vlm/义务教育教科书·音乐（简谱）二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（简谱）/义务教育教科书·音乐（简谱）五年级上册/vlm/义务教育教科书·音乐（简谱）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（简谱）/义务教育教科书·音乐（简谱）五年级下册/vlm/义务教育教科书·音乐（简谱）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（简谱）/义务教育教科书·音乐（简谱）六年级上册/vlm/义务教育教科书·音乐（简谱）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（简谱）/义务教育教科书·音乐（简谱）六年级下册/vlm/义务教育教科书·音乐（简谱）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（简谱）/义务教育教科书·音乐（简谱）四年级上册/vlm/义务教育教科书·音乐（简谱）四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人教版（简谱）/义务教育教科书·音乐（简谱）四年级下册/vlm/义务教育教科书·音乐（简谱）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（主编：敬谱）/义务教育教科书·音乐一年级下册/vlm/义务教育教科书·音乐一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（主编：敬谱）/义务教育教科书·音乐三年级下册/vlm/义务教育教科书·音乐三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（主编：敬谱）/义务教育教科书·音乐五年级下册/vlm/义务教育教科书·音乐五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（五线谱）（主编：吴斌）/义务教育教科书·音乐（五线谱）三年级上册/vlm/义务教育教科书·音乐（五线谱）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（五线谱）（主编：吴斌）/义务教育教科书·音乐（五线谱）三年级下册/vlm/义务教育教科书·音乐（五线谱）三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（五线谱）（主编：吴斌）/义务教育教科书·音乐（五线谱）六年级上册/vlm/义务教育教科书·音乐（五线谱）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（五线谱）（主编：吴斌）/义务教育教科书·音乐（五线谱）六年级下册/vlm/义务教育教科书·音乐（五线谱）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（五线谱）（主编：吴斌）/义务教育教科书·音乐（五线谱）四年级下册/vlm/义务教育教科书·音乐（五线谱）四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（简谱）（主编：吴斌）/义务教育教科书·音乐（简谱）一年级上册/vlm/义务教育教科书·音乐（简谱）一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（简谱）（主编：吴斌）/义务教育教科书·音乐（简谱）三年级上册/vlm/义务教育教科书·音乐（简谱）三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（简谱）（主编：吴斌）/义务教育教科书·音乐（简谱）二年级上册/vlm/义务教育教科书·音乐（简谱）二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（简谱）（主编：吴斌）/义务教育教科书·音乐（简谱）二年级下册/vlm/义务教育教科书·音乐（简谱）二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（简谱）（主编：吴斌）/义务教育教科书·音乐（简谱）六年级上册/vlm/义务教育教科书·音乐（简谱）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（简谱）（主编：吴斌）/义务教育教科书·音乐（简谱）六年级下册/vlm/义务教育教科书·音乐（简谱）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/人音版（简谱）（主编：吴斌）/义务教育教科书·音乐（简谱）四年级上册/vlm/义务教育教科书·音乐（简谱）四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/冀少版/义务教育教科书·音乐（简谱）二年级下册/vlm/义务教育教科书·音乐（简谱）二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/接力社版/义务教育教科书·音乐四年级上册/vlm/义务教育教科书·音乐四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/沪教版/义务教育教科书·音乐三年级上册/vlm/义务教育教科书·音乐三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/沪教版/义务教育教科书·音乐三年级下册/vlm/义务教育教科书·音乐三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/沪教版/义务教育教科书·音乐二年级上册/vlm/义务教育教科书·音乐二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/沪教版/义务教育教科书·音乐六年级上册/vlm/义务教育教科书·音乐六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/湘文艺版/义务教育教科书·音乐一年级下册/vlm/义务教育教科书·音乐一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/粤教花城版/义务教育教科书·音乐（简谱）一年级下册/vlm/义务教育教科书·音乐（简谱）一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/粤教花城版/义务教育教科书·音乐（简谱）二年级下册/vlm/义务教育教科书·音乐（简谱）二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/粤教花城版/义务教育教科书·音乐（简谱）五年级下册/vlm/义务教育教科书·音乐（简谱）五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/苏少版（五线谱）/义务教育教科书·音乐（五线谱）一年级上册/vlm/义务教育教科书·音乐（五线谱）一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/苏少版（五线谱）/义务教育教科书·音乐（五线谱）六年级上册/vlm/义务教育教科书·音乐（五线谱）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/苏少版（五线谱）/义务教育教科书·音乐（五线谱）四年级上册/vlm/义务教育教科书·音乐（五线谱）四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/苏少版（简谱）/义务教育教科书·音乐（简谱）一年级上册/vlm/义务教育教科书·音乐（简谱）一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/苏少版（简谱）/义务教育教科书·音乐（简谱）五年级上册/vlm/义务教育教科书·音乐（简谱）五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/苏少版（简谱）/义务教育教科书·音乐（简谱）六年级上册/vlm/义务教育教科书·音乐（简谱）六年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/苏少版（简谱）/义务教育教科书·音乐（简谱）六年级下册/vlm/义务教育教科书·音乐（简谱）六年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/苏少版（简谱）/义务教育教科书·音乐（简谱）四年级上册/vlm/义务教育教科书·音乐（简谱）四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/西南师大版/义务教育教科书·音乐三年级下册/vlm/义务教育教科书·音乐三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/西南师大版/义务教育教科书·音乐五年级上册/vlm/义务教育教科书·音乐五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/西南师大版/义务教育教科书·音乐四年级下册/vlm/义务教育教科书·音乐四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/辽海版/义务教育教科书·音乐三年级下册/vlm/义务教育教科书·音乐三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/辽海版/义务教育教科书·音乐二年级上册/vlm/义务教育教科书·音乐二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/音乐/辽海版/义务教育教科书·音乐二年级下册/vlm/义务教育教科书·音乐二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/数学/青岛版-青岛出版社/一年级/义务教育教科书（五•四学制）·数学一年级上册/vlm/义务教育教科书（五•四学制）·数学一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/数学/青岛版-青岛出版社/一年级/义务教育教科书（五•四学制）·数学一年级下册/vlm/义务教育教科书（五•四学制）·数学一年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/数学/青岛版-青岛出版社/三年级/义务教育教科书（五•四学制）·数学三年级上册/vlm/义务教育教科书（五•四学制）·数学三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/数学/青岛版-青岛出版社/三年级/义务教育教科书（五•四学制）·数学三年级下册/vlm/义务教育教科书（五•四学制）·数学三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/数学/青岛版-青岛出版社/二年级/义务教育教科书（五•四学制）·数学二年级上册/vlm/义务教育教科书（五•四学制）·数学二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/数学/青岛版-青岛出版社/二年级/义务教育教科书（五•四学制）·数学二年级下册/vlm/义务教育教科书（五•四学制）·数学二年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/数学/青岛版-青岛出版社/五年级/义务教育教科书（五•四学制）·数学五年级上册/vlm/义务教育教科书（五•四学制）·数学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/数学/青岛版-青岛出版社/五年级/义务教育教科书（五•四学制）·数学五年级下册/vlm/义务教育教科书（五•四学制）·数学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/数学/青岛版-青岛出版社/四年级/义务教育教科书（五•四学制）·数学四年级上册/vlm/义务教育教科书（五•四学制）·数学四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/数学/青岛版-青岛出版社/四年级/义务教育教科书（五•四学制）·数学四年级下册/vlm/义务教育教科书（五•四学制）·数学四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/科学/青岛版-青岛出版社/一年级/义务教育教科书（五•四学制）·科学一年级上册/vlm/义务教育教科书（五•四学制）·科学一年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/科学/青岛版-青岛出版社/二年级/义务教育教科书（五•四学制）·科学二年级上册/vlm/义务教育教科书（五•四学制）·科学二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/科学/青岛版-青岛出版社/五年级/义务教育教科书（五•四学制）·科学五年级上册/vlm/义务教育教科书（五•四学制）·科学五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/科学/青岛版-青岛出版社/五年级/义务教育教科书（五•四学制）·科学五年级下册/vlm/义务教育教科书（五•四学制）·科学五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/美术/鲁教版-山东教育出版社/二年级/义务教育教科书（五•四学制）·美术二年级上册/vlm/义务教育教科书（五•四学制）·美术二年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/英语/鲁科版-山东科学技术出版社/三年级/义务教育教科书（五•四学制）·英语三年级上册/vlm/义务教育教科书（五•四学制）·英语三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/英语/鲁科版-山东科学技术出版社/五年级/义务教育教科书（五•四学制）·英语五年级上册/vlm/义务教育教科书（五•四学制）·英语五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/英语/鲁科版-山东科学技术出版社/五年级/义务教育教科书（五•四学制）·英语五年级下册/vlm/义务教育教科书（五•四学制）·英语五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/英语/鲁科版-山东科学技术出版社/四年级/义务教育教科书（五•四学制）·英语四年级上册/vlm/义务教育教科书（五•四学制）·英语四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/英语/鲁科版-山东科学技术出版社/四年级/义务教育教科书（五•四学制）·英语四年级下册/vlm/义务教育教科书（五•四学制）·英语四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/音乐/鲁教版-山东教育出版社/三年级/义务教育教科书（五•四学制）·音乐三年级上册/vlm/义务教育教科书（五•四学制）·音乐三年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/音乐/鲁教版-山东教育出版社/三年级/义务教育教科书（五•四学制）·音乐三年级下册/vlm/义务教育教科书（五•四学制）·音乐三年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/音乐/鲁教版-山东教育出版社/五年级/义务教育教科书（五•四学制）·音乐五年级上册/vlm/义务教育教科书（五•四学制）·音乐五年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/音乐/鲁教版-山东教育出版社/五年级/义务教育教科书（五•四学制）·音乐五年级下册/vlm/义务教育教科书（五•四学制）·音乐五年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/音乐/鲁教版-山东教育出版社/四年级/义务教育教科书（五•四学制）·音乐四年级上册/vlm/义务教育教科书（五•四学制）·音乐四年级上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学（五•四学制）/音乐/鲁教版-山东教育出版社/四年级/义务教育教科书（五•四学制）·音乐四年级下册/vlm/义务教育教科书（五•四学制）·音乐四年级下册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/体育与健康/人教版-人民教育出版社/普通高中教科书·体育与健康必修 全一册/vlm/普通高中教科书·体育与健康必修 全一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/俄语/人教版-人民教育出版社/普通高中教科书·俄语必修 第一册/vlm/普通高中教科书·俄语必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/俄语/人教版-人民教育出版社/普通高中教科书·俄语必修 第三册/vlm/普通高中教科书·俄语必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/俄语/人教版-人民教育出版社/普通高中教科书·俄语必修 第二册/vlm/普通高中教科书·俄语必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/俄语/人教版-人民教育出版社/普通高中教科书·俄语选择性必修 第一册/vlm/普通高中教科书·俄语选择性必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/俄语/人教版-人民教育出版社/普通高中教科书·俄语选择性必修 第三册/vlm/普通高中教科书·俄语选择性必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/俄语/人教版-人民教育出版社/普通高中教科书·俄语选择性必修 第二册/vlm/普通高中教科书·俄语选择性必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/俄语/人教版-人民教育出版社/普通高中教科书·俄语选择性必修 第四册/vlm/普通高中教科书·俄语选择性必修 第四册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/人教中图版-人民教育出版社、中国地图出版社/普通高中教科书·信息技术选择性必修3 数据管理与分析/vlm/普通高中教科书·信息技术选择性必修3 数据管理与分析.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/华东师大版-华东师范大学出版社/普通高中教科书·信息技术必修1 数据与计算/vlm/普通高中教科书·信息技术必修1 数据与计算.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/华东师大版-华东师范大学出版社/普通高中教科书·信息技术选择性必修1 数据与数据结构/vlm/普通高中教科书·信息技术选择性必修1 数据与数据结构.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/华东师大版-华东师范大学出版社/普通高中教科书·信息技术选择性必修3 数据管理与分析/vlm/普通高中教科书·信息技术选择性必修3 数据管理与分析.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/华东师大版-华东师范大学出版社/普通高中教科书·信息技术选择性必修4 人工智能初步/vlm/普通高中教科书·信息技术选择性必修4 人工智能初步.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/华东师大版-华东师范大学出版社/普通高中教科书·信息技术选择性必修5 三维设计与创意/vlm/普通高中教科书·信息技术选择性必修5 三维设计与创意.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/华东师大版-华东师范大学出版社/普通高中教科书·信息技术选择性必修6 开源硬件项目设计/vlm/普通高中教科书·信息技术选择性必修6 开源硬件项目设计.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/教科版-教育科学出版社/普通高中教科书·信息技术选择性必修1 数据与数据结构/vlm/普通高中教科书·信息技术选择性必修1 数据与数据结构.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/教科版-教育科学出版社/普通高中教科书·信息技术选择性必修3 数据管理与分析/vlm/普通高中教科书·信息技术选择性必修3 数据管理与分析.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/粤教版-广东教育出版社/普通高中教科书·信息技术选择性必修4 人工智能初步/vlm/普通高中教科书·信息技术选择性必修4 人工智能初步.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/人教版-人民教育出版社/普通高中教科书·化学必修 第一册/vlm/普通高中教科书·化学必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/人教版-人民教育出版社/普通高中教科书·化学必修 第二册/vlm/普通高中教科书·化学必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/人教版-人民教育出版社/普通高中教科书·化学选择性必修2 物质结构与性质/vlm/普通高中教科书·化学选择性必修2 物质结构与性质.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/人教版-人民教育出版社/普通高中教科书·化学选择性必修3 有机化学基础/vlm/普通高中教科书·化学选择性必修3 有机化学基础.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/沪科技版-上海科学技术出版社/普通高中教科书·化学必修 第一册/vlm/普通高中教科书·化学必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/沪科技版-上海科学技术出版社/普通高中教科书·化学选择性必修1 化学反应原理/vlm/普通高中教科书·化学选择性必修1 化学反应原理.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/苏教版-江苏凤凰教育出版社/普通高中教科书·化学必修 第二册/vlm/普通高中教科书·化学必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/苏教版-江苏凤凰教育出版社/普通高中教科书·化学选择性必修1 化学反应原理/vlm/普通高中教科书·化学选择性必修1 化学反应原理.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/鲁科版-山东科学技术出版社/普通高中教科书·化学必修 第二册/vlm/普通高中教科书·化学必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/鲁科版-山东科学技术出版社/普通高中教科书·化学选择性必修1 化学反应原理/vlm/普通高中教科书·化学选择性必修1 化学反应原理.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/鲁科版-山东科学技术出版社/普通高中教科书·化学选择性必修2 物质结构与性质/vlm/普通高中教科书·化学选择性必修2 物质结构与性质.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/鲁科版-山东科学技术出版社/普通高中教科书·化学选择性必修3 有机化学基础/vlm/普通高中教科书·化学选择性必修3 有机化学基础.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/地理/中图中华地图版-中国地图出版社、中华地图学社/普通高中教科书·地理必修 第二册/vlm/普通高中教科书·地理必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/地理/中图版-中国地图出版社/普通高中教科书·地理选择性必修1 自然地理基础/vlm/普通高中教科书·地理选择性必修1 自然地理基础.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/地理/湘教版-湖南教育出版社/普通高中教科书·地理选择性必修1 自然地理基础/vlm/普通高中教科书·地理选择性必修1 自然地理基础.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/人教版（A版）（主编：章建跃&李增沪）-人民教育出版社/普通高中教科书·数学（A版）必修 第一册/vlm/普通高中教科书·数学（A版）必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/人教版（A版）（主编：章建跃&李增沪）-人民教育出版社/普通高中教科书·数学（A版）必修 第二册/vlm/普通高中教科书·数学（A版）必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/人教版（A版）（主编：章建跃&李增沪）-人民教育出版社/普通高中教科书·数学（A版）选择性必修 第一册/vlm/普通高中教科书·数学（A版）选择性必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/人教版（A版）（主编：章建跃&李增沪）-人民教育出版社/普通高中教科书·数学（A版）选择性必修 第三册/vlm/普通高中教科书·数学（A版）选择性必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/人教版（A版）（主编：章建跃&李增沪）-人民教育出版社/普通高中教科书·数学（A版）选择性必修 第二册/vlm/普通高中教科书·数学（A版）选择性必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/北师大版-北京师范大学出版社/普通高中教科书·数学必修 第一册/vlm/普通高中教科书·数学必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/沪教版-上海教育出版社/普通高中教科书·数学必修 第一册/vlm/普通高中教科书·数学必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/沪教版-上海教育出版社/普通高中教科书·数学必修 第二册/vlm/普通高中教科书·数学必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/湘教版-湖南教育出版社/普通高中教科书·数学必修 第一册/vlm/普通高中教科书·数学必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/苏教版-江苏凤凰教育出版社/普通高中教科书·数学必修 第一册/vlm/普通高中教科书·数学必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/苏教版-江苏凤凰教育出版社/普通高中教科书·数学必修 第二册/vlm/普通高中教科书·数学必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/日语/人教版-人民教育出版社/普通高中教科书·日语必修 第一册/vlm/普通高中教科书·日语必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/日语/人教版-人民教育出版社/普通高中教科书·日语必修 第三册/vlm/普通高中教科书·日语必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/日语/人教版-人民教育出版社/普通高中教科书·日语必修 第二册/vlm/普通高中教科书·日语必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/日语/人教版-人民教育出版社/普通高中教科书·日语选择性必修 第一册/vlm/普通高中教科书·日语选择性必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/日语/人教版-人民教育出版社/普通高中教科书·日语选择性必修 第二册/vlm/普通高中教科书·日语选择性必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/物理/教科版-教育科学出版社/普通高中教科书·物理必修 第一册/vlm/普通高中教科书·物理必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/物理/教科版-教育科学出版社/普通高中教科书·物理必修 第三册/vlm/普通高中教科书·物理必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/物理/教科版-教育科学出版社/普通高中教科书·物理必修 第二册/vlm/普通高中教科书·物理必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/物理/教科版-教育科学出版社/普通高中教科书·物理选择性必修 第一册/vlm/普通高中教科书·物理选择性必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/物理/教科版-教育科学出版社/普通高中教科书·物理选择性必修 第二册/vlm/普通高中教科书·物理选择性必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/物理/沪科教版-上海科技教育出版社/普通高中教科书·物理选择性必修 第二册/vlm/普通高中教科书·物理选择性必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/生物学/人教版-人民教育出版社/普通高中教科书·生物学选择性必修2 生物与环境/vlm/普通高中教科书·生物学选择性必修2 生物与环境.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/生物学/沪科技版-上海科学技术出版社/普通高中教科书·生物学必修2 遗传与进化/vlm/普通高中教科书·生物学必修2 遗传与进化.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/生物学/浙科版-浙江科学技术出版社/普通高中教科书·生物学必修2 遗传与进化/vlm/普通高中教科书·生物学必修2 遗传与进化.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/生物学/苏教版-江苏凤凰教育出版社/普通高中教科书·生物学选择性必修1 稳态与调节/vlm/普通高中教科书·生物学选择性必修1 稳态与调节.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/美术/人教版-人民教育出版社/普通高中教科书·美术必修 美术鉴赏/vlm/普通高中教科书·美术必修 美术鉴赏.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/美术/湘美版-湖南美术出版社/普通高中教科书·美术选择性必修2 中国书画/vlm/普通高中教科书·美术选择性必修2 中国书画.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/艺术/粤教版-广东教育出版社/普通高中教科书·艺术必修1 艺术与生活/vlm/普通高中教科书·艺术必修1 艺术与生活.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/艺术/粤教版-广东教育出版社/普通高中教科书·艺术必修2 艺术与文化（下册）/vlm/普通高中教科书·艺术必修2 艺术与文化（下册）.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/艺术/粤教版-广东教育出版社/普通高中教科书·艺术选择性必修1 美术创意实践/vlm/普通高中教科书·艺术选择性必修1 美术创意实践.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/艺术/粤教版-广东教育出版社/普通高中教科书·艺术选择性必修5 影视与数字媒体艺术实践/vlm/普通高中教科书·艺术选择性必修5 影视与数字媒体艺术实践.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/人教版-人民教育出版社/普通高中教科书·英语必修 第一册/vlm/普通高中教科书·英语必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/冀教版-河北教育出版社/普通高中教科书·英语必修 第三册/vlm/普通高中教科书·英语必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/冀教版-河北教育出版社/普通高中教科书·英语选择性必修 第一册/vlm/普通高中教科书·英语选择性必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/冀教版-河北教育出版社/普通高中教科书·英语选择性必修 第二册/vlm/普通高中教科书·英语选择性必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/冀教版-河北教育出版社/普通高中教科书·英语选择性必修 第四册/vlm/普通高中教科书·英语选择性必修 第四册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/北师大版-北京师范大学出版社/普通高中教科书·英语必修 第一册/vlm/普通高中教科书·英语必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/北师大版-北京师范大学出版社/普通高中教科书·英语必修 第三册/vlm/普通高中教科书·英语必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/北师大版-北京师范大学出版社/普通高中教科书·英语必修 第二册/vlm/普通高中教科书·英语必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/北师大版-北京师范大学出版社/普通高中教科书·英语选择性必修 第三册/vlm/普通高中教科书·英语选择性必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/北师大版-北京师范大学出版社/普通高中教科书·英语选择性必修 第二册/vlm/普通高中教科书·英语选择性必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/北师大版-北京师范大学出版社/普通高中教科书·英语选择性必修 第四册/vlm/普通高中教科书·英语选择性必修 第四册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/外研社版-外语教学与研究出版社/普通高中教科书·英语必修 第一册/vlm/普通高中教科书·英语必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/外研社版-外语教学与研究出版社/普通高中教科书·英语选择性必修 第三册/vlm/普通高中教科书·英语选择性必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/外研社版-外语教学与研究出版社/普通高中教科书·英语选择性必修 第二册/vlm/普通高中教科书·英语选择性必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/外研社版-外语教学与研究出版社/普通高中教科书·英语选择性必修 第四册/vlm/普通高中教科书·英语选择性必修 第四册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/沪外教版-上海外语教育出版社/普通高中教科书·英语必修 第一册/vlm/普通高中教科书·英语必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/沪外教版-上海外语教育出版社/普通高中教科书·英语必修 第三册/vlm/普通高中教科书·英语必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/沪外教版-上海外语教育出版社/普通高中教科书·英语选择性必修 第二册/vlm/普通高中教科书·英语选择性必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/沪教版-上海教育出版社/普通高中教科书·英语必修 第二册/vlm/普通高中教科书·英语必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/沪教版-上海教育出版社/普通高中教科书·英语选择性必修 第三册/vlm/普通高中教科书·英语选择性必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/译林版-译林出版社/普通高中教科书·英语必修 第三册/vlm/普通高中教科书·英语必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/译林版-译林出版社/普通高中教科书·英语选择性必修 第二册/vlm/普通高中教科书·英语选择性必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/译林版-译林出版社/普通高中教科书·英语选择性必修 第四册/vlm/普通高中教科书·英语选择性必修 第四册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/重庆大学版-重庆大学出版社/普通高中教科书·英语必修 第一册/vlm/普通高中教科书·英语必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/重庆大学版-重庆大学出版社/普通高中教科书·英语必修 第三册/vlm/普通高中教科书·英语必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/重庆大学版-重庆大学出版社/普通高中教科书·英语必修 第二册/vlm/普通高中教科书·英语必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/重庆大学版-重庆大学出版社/普通高中教科书·英语选择性必修 第一册/vlm/普通高中教科书·英语选择性必修 第一册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/重庆大学版-重庆大学出版社/普通高中教科书·英语选择性必修 第三册/vlm/普通高中教科书·英语选择性必修 第三册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/重庆大学版-重庆大学出版社/普通高中教科书·英语选择性必修 第二册/vlm/普通高中教科书·英语选择性必修 第二册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/英语/重庆大学版-重庆大学出版社/普通高中教科书·英语选择性必修 第四册/vlm/普通高中教科书·英语选择性必修 第四册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/语文/统编版-人民教育出版社/普通高中教科书·语文选择性必修 上册/vlm/普通高中教科书·语文选择性必修 上册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/语文/统编版-人民教育出版社/普通高中教科书·语文选择性必修 中册/vlm/普通高中教科书·语文选择性必修 中册.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术必修 技术与设计1/vlm/普通高中教科书·通用技术必修 技术与设计1.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术必修 技术与设计2/vlm/普通高中教科书·通用技术必修 技术与设计2.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术选择性必修1 电子控制技术/vlm/普通高中教科书·通用技术选择性必修1 电子控制技术.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术选择性必修10 科技人文融合创新专题/vlm/普通高中教科书·通用技术选择性必修10 科技人文融合创新专题.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术选择性必修11 产品三维设计与制造/vlm/普通高中教科书·通用技术选择性必修11 产品三维设计与制造.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术选择性必修3 工程设计基础/vlm/普通高中教科书·通用技术选择性必修3 工程设计基础.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术选择性必修4 现代家政技术/vlm/普通高中教科书·通用技术选择性必修4 现代家政技术.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术选择性必修5 服装及其设计/vlm/普通高中教科书·通用技术选择性必修5 服装及其设计.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术选择性必修6 智能家居应用设计/vlm/普通高中教科书·通用技术选择性必修6 智能家居应用设计.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术选择性必修8 技术与职业探索/vlm/普通高中教科书·通用技术选择性必修8 技术与职业探索.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/音乐/人音版-人民音乐出版社/普通高中教科书·音乐必修2 歌唱/vlm/普通高中教科书·音乐必修2 歌唱.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/音乐/人音版-人民音乐出版社/普通高中教科书·音乐选择性必修2 合奏/vlm/普通高中教科书·音乐选择性必修2 合奏.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/音乐/沪音版-上海音乐出版社/普通高中教科书·音乐选择性必修5 音乐基础理论/vlm/普通高中教科书·音乐选择性必修5 音乐基础理论.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/音乐/湘文艺版-湖南文艺出版社/普通高中教科书·音乐必修4 音乐编创/vlm/普通高中教科书·音乐必修4 音乐编创.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/音乐/湘文艺版-湖南文艺出版社/普通高中教科书·音乐必修5 音乐与舞蹈/vlm/普通高中教科书·音乐必修5 音乐与舞蹈.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/音乐/湘文艺版-湖南文艺出版社/普通高中教科书·音乐选择性必修5 音乐基础理论/vlm/普通高中教科书·音乐选择性必修5 音乐基础理论.md
+/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/音乐/粤教花城版-广东教育出版社、花城出版社/普通高中教科书·音乐必修1 音乐鉴赏/vlm/普通高中教科书·音乐必修1 音乐鉴赏.md

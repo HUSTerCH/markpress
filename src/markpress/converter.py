@@ -1,6 +1,8 @@
 import os
 import re
 import tempfile
+import time
+import traceback
 from pprint import pprint
 
 import mistune
@@ -8,6 +10,70 @@ from bs4 import BeautifulSoup
 from .core import MarkPressEngine
 from .utils.utils import APP_TMP, get_raw_text, slugify, strip_front_matter, optimize_ast_html_blocks
 
+
+def convert_markdown_batch(file_tasks: list[tuple[str, str]], theme: str = "academic", config=None):
+    if not file_tasks:
+        return
+
+    print(f"🚀 开始执行批量编译任务，共 {len(file_tasks)} 个文件...")
+    shared_katex = None
+
+    try:
+        for idx, (input_path, output_path) in enumerate(file_tasks):
+            # 【核心隔离区】：为每一个文件单独套上防弹衣
+            try:
+                print(f"[{idx + 1}/{len(file_tasks)}] 正在编译：{input_path} -> {output_path}")
+
+                with open(input_path, "r", encoding="utf-8") as f:
+                    text = f.read()
+
+                clean_md = strip_front_matter(text)
+                base_dir = os.path.dirname(os.path.abspath(input_path))
+
+                markdown = mistune.create_markdown(
+                    renderer=None,
+                    plugins=[
+                        'speedup', 'strikethrough', 'mark', 'insert', 'superscript',
+                        'subscript', 'footnotes', 'table', 'url', 'abbr', 'def_list',
+                        'math', 'ruby', 'task_lists', 'spoiler'
+                    ]
+                )
+
+                ast = markdown(clean_md)
+                optimized_ast = optimize_ast_html_blocks(ast)
+
+                writer = MarkPressEngine(output_path, theme, config=config, shared_katex=shared_katex)
+
+                if shared_katex is None:
+                    shared_katex = getattr(writer, 'katex_renderer', None)
+
+                _render_ast(writer, optimized_ast, base_dir)
+                writer.save_pdf()
+
+            except Exception as e:
+                # 【单文件错误拦截与日志记录】
+                print(f"\n[ERROR] 💥 文件编译失败，已跳过: {input_path}")
+                print(f"原因: {e}\n")
+
+                # 追加模式打开 error.log，写入绝对路径和完整调用栈
+                with open("error.log", "a", encoding="utf-8") as log_file:
+                    log_file.write(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] 崩溃文件: {input_path}\n")
+                    log_file.write(f"目标输出: {output_path}\n")
+                    # 将 traceback 直接重定向输出到日志文件
+                    traceback.print_exc(file=log_file)
+                    # 写入显眼的多行分隔符
+                    log_file.write("\n\n" + "=" * 80 + "\n\n")
+
+                # 记录完毕，优雅 continue，继续处理同批次的下一个文件
+                continue
+
+    finally:
+        if shared_katex:
+            print("🧹 批量任务退出，正在强制剥离并销毁 Playwright 渲染核心...")
+            try:
+                shared_katex.close()
+            except Exception as e:
+                pass
 
 def convert_markdown_file(input_path: str, output_path: str, theme: str = "academic", config=None):
     """

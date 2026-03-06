@@ -241,9 +241,21 @@ class KatexRenderer(BaseRenderer):
 
         return path, w, h
 
+    # def close(self):
+    #     print("关闭Katex渲染器.")
+    #     if self.browser:
+    #         self.browser.close()
+    #     if self.playwright:
+    #         self.playwright.stop()
+
     def close(self):
-        print("关闭Katex渲染器.")
-        if self.browser:
-            self.browser.close()
-        if self.playwright:
-            self.playwright.stop()
+        print("关闭 KaTeX 渲染引擎...")
+        try:
+            if self.browser:
+                self.browser.close()
+                self.browser = None
+            if self.playwright:
+                self.playwright.stop()
+                self.playwright = None
+        except Exception as e:
+            print(f"关闭渲染器时出错: {e}")
