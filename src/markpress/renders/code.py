@@ -74,7 +74,7 @@ class CodeRenderer(BaseRenderer):
         else:
             data.append([code_para])  # Row 0
 
-        t = Table(data, colWidths=[avail_width])
+        t = Table(data, colWidths=[avail_width], splitByRow=1, splitInRow=1, longTableOptimize=1)
 
         # 获取配置颜色
         code_conf = self.config.styles.code

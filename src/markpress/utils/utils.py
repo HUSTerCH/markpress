@@ -115,6 +115,29 @@ def strip_front_matter(md_text: str) -> str:
     return pattern.sub('', md_text)
 
 
+def strip_invalid_reportlab_img_tags(text: str) -> str:
+    """
+    移除会触发 ReportLab `paraparser` 崩溃的无效 <img> 标签。
+    目前最关键的是过滤缺少非空 src 的情况，例如 <img/>。
+    """
+    if not text:
+        return ""
+
+    def keep_valid_img(match):
+        tag = match.group(0)
+        quoted = re.search(r'\bsrc\s*=\s*(["\'])(.*?)\1', tag, re.IGNORECASE)
+        if quoted and quoted.group(2).strip():
+            return tag
+
+        unquoted = re.search(r'\bsrc\s*=\s*([^\s/>]+)', tag, re.IGNORECASE)
+        if unquoted and unquoted.group(1).strip():
+            return tag
+
+        return ""
+
+    return re.sub(r'<img\b[^>]*>', keep_valid_img, text, flags=re.IGNORECASE)
+
+
 def optimize_ast_html_blocks(tokens: list) -> list:
     """
     AST 核心中间件：

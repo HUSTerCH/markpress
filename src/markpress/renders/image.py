@@ -42,6 +42,7 @@ class ImageRenderer(BaseRenderer):
     # 图片渲染器
     def render(self, image_path: str, alt_text: str = "", **kwargs):
         avail_width = kwargs.get('avail_width', 160 * mm)
+        avail_height = kwargs.get('avail_height', 170 * mm)
 
         # 在线图片：下载到本地临时文件
         if image_path.startswith(('http://', 'https://')):
@@ -59,8 +60,8 @@ class ImageRenderer(BaseRenderer):
             # 获取原始尺寸
             img_width = img.imageWidth
             img_height = img.imageHeight
-            # 计算缩放比例，确保图片不超过可用宽度，同时限制最大高度为页面的 60%（约 170mm for A4）
-            max_height = 170 * mm
+            # 既要限制宽度，也要尊重当前页面 frame 的真实高度。
+            max_height = min(170 * mm, avail_height)
 
             if img_width > avail_width:
                 # 按宽度缩放
@@ -72,7 +73,7 @@ class ImageRenderer(BaseRenderer):
                 img.drawWidth = img_width
                 img.drawHeight = img_height
             # 如果缩放后高度仍然过大，再按高度缩放
-            if img.drawHeight > max_height:
+            if max_height > 0 and img.drawHeight > max_height:
                 scale = max_height / img.drawHeight
                 img.drawHeight = max_height
                 img.drawWidth = img.drawWidth * scale

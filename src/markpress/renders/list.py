@@ -38,8 +38,13 @@ class ListRenderer(BaseRenderer):
         :param items: 嵌套列表数据 ['Item 1', ['Sub 1'], 'Item 2']
         :param is_ordered: 是否有序
         """
+        if not items:
+            return []
+
         # 构建 ListFlowable
         list_flowable = self._build_level(items, depth=0, ordered=is_ordered, start_index=start_index)
+        if list_flowable is None:
+            return []
         return [list_flowable]
 
     def _to_roman(self, n: int) -> str:
@@ -89,6 +94,9 @@ class ListRenderer(BaseRenderer):
         """
         递归构建列表层级
         """
+        if not sub_items:
+            return None
+
         flowables = []
         item_index = start_index - 1
         i = 0
@@ -157,6 +165,9 @@ class ListRenderer(BaseRenderer):
             i += 1
 
         # 构建 ListFlowable
+        if not flowables:
+            return None
+
         return ListFlowable(
             flowables,
             bulletType='bullet',  # 我们通过 ListItem 自定义了 bullet，这里设为 bullet 即可

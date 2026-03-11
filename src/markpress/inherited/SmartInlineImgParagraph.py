@@ -1,3 +1,6 @@
+import math
+import re
+
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from markpress.inherited.SafeCJKParagraph import SafeCJKParagraph
@@ -119,9 +122,31 @@ class SmartInlineImgParagraph(SafeCJKParagraph):
         return changed
 
     def wrap(self, availWidth, availHeight):
-        if self._inject_br_before_imgs_if_needed(availWidth):
-            new_text = self._smart_new_text
-            rebuilt = self.__class__(new_text, self.style, bulletText=getattr(self, "bulletText", None))
-            self.__dict__.update(rebuilt.__dict__)
+        safe_width = max(float(availWidth or 0), 1.0)
+        safe_height = float(availHeight) if isinstance(availHeight, (int, float)) else 0.0
 
-        return super().wrap(availWidth, availHeight)
+        try:
+            if self._inject_br_before_imgs_if_needed(safe_width):
+                new_text = self._smart_new_text
+                rebuilt = self.__class__(new_text, self.style, bulletText=getattr(self, "bulletText", None))
+                self.__dict__.update(rebuilt.__dict__)
+
+            wrapped_width, wrapped_height = super().wrap(safe_width, safe_height)
+        except Exception:
+            return self._fallback_wrap(safe_width)
+
+        if wrapped_width is None or wrapped_height is None:
+            return self._fallback_wrap(safe_width)
+
+        return float(wrapped_width), float(wrapped_height)
+
+    def _fallback_wrap(self, avail_width):
+        """任何异常分支都必须返回合法尺寸，避免污染 Table 的行高计算。"""
+        plain_text = re.sub(r"<[^>]+>", "", getattr(self, "text", "") or "") or " "
+        font_name = getattr(self.style, "fontName", "Helvetica")
+        font_size = float(getattr(self.style, "fontSize", 12) or 12)
+        leading = float(getattr(self.style, "leading", font_size * 1.2) or font_size * 1.2)
+
+        text_width = stringWidth(plain_text, font_name, font_size)
+        line_count = max(1, math.ceil(text_width / max(avail_width, 1.0)))
+        return float(avail_width), float(line_count * leading)

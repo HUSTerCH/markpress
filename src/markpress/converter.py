@@ -3,17 +3,30 @@ import re
 import tempfile
 import time
 import traceback
-from pprint import pprint
-
 import mistune
 from bs4 import BeautifulSoup
 from .core import MarkPressEngine
 from .utils.utils import APP_TMP, get_raw_text, slugify, strip_front_matter, optimize_ast_html_blocks
 
 
-def convert_markdown_batch(file_tasks: list[tuple[str, str]], theme: str = "academic", config=None):
+def convert_markdown_batch(
+    file_tasks: list[tuple[str, str]],
+    theme: str = "academic",
+    config=None,
+    error_log_path: str = "error.log",
+):
+    summary = {
+        "start_time": time.time(),
+        "end_time": None,
+        "total": len(file_tasks),
+        "succeeded": 0,
+        "failed": 0,
+        "failures": [],
+    }
+
     if not file_tasks:
-        return
+        summary["end_time"] = time.time()
+        return summary
 
     print(f"🚀 开始执行批量编译任务，共 {len(file_tasks)} 个文件...")
     shared_katex = None
@@ -49,15 +62,26 @@ def convert_markdown_batch(file_tasks: list[tuple[str, str]], theme: str = "acad
 
                 _render_ast(writer, optimized_ast, base_dir)
                 writer.save_pdf()
+                summary["succeeded"] += 1
 
             except Exception as e:
                 # 【单文件错误拦截与日志记录】
                 print(f"\n[ERROR] 💥 文件编译失败，已跳过: {input_path}")
                 print(f"原因: {e}\n")
 
+                failure_time = time.strftime('%Y-%m-%d %H:%M:%S')
+                summary["failed"] += 1
+                summary["failures"].append({
+                    "timestamp": failure_time,
+                    "input_path": input_path,
+                    "output_path": output_path,
+                    "error_type": type(e).__name__,
+                    "error_message": str(e),
+                })
+
                 # 追加模式打开 error.log，写入绝对路径和完整调用栈
-                with open("error.log", "a", encoding="utf-8") as log_file:
-                    log_file.write(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] 崩溃文件: {input_path}\n")
+                with open(error_log_path, "a", encoding="utf-8") as log_file:
+                    log_file.write(f"[{failure_time}] 崩溃文件: {input_path}\n")
                     log_file.write(f"目标输出: {output_path}\n")
                     # 将 traceback 直接重定向输出到日志文件
                     traceback.print_exc(file=log_file)
@@ -74,6 +98,9 @@ def convert_markdown_batch(file_tasks: list[tuple[str, str]], theme: str = "acad
                 shared_katex.close()
             except Exception as e:
                 pass
+        summary["end_time"] = time.time()
+
+    return summary
 
 def convert_markdown_file(input_path: str, output_path: str, theme: str = "academic", config=None):
     """
@@ -151,9 +178,10 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
             # 3. [核心修复]：包裹锚点标签
             # 使用 <a name="..."> 整个包裹住标题文本
             # 这样既注册了书签目的地，又避免了产生空的 <a></a> 导致 CJK 换行崩溃
-            text_with_anchor = f'<a name="{anchor_id}"/>{xml_text}'
+            text_with_anchor = f'<a name="{anchor_id}"/>{xml_text}' if anchor_id else xml_text
 
-            writer.add_heading(text_with_anchor, level=level)
+            if text_with_anchor.strip():
+                writer.add_heading(text_with_anchor, level=level)
             # text = _render_inline(writer, children)
             # writer.add_heading(text, level=level)
 
@@ -260,6 +288,8 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
                 latex = tok.get('raw', '')  # latex源码
                 png_bytes, w, h = writer.katex_renderer.render_image(latex, is_block=False)
                 if png_bytes:
+                    inline_max_w, inline_max_h = writer.get_inline_media_limits()
+                    w, h = writer.fit_media_size(w, h, max_width=inline_max_w, max_height=inline_max_h)
                     # 走katex
                     fd, path = tempfile.mkstemp(suffix=".png", dir=APP_TMP)
                     os.write(fd, png_bytes)
@@ -289,6 +319,8 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
                 # SVG 徽章：通过浏览器光栅化
                 img_path, w, h = writer.rasterize_svg(src)
                 if img_path:
+                    inline_max_w, inline_max_h = writer.get_inline_media_limits()
+                    w, h = writer.fit_media_size(w, h, max_width=inline_max_w, max_height=inline_max_h)
                     valign = f"-{h * 0.3}"
                     result.append(f'<img src="{img_path}" width="{w}" height="{h}" valign="{valign}"/>')
                 else:
@@ -301,6 +333,8 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
                     try:
                         tmp_img = RLImage(local_path)
                         w, h = tmp_img.imageWidth * 0.75, tmp_img.imageHeight * 0.75
+                        inline_max_w, inline_max_h = writer.get_inline_media_limits()
+                        w, h = writer.fit_media_size(w, h, max_width=inline_max_w, max_height=inline_max_h)
                         valign = f"-{h * 0.3}"
                         result.append(f'<img src="{local_path}" width="{w}" height="{h}" valign="{valign}"/>')
                     except Exception:
