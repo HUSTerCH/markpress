@@ -9,7 +9,12 @@ from reportlab.platypus import Paragraph
 
 from .base import BaseRenderer
 from ..inherited.SmartInlineImgParagraph import SmartInlineImgParagraph
-from ..utils.utils import replace_to_local_twemoji, strip_invalid_reportlab_img_tags
+from ..utils.utils import (
+    replace_to_local_twemoji,
+    strip_invalid_reportlab_img_tags,
+    scale_oversized_inline_imgs,
+    MAX_INLINE_IMG_PT,
+)
 
 
 class TextRenderer(BaseRenderer):
@@ -41,6 +46,8 @@ class TextRenderer(BaseRenderer):
         clean_text = self._sanitize_html_for_reportlab(xml_text).replace("\n", "")
         img_heights = [float(h) for h in re.findall(r'height="([\d\.]+)"', clean_text)]
         max_img_h = max(img_heights) if img_heights else 0
+        # 限制行高，避免 Paragraph 超出 frame（约 688pt）
+        max_img_h = min(max_img_h, MAX_INLINE_IMG_PT)
 
         # 获取基础样式
         base_style = self.styles["Body_Text"]
@@ -193,8 +200,7 @@ class TextRenderer(BaseRenderer):
         clean_html = re.sub(r'<a[^>]*>\s*</a>', '', clean_html)
         clean_html = re.sub(r'<a\s+name="\s*"\s*/?>', '', clean_html)
         clean_html = strip_invalid_reportlab_img_tags(clean_html)
-        # print("清洗前：", text)
-        # print("清洗后：", clean_html)
+        clean_html = scale_oversized_inline_imgs(clean_html)
         return clean_html
 
     def _parse_css_style(self, style_str: str) -> dict:

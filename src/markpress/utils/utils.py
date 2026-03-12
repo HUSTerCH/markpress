@@ -118,24 +118,62 @@ def strip_front_matter(md_text: str) -> str:
 def strip_invalid_reportlab_img_tags(text: str) -> str:
     """
     移除会触发 ReportLab `paraparser` 崩溃的无效 <img> 标签。
-    目前最关键的是过滤缺少非空 src 的情况，例如 <img/>。
+    1. 过滤缺少非空 src 的情况，例如 <img/>
+    2. 移除 alt 等 ReportLab 不支持的属性（仅支持 height, src, valign, width）
     """
     if not text:
         return ""
+
+    # ReportLab img 仅支持 height, src, valign, width
+    _ALT_PATTERN = re.compile(r'\s+alt\s*=\s*["\'][^"\']*["\']', re.IGNORECASE)
 
     def keep_valid_img(match):
         tag = match.group(0)
         quoted = re.search(r'\bsrc\s*=\s*(["\'])(.*?)\1', tag, re.IGNORECASE)
         if quoted and quoted.group(2).strip():
+            tag = _ALT_PATTERN.sub('', tag)
             return tag
 
         unquoted = re.search(r'\bsrc\s*=\s*([^\s/>]+)', tag, re.IGNORECASE)
         if unquoted and unquoted.group(1).strip():
+            tag = _ALT_PATTERN.sub('', tag)
             return tag
 
         return ""
 
     return re.sub(r'<img\b[^>]*>', keep_valid_img, text, flags=re.IGNORECASE)
+
+
+# 单帧高度约 688pt，内联图片需限制在此以内
+MAX_INLINE_IMG_PT = 450
+
+
+def scale_oversized_inline_imgs(text: str, max_pt: float = MAX_INLINE_IMG_PT) -> str:
+    """
+    缩放超大的内联 <img>，避免 Paragraph 高度超过 frame 导致 ReportLab 报错。
+    """
+    if not text or "<img" not in text:
+        return text
+
+    def _scale_img(match):
+        tag = match.group(0)
+        w = re.search(r'width\s*=\s*["\']([\d\.]+)["\']', tag, re.I)
+        h = re.search(r'height\s*=\s*["\']([\d\.]+)["\']', tag, re.I)
+        if not w or not h:
+            return tag
+        try:
+            wv, hv = float(w.group(1)), float(h.group(1))
+        except (ValueError, TypeError):
+            return tag
+        if wv <= max_pt and hv <= max_pt:
+            return tag
+        scale = min(max_pt / wv, max_pt / hv, 1.0)
+        nw, nh = round(wv * scale, 1), round(hv * scale, 1)
+        tag = re.sub(r'width\s*=\s*["\'][^"\']*["\']', f'width="{nw}"', tag, flags=re.I)
+        tag = re.sub(r'height\s*=\s*["\'][^"\']*["\']', f'height="{nh}"', tag, flags=re.I)
+        return tag
+
+    return re.sub(r'<img\b[^>]*>', _scale_img, text, flags=re.IGNORECASE)
 
 
 def optimize_ast_html_blocks(tokens: list) -> list:

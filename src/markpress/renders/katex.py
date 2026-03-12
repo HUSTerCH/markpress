@@ -60,14 +60,33 @@ class KatexRenderer(BaseRenderer):
 
             try:
                 import sys, subprocess
-                # 强制使用国内源，提高成功率
                 env = os.environ.copy()
-                env["PLAYWRIGHT_DOWNLOAD_HOST"] = "https://npmmirror.com/mirrors/playwright/"
+                # 先尝试国内镜像，失败则回退官方源（npmmirror 可能未同步最新版本）
+                download_hosts = [
+                    "https://npmmirror.com/mirrors/playwright/",
+                    None,  # 官方源
+                ]
+                installed = False
+                for host in download_hosts:
+                    try:
+                        if host:
+                            env["PLAYWRIGHT_DOWNLOAD_HOST"] = host
+                        else:
+                            env.pop("PLAYWRIGHT_DOWNLOAD_HOST", None)
+                        subprocess.check_call(
+                            [sys.executable, "-m", "playwright", "install", "chromium"],
+                            env=env
+                        )
+                        installed = True
+                        break
+                    except subprocess.CalledProcessError:
+                        if host:
+                            print("[MarkPress] npmmirror failed, retrying with official source...")
+                        else:
+                            raise
 
-                subprocess.check_call(
-                    [sys.executable, "-m", "playwright", "install", "chromium"],
-                    env=env
-                )
+                if not installed:
+                    raise RuntimeError("playwright install chromium failed")
 
                 print("[MarkPress] Browser kernel installed successfully.")
                 # 安装完后，再次尝试启动 (不带 channel，使用刚下载的 bundled chromium)

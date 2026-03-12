@@ -173,7 +173,7 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
             anchor_id = slugify(raw_text)
 
             # 2. 渲染带样式的 XML 内容
-            xml_text = _render_inline(writer, children)
+            xml_text = _render_inline(writer, children, base_dir)
 
             # 3. [核心修复]：包裹锚点标签
             # 使用 <a name="..."> 整个包裹住标题文本
@@ -205,7 +205,7 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
                     img_url = os.path.join(base_dir, img_url)
                 writer.add_image(img_url, img_alt)
             else:
-                text = _render_inline(writer, children)
+                text = _render_inline(writer, children, base_dir)
                 # 过滤掉空段落
                 if text.strip():
                     writer.add_text(text)
@@ -220,12 +220,12 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
         elif t_type == 'list':
             ordered = attrs.get('ordered', False)
             start_index = attrs.get('start', 1)
-            list_items = _parse_list_items(writer, children)
+            list_items = _parse_list_items(writer, children, base_dir)
             writer.add_list(list_items, is_ordered=ordered,start_index=start_index)
 
         # 表格 (Table)
         elif t_type == 'table':
-            table_data = _parse_table(writer, children, attrs)
+            table_data = _parse_table(writer, children, attrs, base_dir)
             if table_data:
                 writer.add_table(table_data)
 
@@ -253,10 +253,11 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
             _parse_block_html(writer, raw_html.strip(), base_dir)
 
 
-def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
+def _render_inline(writer: MarkPressEngine, tokens: list, base_dir: str = ".") -> str:
     """
     将 Inline Tokens (Text, Strong, Link, Image) 转换为
     ReportLab 支持的 XML 字符串 (例如 <b>Text</b>)
+    base_dir: 用于解析本地图片相对路径
     """
     if not tokens:
         return ""
@@ -273,10 +274,10 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
             result.append(tok.get('raw', ''))
         # 加粗字体
         elif t_type == 'strong':
-            result.append(f"<b>{_render_inline(writer, tok.get('children'))}</b>")
+            result.append(f"<b>{_render_inline(writer, tok.get('children'), base_dir)}</b>")
         # 斜体字体，需要有斜体字体支持
         elif t_type == 'emphasis':
-            result.append(f"<i>{_render_inline(writer, tok.get('children'))}</i>")
+            result.append(f"<i>{_render_inline(writer, tok.get('children'), base_dir)}</i>")
         # 行内代码块，就是被``包裹的文字
         elif t_type == 'codespan':
             code = tok.get('raw', '').replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
@@ -306,7 +307,7 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
             result.append(xml_img)
         # 链接
         elif t_type == 'link':
-            text = _render_inline(writer, tok.get('children'))
+            text = _render_inline(writer, tok.get('children'), base_dir)
             href = tok.get('attrs', {}).get('url', '')
             result.append(f'<a href="{href}" color="blue">{text}</a>')
         # 行内图片（如徽章、小图标等嵌在段落/链接里的图片）
@@ -342,7 +343,21 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
                 else:
                     result.append(f'[{alt}]')
             else:
-                result.append(f'[{alt}]')
+                # 本地图片：拼接 base_dir 解析
+                local_path = os.path.join(base_dir, src) if src else ""
+                if local_path and os.path.exists(local_path):
+                    from reportlab.platypus import Image as RLImage
+                    try:
+                        tmp_img = RLImage(local_path)
+                        w, h = tmp_img.imageWidth * 0.75, tmp_img.imageHeight * 0.75
+                        inline_max_w, inline_max_h = writer.get_inline_media_limits()
+                        w, h = writer.fit_media_size(w, h, max_width=inline_max_w, max_height=inline_max_h)
+                        valign = f"-{h * 0.3}"
+                        result.append(f'<img src="{local_path}" width="{w}" height="{h}" valign="{valign}"/>')
+                    except Exception:
+                        result.append(f'[{alt}]')
+                else:
+                    result.append(f'[{alt}]')
         # 软换行，好像没遇到过
         elif t_type == 'softbreak':
             result.append("")
@@ -353,7 +368,7 @@ def _render_inline(writer: MarkPressEngine, tokens: list) -> str:
     return "".join(result)
 
 
-def _parse_list_items(writer, tokens) -> list:
+def _parse_list_items(writer, tokens, base_dir: str = ".") -> list:
     """
     解析列表的item
     将 mistune 的 list_item tokens 转换为 ['Item', ['SubItem'], 'Item'] 格式
@@ -373,11 +388,11 @@ def _parse_list_items(writer, tokens) -> list:
                     continue
                 # 嵌套列表，递归解析
                 if child['type'] == 'list':
-                    sub_list = _parse_list_items(writer, child['children'])
+                    sub_list = _parse_list_items(writer, child['children'], base_dir)
                 else:
                     # 文本节点 (paragraph 或 text)，使用 _render_inline 获取 XML 文本
                     if 'children' in child:
-                        current_text += _render_inline(writer, child['children'])
+                        current_text += _render_inline(writer, child['children'], base_dir)
                     elif 'raw' in child:
                         current_text += child['raw']
 
@@ -391,7 +406,7 @@ def _parse_list_items(writer, tokens) -> list:
     return result
 
 
-def _parse_table(writer: MarkPressEngine, table_children: list, table_attrs: dict = None) -> dict:
+def _parse_table(writer: MarkPressEngine, table_children: list, table_attrs: dict = None, base_dir: str = ".") -> dict:
     """
     解析 mistune 表格 AST，返回 {'header': [...], 'body': [[...], ...], 'aligns': [...]}
     """
@@ -402,21 +417,20 @@ def _parse_table(writer: MarkPressEngine, table_children: list, table_attrs: dic
     for section in table_children:
         sec_type = section.get('type')
         if sec_type == 'table_head':
-            # mistune 3 中 table_head 的 children 直接是 table_cell（无 table_row 包裹）
             for child in section.get('children', []):
                 if child.get('type') == 'table_cell':
-                    header.append(_render_inline(writer, child.get('children', [])))
+                    header.append(_render_inline(writer, child.get('children', []), base_dir))
                     aligns.append(child.get('attrs', {}).get('align'))
                 elif child.get('type') == 'table_row':
                     for cell in child.get('children', []):
-                        header.append(_render_inline(writer, cell.get('children', [])))
+                        header.append(_render_inline(writer, cell.get('children', []), base_dir))
                         aligns.append(cell.get('attrs', {}).get('align'))
 
         elif sec_type == 'table_body':
             for row in section.get('children', []):
                 current_row = []
                 for cell in row.get('children', []):
-                    current_row.append(_render_inline(writer, cell.get('children', [])))
+                    current_row.append(_render_inline(writer, cell.get('children', []), base_dir))
                 body.append(current_row)
 
     if not header and not body:

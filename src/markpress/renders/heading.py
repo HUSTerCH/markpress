@@ -7,7 +7,7 @@ from reportlab.lib import colors
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
 
 from .base import BaseRenderer
-from ..utils.utils import strip_invalid_reportlab_img_tags
+from ..utils.utils import strip_invalid_reportlab_img_tags, scale_oversized_inline_imgs
 
 
 class HeadingRenderer(BaseRenderer):
@@ -98,4 +98,5 @@ class HeadingRenderer(BaseRenderer):
 
         clean_html = re.sub(r'<a[^>]*>\s*</a>', '', clean_html)
         clean_html = strip_invalid_reportlab_img_tags(clean_html)
+        clean_html = scale_oversized_inline_imgs(clean_html)
         return clean_html
