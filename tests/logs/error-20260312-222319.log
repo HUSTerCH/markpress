@@ -1,0 +1,761 @@
+[2026-03-12 22:23:19] Batch 测试错误日志
+输入文件列表: error-files-20260309.txt
+待测文件总数: 362
+
+[2026-03-12 22:40:08] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/北师大版-北京师范大学出版社/八年级/义务教育教科书·数学八年级上册.pdf_merge_folder/义务教育教科书·数学八年级上册/vlm/义务教育教科书·数学八年级上册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/初中/数学/北师大版-北京师范大学出版社/八年级/义务教育教科书·数学八年级上册.pdf_merge_folder/义务教育教科书·数学八年级上册/vlm/义务教育教科书·数学八年级上册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 1354, in wrap
+    self._calc(availWidth, availHeight)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 740, in _calc
+    self._calc_height(availHeight,availWidth,W=W)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 664, in _calc_height
+    dW,t = self._listCellGeom(v,w or self._listValueWidth(v),s)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 490, in _listCellGeom
+    raise ValueError(f'{self.identity()}: flowable given negative availWidth={aW} == width={w} - leftPadding={s.leftPadding} - rightPadding={s.rightPadding}')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 440, in identity
+    tallest = '(tallest row %d)' % int(max(rh))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+
+
+================================================================================
+
+[2026-03-12 22:54:46] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/日语/人教版-人民教育出版社/八年级/义务教育教科书·日语八年级全一册/vlm/义务教育教科书·日语八年级全一册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/初中/日语/人教版-人民教育出版社/八年级/义务教育教科书·日语八年级全一册/vlm/义务教育教科书·日语八年级全一册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 962, in handle_flowable
+    raise LayoutError(ident)
+reportlab.platypus.doctemplate.LayoutError: Flowable LIIndenter containing <SafeCJKParagraph at 0x7c78f7022e60 frame=normal>(441.54330708661416 x 702.0) too large on page 286 in frame 'normal'(441.54330708661416 x 688.1574803149607*) of template 'Later'
+
+
+================================================================================
+
+[2026-03-12 23:19:54] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/教科版-教育科学出版社/七年级/义务教育教科书（五•四学制）·英语七年级上册/vlm/义务教育教科书（五•四学制）·英语七年级上册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/初中（五•四学制）/英语/教科版-教育科学出版社/七年级/义务教育教科书（五•四学制）·英语七年级上册/vlm/义务教育教科书（五•四学制）·英语七年级上册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 2298, in wrap
+    self.width, self.height = _listWrapOn(self._content,aW,self.canv)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 637, in _listWrapOn
+    w,h = f.wrapOn(canv,availWidth,0xfffffff)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 122, in wrapOn
+    self.canv = canv
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 2130, in __setattr__
+    setattr(self._flowable,a,v)
+AttributeError: 'NoneType' object has no attribute 'canv'
+
+
+================================================================================
+
+[2026-03-12 23:21:40] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/鲁教版-山东教育出版社/七年级/义务教育教科书（五•四学制）·英语七年级下册/vlm/义务教育教科书（五•四学制）·英语七年级下册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/初中（五•四学制）/英语/鲁教版-山东教育出版社/七年级/义务教育教科书（五•四学制）·英语七年级下册/vlm/义务教育教科书（五•四学制）·英语七年级下册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 2298, in wrap
+    self.width, self.height = _listWrapOn(self._content,aW,self.canv)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 637, in _listWrapOn
+    w,h = f.wrapOn(canv,availWidth,0xfffffff)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 122, in wrapOn
+    self.canv = canv
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 2130, in __setattr__
+    setattr(self._flowable,a,v)
+AttributeError: 'NoneType' object has no attribute 'canv'
+
+
+================================================================================
+
+[2026-03-12 23:23:01] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/音乐/鲁教版-山东教育出版社/六年级/义务教育教科书（五•四学制）·音乐六年级上册/vlm/义务教育教科书（五•四学制）·音乐六年级上册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/初中（五•四学制）/音乐/鲁教版-山东教育出版社/六年级/义务教育教科书（五•四学制）·音乐六年级上册/vlm/义务教育教科书（五•四学制）·音乐六年级上册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 962, in handle_flowable
+    raise LayoutError(ident)
+reportlab.platypus.doctemplate.LayoutError: Flowable <Image at 0x7c78febecbb0 frame=normal filename=<_io.BytesIO object at 0x7c78fec271a0>>(109.58672841139209 x 700.1574803149607) too large on page 89 in frame 'normal'(441.54330708661416 x 688.1574803149607*) of template 'Later'
+
+
+================================================================================
+
+[2026-03-12 23:39:27] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/概率论/概率论与数理统计(浙大四版)/vlm/概率论与数理统计(浙大四版).md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/大学/概率论/概率论与数理统计(浙大四版)/vlm/概率论与数理统计(浙大四版).pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 962, in handle_flowable
+    raise LayoutError(ident)
+reportlab.platypus.doctemplate.LayoutError: Flowable <Image at 0x7c78ff8e0100 frame=normal filename=<_io.BytesIO object at 0x7c78ff8f5c10>>(157.69867584077946 x 700.1574803149607) too large on page 129 in frame 'normal'(441.54330708661416 x 688.1574803149607*) of template 'Later'
+
+
+================================================================================
+
+[2026-03-13 02:08:15] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/离散数学/离散数学及其应用（英文第七版）Discrete Mathematics and Its Applications 7th Edition 2011/vlm/离散数学及其应用（英文第七版）Discrete Mathematics and Its Applications 7th Edition 2011.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/大学/离散数学/离散数学及其应用（英文第七版）Discrete Mathematics and Its Applications 7th Edition 2011/vlm/离散数学及其应用（英文第七版）Discrete Mathematics and Its Applications 7th Edition 2011.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 962, in handle_flowable
+    raise LayoutError(ident)
+reportlab.platypus.doctemplate.LayoutError: Flowable LIIndenter containing <SafeCJKParagraph at 0x7c78f27cb310 frame=normal>Let  be the statement that this equation holds. Basis step: (441.54330708661416 x 694.0) too large on page 2067 in frame 'normal'(441.54330708661416 x 688.1574803149607*) of template 'Later'
+
+
+================================================================================
+
+[2026-03-13 02:35:27] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第七版/高等数学 同济第7版 下册 习题全解指南 课后习题答案解析/vlm/高等数学 同济第7版 下册 习题全解指南 课后习题答案解析.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/大学/高等数学/同济大学高等数学第七版/高等数学 同济第7版 下册 习题全解指南 课后习题答案解析/vlm/高等数学 同济第7版 下册 习题全解指南 课后习题答案解析.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 962, in handle_flowable
+    raise LayoutError(ident)
+reportlab.platypus.doctemplate.LayoutError: Flowable <Image at 0x7c78f8b8f3d0 frame=normal filename=<_io.BytesIO object at 0x7c790b15e840>>(367.23046875 x 690.421875) too large on page 221 in frame 'normal'(441.54330708661416 x 688.1574803149607*) of template 'Later'
+
+
+================================================================================
+
+[2026-03-13 03:02:17] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册  下册/vlm/高等数学 第六册  下册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/大学/高等数学/同济大学高等数学第六版/高等数学 第六册  下册/vlm/高等数学 第六册  下册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 525, in open_for_read
+    return open_for_read_by_name(name,mode)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 463, in open_for_read_by_name
+    return open(name,mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册 下册/vlm/images/9319fef7891a5d3af85f90c2845976a8a3b594e8912d28d7ea6b20bbd3750a8b.jpg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 532, in open_for_read
+    return BytesIO((datareader if name[:5].lower()=='data:' else rlUrlRead)(name))
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 478, in rlUrlRead
+    return urlopen(Request(name,headers=headers)).read()
+  File "/usr/lib/python3.10/urllib/request.py", line 322, in __init__
+    self.full_url = url
+  File "/usr/lib/python3.10/urllib/request.py", line 348, in full_url
+    self._parse()
+  File "/usr/lib/python3.10/urllib/request.py", line 377, in _parse
+    raise ValueError("unknown url type: %r" % self.full_url)
+ValueError: unknown url type: '/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册 下册/vlm/images/9319fef7891a5d3af85f90c2845976a8a3b594e8912d28d7ea6b20bbd3750a8b.jpg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 645, in __init__
+    fp = open_for_read(fileName,'b')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 534, in open_for_read
+    raise IOError('Cannot open resource "%s"' % name)
+OSError: Cannot open resource "/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册 下册/vlm/images/9319fef7891a5d3af85f90c2845976a8a3b594e8912d28d7ea6b20bbd3750a8b.jpg"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3218, in parse
+    self.feed(text)
+  File "/usr/lib/python3.10/html/parser.py", line 111, in feed
+    self.goahead(0)
+  File "/usr/lib/python3.10/html/parser.py", line 171, in goahead
+    k = self.parse_starttag(i)
+  File "/usr/lib/python3.10/html/parser.py", line 361, in parse_starttag
+    self.handle_startendtag(tag, attrs)
+  File "/usr/lib/python3.10/html/parser.py", line 446, in handle_startendtag
+    self.handle_endtag(tag)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3254, in handle_endtag
+    end()
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 2719, in end_img
+    defn.image = ImageReader(defn.src)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 657, in __init__
+    annotateException('\nfileName=%r identity=%s'%(fileName,self.identity()))
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 1178, in annotateException
+    rl_reraise(t,t(sep.join((_ for _ in (msg,str(v),postMsg) if _))),b)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 138, in rl_reraise
+    raise v.with_traceback(b)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 645, in __init__
+    fp = open_for_read(fileName,'b')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 534, in open_for_read
+    raise IOError('Cannot open resource "%s"' % name)
+OSError: 
+fileName='/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册 下册/vlm/images/9319fef7891a5d3af85f90c2845976a8a3b594e8912d28d7ea6b20bbd3750a8b.jpg' identity=[ImageReader@0x7c78f4e86bc0 filename='/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册 下册/vlm/images/9319fef7891a5d3af85f90c2845976a8a3b594e8912d28d7ea6b20bbd3750a8b.jpg'] Cannot open resource "/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册 下册/vlm/images/9319fef7891a5d3af85f90c2845976a8a3b594e8912d28d7ea6b20bbd3750a8b.jpg"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 63, in convert_markdown_batch
+    _render_ast(writer, optimized_ast, base_dir)
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 211, in _render_ast
+    writer.add_text(text)
+  File "/home/zq/work/markpress/src/markpress/core.py", line 360, in add_text
+    flowables = self.text_renderer.render(xml_text, align=align)
+  File "/home/zq/work/markpress/src/markpress/renders/text.py", line 94, in render
+    return [SmartInlineImgParagraph(clean_text, final_style)]
+  File "/home/zq/work/markpress/src/markpress/inherited/SmartInlineImgParagraph.py", line 11, in __init__
+    super().__init__(text=text, style=style, **kwargs)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paragraph.py", line 1861, in __init__
+    self._setup(text, style, bulletText or getattr(style,'bulletText',None), frags, cleanBlockQuotedText)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paragraph.py", line 1882, in _setup
+    style, frags, bulletTextFrags = _parser.parse(text,style)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3220, in parse
+    annotateException('\nparagraph text %s caused exception' % ascii(text))
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 1178, in annotateException
+    rl_reraise(t,t(sep.join((_ for _ in (msg,str(v),postMsg) if _))),b)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 138, in rl_reraise
+    raise v.with_traceback(b)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3218, in parse
+    self.feed(text)
+  File "/usr/lib/python3.10/html/parser.py", line 111, in feed
+    self.goahead(0)
+  File "/usr/lib/python3.10/html/parser.py", line 171, in goahead
+    k = self.parse_starttag(i)
+  File "/usr/lib/python3.10/html/parser.py", line 361, in parse_starttag
+    self.handle_startendtag(tag, attrs)
+  File "/usr/lib/python3.10/html/parser.py", line 446, in handle_startendtag
+    self.handle_endtag(tag)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3254, in handle_endtag
+    end()
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 2719, in end_img
+    defn.image = ImageReader(defn.src)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 657, in __init__
+    annotateException('\nfileName=%r identity=%s'%(fileName,self.identity()))
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 1178, in annotateException
+    rl_reraise(t,t(sep.join((_ for _ in (msg,str(v),postMsg) if _))),b)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 138, in rl_reraise
+    raise v.with_traceback(b)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 645, in __init__
+    fp = open_for_read(fileName,'b')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 534, in open_for_read
+    raise IOError('Cannot open resource "%s"' % name)
+OSError: 
+paragraph text '<para><img src="/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/\u5927\u5b66/\u9ad8\u7b49\u6570\u5b66/\u540c\u6d4e\u5927\u5b66\u9ad8\u7b49\u6570\u5b66\u7b2c\u516d\u7248/\u9ad8\u7b49\u6570\u5b66 \u7b2c\u516d\u518c \u4e0b\u518c/vlm/images/9319fef7891a5d3af85f90c2845976a8a3b594e8912d28d7ea6b20bbd3750a8b.jpg" width="46.73720930232558" height="39.6" valign="-11.88"/><br/>\u56fe8-1</para>' caused exception 
+fileName='/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册 下册/vlm/images/9319fef7891a5d3af85f90c2845976a8a3b594e8912d28d7ea6b20bbd3750a8b.jpg' identity=[ImageReader@0x7c78f4e86bc0 filename='/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册 下册/vlm/images/9319fef7891a5d3af85f90c2845976a8a3b594e8912d28d7ea6b20bbd3750a8b.jpg'] Cannot open resource "/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册 下册/vlm/images/9319fef7891a5d3af85f90c2845976a8a3b594e8912d28d7ea6b20bbd3750a8b.jpg"
+
+
+================================================================================
+
+[2026-03-13 03:21:59] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/冀教版/义务教育教科书·体育与健康教师用书水平二水平二/vlm/义务教育教科书·体育与健康教师用书水平二水平二.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/小学/体育与健康/冀教版/义务教育教科书·体育与健康教师用书水平二水平二/vlm/义务教育教科书·体育与健康教师用书水平二水平二.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 1354, in wrap
+    self._calc(availWidth, availHeight)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 740, in _calc
+    self._calc_height(availHeight,availWidth,W=W)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 664, in _calc_height
+    dW,t = self._listCellGeom(v,w or self._listValueWidth(v),s)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 490, in _listCellGeom
+    raise ValueError(f'{self.identity()}: flowable given negative availWidth={aW} == width={w} - leftPadding={s.leftPadding} - rightPadding={s.rightPadding}')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 440, in identity
+    tallest = '(tallest row %d)' % int(max(rh))
+TypeError: '>' not supported between instances of 'NoneType' and 'NoneType'
+
+
+================================================================================
+
+[2026-03-13 03:35:55] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学二年级上册/vlm/义务教育教科书·数学二年级上册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/小学/数学/北师大版/义务教育教科书·数学二年级上册/vlm/义务教育教科书·数学二年级上册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 1354, in wrap
+    self._calc(availWidth, availHeight)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 740, in _calc
+    self._calc_height(availHeight,availWidth,W=W)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 664, in _calc_height
+    dW,t = self._listCellGeom(v,w or self._listValueWidth(v),s)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 490, in _listCellGeom
+    raise ValueError(f'{self.identity()}: flowable given negative availWidth={aW} == width={w} - leftPadding={s.leftPadding} - rightPadding={s.rightPadding}')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 440, in identity
+    tallest = '(tallest row %d)' % int(max(rh))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+
+
+================================================================================
+
+[2026-03-13 04:01:41] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：刘兆义）/义务教育教科书·英语（三年级起点）四年级上册/vlm/义务教育教科书·英语（三年级起点）四年级上册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/小学/英语/外研社版（三年级起点）（主编：刘兆义）/义务教育教科书·英语（三年级起点）四年级上册/vlm/义务教育教科书·英语（三年级起点）四年级上册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 2298, in wrap
+    self.width, self.height = _listWrapOn(self._content,aW,self.canv)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 637, in _listWrapOn
+    w,h = f.wrapOn(canv,availWidth,0xfffffff)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 122, in wrapOn
+    self.canv = canv
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 2130, in __setattr__
+    setattr(self._flowable,a,v)
+AttributeError: 'NoneType' object has no attribute 'canv'
+
+
+================================================================================
+
+[2026-03-13 04:03:51] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/陕旅版/义务教育教科书·英语（三年级起点）三年级上册/vlm/义务教育教科书·英语（三年级起点）三年级上册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/小学/英语/陕旅版/义务教育教科书·英语（三年级起点）三年级上册/vlm/义务教育教科书·英语（三年级起点）三年级上册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 2298, in wrap
+    self.width, self.height = _listWrapOn(self._content,aW,self.canv)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 637, in _listWrapOn
+    w,h = f.wrapOn(canv,availWidth,0xfffffff)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 122, in wrapOn
+    self.canv = canv
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 2130, in __setattr__
+    setattr(self._flowable,a,v)
+AttributeError: 'NoneType' object has no attribute 'canv'
+
+
+================================================================================
+
+[2026-03-13 04:12:44] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/俄语/人教版-人民教育出版社/普通高中教科书·俄语选择性必修 第二册/vlm/普通高中教科书·俄语选择性必修 第二册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/高中/俄语/人教版-人民教育出版社/普通高中教科书·俄语选择性必修 第二册/vlm/普通高中教科书·俄语选择性必修 第二册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3218, in parse
+    self.feed(text)
+  File "/usr/lib/python3.10/html/parser.py", line 111, in feed
+    self.goahead(0)
+  File "/usr/lib/python3.10/html/parser.py", line 171, in goahead
+    k = self.parse_starttag(i)
+  File "/usr/lib/python3.10/html/parser.py", line 363, in parse_starttag
+    self.handle_starttag(tag, attrs)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3241, in handle_starttag
+    start(attrs or {})
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 2687, in start_a
+    self._handle_link('a',attributes)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 2654, in _handle_link
+    A = self.getAttributes(attributes,_linkAttrMap)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3081, in getAttributes
+    self._syntax_error('invalid attribute name %s attrMap=%r'% (k,list(sorted(attrMap.keys()))))
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 2780, in _syntax_error
+    raise ValueError('paraparser: syntax error: %s' % message)
+ValueError: paraparser: syntax error: invalid attribute name c attrMap=['backColor', 'backcolor', 'bgcolor', 'color', 'dest', 'destination', 'face', 'fg', 'fontName', 'fontSize', 'fontname', 'fontsize', 'href', 'link', 'name', 'size', 'target', 'textColor', 'textcolor', 'ucolor', 'ugap', 'ukind', 'underline', 'underlineColor', 'underlineGap', 'underlineKind', 'underlineOffset', 'underlineWidth', 'underlinecolor', 'underlinegap', 'underlinekind', 'underlineoffset', 'underlinewidth', 'uoffset', 'uwidth']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 63, in convert_markdown_batch
+    _render_ast(writer, optimized_ast, base_dir)
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 224, in _render_ast
+    writer.add_list(list_items, is_ordered=ordered,start_index=start_index)
+  File "/home/zq/work/markpress/src/markpress/core.py", line 390, in add_list
+    flowables = self.list_renderer.render(items, is_ordered, start_index=start_index)
+  File "/home/zq/work/markpress/src/markpress/renders/list.py", line 45, in render
+    list_flowable = self._build_level(items, depth=0, ordered=is_ordered, start_index=start_index)
+  File "/home/zq/work/markpress/src/markpress/renders/list.py", line 143, in _build_level
+    item_content = [SafeCJKParagraph(raw_text, final_style)]
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paragraph.py", line 1861, in __init__
+    self._setup(text, style, bulletText or getattr(style,'bulletText',None), frags, cleanBlockQuotedText)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paragraph.py", line 1882, in _setup
+    style, frags, bulletTextFrags = _parser.parse(text,style)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3220, in parse
+    annotateException('\nparagraph text %s caused exception' % ascii(text))
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 1178, in annotateException
+    rl_reraise(t,t(sep.join((_ for _ in (msg,str(v),postMsg) if _))),b)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/lib/utils.py", line 138, in rl_reraise
+    raise v.with_traceback(b)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3218, in parse
+    self.feed(text)
+  File "/usr/lib/python3.10/html/parser.py", line 111, in feed
+    self.goahead(0)
+  File "/usr/lib/python3.10/html/parser.py", line 171, in goahead
+    k = self.parse_starttag(i)
+  File "/usr/lib/python3.10/html/parser.py", line 363, in parse_starttag
+    self.handle_starttag(tag, attrs)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3241, in handle_starttag
+    start(attrs or {})
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 2687, in start_a
+    self._handle_link('a',attributes)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 2654, in _handle_link
+    A = self.getAttributes(attributes,_linkAttrMap)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 3081, in getAttributes
+    self._syntax_error('invalid attribute name %s attrMap=%r'% (k,list(sorted(attrMap.keys()))))
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/paraparser.py", line 2780, in _syntax_error
+    raise ValueError('paraparser: syntax error: %s' % message)
+ValueError: 
+paragraph text '<para>Kak bI noHmmeTe <a c yMhBm Jn11om ctana bI6upatb>?</para>' caused exception paraparser: syntax error: invalid attribute name c attrMap=['backColor', 'backcolor', 'bgcolor', 'color', 'dest', 'destination', 'face', 'fg', 'fontName', 'fontSize', 'fontname', 'fontsize', 'href', 'link', 'name', 'size', 'target', 'textColor', 'textcolor', 'ucolor', 'ugap', 'ukind', 'underline', 'underlineColor', 'underlineGap', 'underlineKind', 'underlineOffset', 'underlineWidth', 'underlinecolor', 'underlinegap', 'underlinekind', 'underlineoffset', 'underlinewidth', 'uoffset', 'uwidth']
+
+
+================================================================================
+
+[2026-03-13 04:14:34] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/华东师大版-华东师范大学出版社/普通高中教科书·信息技术选择性必修1 数据与数据结构/vlm/普通高中教科书·信息技术选择性必修1 数据与数据结构.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/高中/信息技术/华东师大版-华东师范大学出版社/普通高中教科书·信息技术选择性必修1 数据与数据结构/vlm/普通高中教科书·信息技术选择性必修1 数据与数据结构.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 1354, in wrap
+    self._calc(availWidth, availHeight)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 740, in _calc
+    self._calc_height(availHeight,availWidth,W=W)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 664, in _calc_height
+    dW,t = self._listCellGeom(v,w or self._listValueWidth(v),s)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 490, in _listCellGeom
+    raise ValueError(f'{self.identity()}: flowable given negative availWidth={aW} == width={w} - leftPadding={s.leftPadding} - rightPadding={s.rightPadding}')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 440, in identity
+    tallest = '(tallest row %d)' % int(max(rh))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+
+
+================================================================================
+
+[2026-03-13 04:15:47] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/教科版-教育科学出版社/普通高中教科书·信息技术选择性必修1 数据与数据结构/vlm/普通高中教科书·信息技术选择性必修1 数据与数据结构.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/高中/信息技术/教科版-教育科学出版社/普通高中教科书·信息技术选择性必修1 数据与数据结构/vlm/普通高中教科书·信息技术选择性必修1 数据与数据结构.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 2298, in wrap
+    self.width, self.height = _listWrapOn(self._content,aW,self.canv)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 637, in _listWrapOn
+    w,h = f.wrapOn(canv,availWidth,0xfffffff)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 122, in wrapOn
+    self.canv = canv
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/flowables.py", line 2130, in __setattr__
+    setattr(self._flowable,a,v)
+AttributeError: 'NoneType' object has no attribute 'canv'
+
+
+================================================================================
+
+[2026-03-13 04:22:32] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/沪科技版-上海科学技术出版社/普通高中教科书·化学选择性必修1 化学反应原理/vlm/普通高中教科书·化学选择性必修1 化学反应原理.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/高中/化学/沪科技版-上海科学技术出版社/普通高中教科书·化学选择性必修1 化学反应原理/vlm/普通高中教科书·化学选择性必修1 化学反应原理.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 1354, in wrap
+    self._calc(availWidth, availHeight)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 740, in _calc
+    self._calc_height(availHeight,availWidth,W=W)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 664, in _calc_height
+    dW,t = self._listCellGeom(v,w or self._listValueWidth(v),s)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 490, in _listCellGeom
+    raise ValueError(f'{self.identity()}: flowable given negative availWidth={aW} == width={w} - leftPadding={s.leftPadding} - rightPadding={s.rightPadding}')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 440, in identity
+    tallest = '(tallest row %d)' % int(max(rh))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+
+
+================================================================================
+
+[2026-03-13 04:25:38] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/苏教版-江苏凤凰教育出版社/普通高中教科书·化学选择性必修1 化学反应原理/vlm/普通高中教科书·化学选择性必修1 化学反应原理.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/高中/化学/苏教版-江苏凤凰教育出版社/普通高中教科书·化学选择性必修1 化学反应原理/vlm/普通高中教科书·化学选择性必修1 化学反应原理.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 1354, in wrap
+    self._calc(availWidth, availHeight)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 740, in _calc
+    self._calc_height(availHeight,availWidth,W=W)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 664, in _calc_height
+    dW,t = self._listCellGeom(v,w or self._listValueWidth(v),s)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 490, in _listCellGeom
+    raise ValueError(f'{self.identity()}: flowable given negative availWidth={aW} == width={w} - leftPadding={s.leftPadding} - rightPadding={s.rightPadding}')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 440, in identity
+    tallest = '(tallest row %d)' % int(max(rh))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+
+
+================================================================================
+
+[2026-03-13 04:26:22] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/鲁科版-山东科学技术出版社/普通高中教科书·化学必修 第二册/vlm/普通高中教科书·化学必修 第二册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/高中/化学/鲁科版-山东科学技术出版社/普通高中教科书·化学必修 第二册/vlm/普通高中教科书·化学必修 第二册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 1354, in wrap
+    self._calc(availWidth, availHeight)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 740, in _calc
+    self._calc_height(availHeight,availWidth,W=W)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 664, in _calc_height
+    dW,t = self._listCellGeom(v,w or self._listValueWidth(v),s)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 490, in _listCellGeom
+    raise ValueError(f'{self.identity()}: flowable given negative availWidth={aW} == width={w} - leftPadding={s.leftPadding} - rightPadding={s.rightPadding}')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 440, in identity
+    tallest = '(tallest row %d)' % int(max(rh))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+
+
+================================================================================
+
+[2026-03-13 04:44:28] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/北师大版-北京师范大学出版社/普通高中教科书·数学必修 第一册/vlm/普通高中教科书·数学必修 第一册.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/高中/数学/北师大版-北京师范大学出版社/普通高中教科书·数学必修 第一册/vlm/普通高中教科书·数学必修 第一册.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 1354, in wrap
+    self._calc(availWidth, availHeight)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 740, in _calc
+    self._calc_height(availHeight,availWidth,W=W)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 664, in _calc_height
+    dW,t = self._listCellGeom(v,w or self._listValueWidth(v),s)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 490, in _listCellGeom
+    raise ValueError(f'{self.identity()}: flowable given negative availWidth={aW} == width={w} - leftPadding={s.leftPadding} - rightPadding={s.rightPadding}')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 440, in identity
+    tallest = '(tallest row %d)' % int(max(rh))
+TypeError: '>' not supported between instances of 'NoneType' and 'NoneType'
+
+
+================================================================================
+
+[2026-03-13 05:24:58] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术选择性必修11 产品三维设计与制造/vlm/普通高中教科书·通用技术选择性必修11 产品三维设计与制造.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术选择性必修11 产品三维设计与制造/vlm/普通高中教科书·通用技术选择性必修11 产品三维设计与制造.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 1354, in wrap
+    self._calc(availWidth, availHeight)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 740, in _calc
+    self._calc_height(availHeight,availWidth,W=W)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 664, in _calc_height
+    dW,t = self._listCellGeom(v,w or self._listValueWidth(v),s)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 490, in _listCellGeom
+    raise ValueError(f'{self.identity()}: flowable given negative availWidth={aW} == width={w} - leftPadding={s.leftPadding} - rightPadding={s.rightPadding}')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 440, in identity
+    tallest = '(tallest row %d)' % int(max(rh))
+TypeError: '>' not supported between instances of 'NoneType' and 'NoneType'
+
+
+================================================================================
+
+[2026-03-13 05:25:38] 崩溃文件: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/音乐/粤教花城版-广东教育出版社、花城出版社/普通高中教科书·音乐必修1 音乐鉴赏/vlm/普通高中教科书·音乐必修1 音乐鉴赏.md
+目标输出: /home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/高中/音乐/粤教花城版-广东教育出版社、花城出版社/普通高中教科书·音乐必修1 音乐鉴赏/vlm/普通高中教科书·音乐必修1 音乐鉴赏.pdf
+Traceback (most recent call last):
+  File "/home/zq/work/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/home/zq/work/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/home/zq/work/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 1354, in wrap
+    self._calc(availWidth, availHeight)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 740, in _calc
+    self._calc_height(availHeight,availWidth,W=W)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 664, in _calc_height
+    dW,t = self._listCellGeom(v,w or self._listValueWidth(v),s)
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 490, in _listCellGeom
+    raise ValueError(f'{self.identity()}: flowable given negative availWidth={aW} == width={w} - leftPadding={s.leftPadding} - rightPadding={s.rightPadding}')
+  File "/home/zq/work/markpress/.venv/lib/python3.10/site-packages/reportlab/platypus/tables.py", line 440, in identity
+    tallest = '(tallest row %d)' % int(max(rh))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+
+
+================================================================================
+

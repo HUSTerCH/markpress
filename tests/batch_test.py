@@ -6,9 +6,9 @@ from pathlib import Path
 # 确保导入了你的批量处理函数
 from markpress.converter import convert_markdown_batch
 
-DATASET_DIR = Path("/Users/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook")
-EXPORT_DIR = Path("/Users/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF")
-ERROR_FILES_LIST = Path(__file__).parent / "error-files-20260309.txt"
+DATASET_DIR = Path("/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook")
+EXPORT_DIR = Path("/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF")
+ERROR_FILES_LIST = Path(__file__).parent / "logs" /"error-files-20260309.txt"
 LOG_DIR = Path(__file__).parent / "logs"
 RUN_STAMP = time.strftime("%Y%m%d-%H%M%S")
 RUN_TIME = time.strftime("%Y-%m-%d %H:%M:%S")

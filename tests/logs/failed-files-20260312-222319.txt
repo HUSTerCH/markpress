@@ -1,0 +1,27 @@
+# Failed Files - 20260312-222319
+生成时间: 2026-03-12 22:23:19
+输入文件列表: error-files-20260309.txt
+失败文件数: 22
+
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/北师大版-北京师范大学出版社/八年级/义务教育教科书·数学八年级上册.pdf_merge_folder/义务教育教科书·数学八年级上册/vlm/义务教育教科书·数学八年级上册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/日语/人教版-人民教育出版社/八年级/义务教育教科书·日语八年级全一册/vlm/义务教育教科书·日语八年级全一册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/教科版-教育科学出版社/七年级/义务教育教科书（五•四学制）·英语七年级上册/vlm/义务教育教科书（五•四学制）·英语七年级上册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/英语/鲁教版-山东教育出版社/七年级/义务教育教科书（五•四学制）·英语七年级下册/vlm/义务教育教科书（五•四学制）·英语七年级下册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中（五•四学制）/音乐/鲁教版-山东教育出版社/六年级/义务教育教科书（五•四学制）·音乐六年级上册/vlm/义务教育教科书（五•四学制）·音乐六年级上册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/概率论/概率论与数理统计(浙大四版)/vlm/概率论与数理统计(浙大四版).md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/离散数学/离散数学及其应用（英文第七版）Discrete Mathematics and Its Applications 7th Edition 2011/vlm/离散数学及其应用（英文第七版）Discrete Mathematics and Its Applications 7th Edition 2011.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第七版/高等数学 同济第7版 下册 习题全解指南 课后习题答案解析/vlm/高等数学 同济第7版 下册 习题全解指南 课后习题答案解析.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/大学/高等数学/同济大学高等数学第六版/高等数学 第六册  下册/vlm/高等数学 第六册  下册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/体育与健康/冀教版/义务教育教科书·体育与健康教师用书水平二水平二/vlm/义务教育教科书·体育与健康教师用书水平二水平二.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/数学/北师大版/义务教育教科书·数学二年级上册/vlm/义务教育教科书·数学二年级上册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/外研社版（三年级起点）（主编：刘兆义）/义务教育教科书·英语（三年级起点）四年级上册/vlm/义务教育教科书·英语（三年级起点）四年级上册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/小学/英语/陕旅版/义务教育教科书·英语（三年级起点）三年级上册/vlm/义务教育教科书·英语（三年级起点）三年级上册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/俄语/人教版-人民教育出版社/普通高中教科书·俄语选择性必修 第二册/vlm/普通高中教科书·俄语选择性必修 第二册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/华东师大版-华东师范大学出版社/普通高中教科书·信息技术选择性必修1 数据与数据结构/vlm/普通高中教科书·信息技术选择性必修1 数据与数据结构.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/信息技术/教科版-教育科学出版社/普通高中教科书·信息技术选择性必修1 数据与数据结构/vlm/普通高中教科书·信息技术选择性必修1 数据与数据结构.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/沪科技版-上海科学技术出版社/普通高中教科书·化学选择性必修1 化学反应原理/vlm/普通高中教科书·化学选择性必修1 化学反应原理.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/苏教版-江苏凤凰教育出版社/普通高中教科书·化学选择性必修1 化学反应原理/vlm/普通高中教科书·化学选择性必修1 化学反应原理.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/化学/鲁科版-山东科学技术出版社/普通高中教科书·化学必修 第二册/vlm/普通高中教科书·化学必修 第二册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/数学/北师大版-北京师范大学出版社/普通高中教科书·数学必修 第一册/vlm/普通高中教科书·数学必修 第一册.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/通用技术/豫科版-河南科学技术出版社/普通高中教科书·通用技术选择性必修11 产品三维设计与制造/vlm/普通高中教科书·通用技术选择性必修11 产品三维设计与制造.md
+/home/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/高中/音乐/粤教花城版-广东教育出版社、花城出版社/普通高中教科书·音乐必修1 音乐鉴赏/vlm/普通高中教科书·音乐必修1 音乐鉴赏.md
