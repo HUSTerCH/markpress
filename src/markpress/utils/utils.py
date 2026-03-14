@@ -109,7 +109,7 @@ def replace_to_local_twemoji(chars, data_dict):
 def strip_front_matter(md_text: str) -> str:
     """
     硬核防线：精准切除文件头部的 YAML Front Matter。
-    使用 \A 确保绝对只匹配文件的第一行，绝不误伤正文里的 Markdown 分割线。
+    使用 \\A 确保绝对只匹配文件的第一行，绝不误伤正文里的 Markdown 分割线。
     """
     pattern = re.compile(r'\A---\n.*?\n---\n', re.DOTALL)
     return pattern.sub('', md_text)
@@ -119,27 +119,48 @@ def strip_invalid_reportlab_img_tags(text: str) -> str:
     """
     移除会触发 ReportLab `paraparser` 崩溃的无效 <img> 标签。
     1. 过滤缺少非空 src 的情况，例如 <img/>
-    2. 移除 alt 等 ReportLab 不支持的属性（仅支持 height, src, valign, width）
+    2. 过滤找不到的绝对本地路径，避免构建阶段才抛 `Cannot open resource`
+    3. 重建标签，只保留 ReportLab 支持的属性（height, src, valign, width）
     """
     if not text:
         return ""
 
-    # ReportLab img 仅支持 height, src, valign, width
-    _ALT_PATTERN = re.compile(r'\s+alt\s*=\s*["\'][^"\']*["\']', re.IGNORECASE)
+    def _extract_attr(tag: str, attr: str) -> str:
+        quoted = re.search(rf'\b{attr}\s*=\s*(["\'])(.*?)\1', tag, re.IGNORECASE)
+        if quoted:
+            return quoted.group(2).strip()
+
+        unquoted = re.search(rf'\b{attr}\s*=\s*([^\s/>]+)', tag, re.IGNORECASE)
+        if unquoted:
+            return unquoted.group(1).strip()
+
+        return ""
+
+    def _escape_attr(value: str) -> str:
+        return value.replace("&", "&amp;").replace('"', "&quot;")
+
+    def _is_supported_src(src: str) -> bool:
+        lowered = src.lower()
+        if lowered.startswith(("http://", "https://", "data:")):
+            return True
+        if os.path.isabs(src):
+            return os.path.exists(src)
+        return True
 
     def keep_valid_img(match):
         tag = match.group(0)
-        quoted = re.search(r'\bsrc\s*=\s*(["\'])(.*?)\1', tag, re.IGNORECASE)
-        if quoted and quoted.group(2).strip():
-            tag = _ALT_PATTERN.sub('', tag)
-            return tag
+        src = _extract_attr(tag, "src")
+        if not src or not _is_supported_src(src):
+            return ""
 
-        unquoted = re.search(r'\bsrc\s*=\s*([^\s/>]+)', tag, re.IGNORECASE)
-        if unquoted and unquoted.group(1).strip():
-            tag = _ALT_PATTERN.sub('', tag)
-            return tag
+        attrs = [("src", src)]
+        for attr in ("width", "height", "valign"):
+            value = _extract_attr(tag, attr)
+            if value:
+                attrs.append((attr, value))
 
-        return ""
+        rebuilt = " ".join(f'{name}="{_escape_attr(value)}"' for name, value in attrs)
+        return f"<img {rebuilt}/>"
 
     return re.sub(r'<img\b[^>]*>', keep_valid_img, text, flags=re.IGNORECASE)
 

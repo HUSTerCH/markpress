@@ -72,7 +72,8 @@ class MarkPressEngine:
 
     def get_media_max_height(self, reserve_height: float = 0) -> float:
         """返回当前页面里单个不可拆分媒体元素允许占用的最大高度。"""
-        max_height = float(self.doc.height) - float(reserve_height or 0)
+        safety_margin = 2 * mm
+        max_height = float(self.doc.height) - float(reserve_height or 0) - safety_margin
         return max(max_height, 24 * mm)
 
     def fit_media_size(
@@ -411,7 +412,11 @@ class MarkPressEngine:
             # 调用浏览器截图
             png_bytes, w, h = self.katex_renderer.render_svg_url_to_png(image_path)
             if png_bytes:
-                w, h = self.fit_media_size(w, h)
+                w, h = self.fit_media_size(
+                    w,
+                    h,
+                    max_height=self.get_media_max_height(reserve_height=2 * mm),
+                )
 
                 img = Image(io.BytesIO(png_bytes), width=w, height=h)
                 self.current_story.append(img)
@@ -424,7 +429,7 @@ class MarkPressEngine:
             image_path,
             alt_text,
             avail_width=self.avail_width,
-            avail_height=self.get_media_max_height(),
+            avail_height=self.get_media_max_height(reserve_height=6 * mm),
         )
         self._extend_story(flowables)
 
@@ -444,7 +449,11 @@ class MarkPressEngine:
 
         if png_bytes:
             # 公式截图属于不可拆分 Flowable，必须同时受宽高约束。
-            w, h = self.fit_media_size(w, h)
+            w, h = self.fit_media_size(
+                w,
+                h,
+                max_height=self.get_media_max_height(reserve_height=6 * mm),
+            )
 
             img = Image(io.BytesIO(png_bytes), width=w, height=h)
             img.hAlign = 'CENTER'
@@ -452,7 +461,11 @@ class MarkPressEngine:
             self.current_story.append(Spacer(1, 4 * mm))
         else:
             # 走matplot
-            flowables = self.formula_renderer.render_block(latex, avail_width=self.avail_width, avail_height=self.doc.height, )
+            flowables = self.formula_renderer.render_block(
+                latex,
+                avail_width=self.avail_width,
+                avail_height=self.get_media_max_height(reserve_height=6 * mm),
+            )
             self._extend_story(flowables)
             self.try_trigger_autosave()
 
