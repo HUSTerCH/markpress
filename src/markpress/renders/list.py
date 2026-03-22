@@ -1,12 +1,22 @@
 # 列表，包括有序和无序
 import re
 from typing import List, Union, Tuple
+
+import emoji
+from bs4 import BeautifulSoup
 from reportlab.platypus import ListFlowable, ListItem
 from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
 
 from .base import BaseRenderer
 from ..inherited.SafeCJKParagraph import SafeCJKParagraph
+from ..inherited.SmartInlineImgParagraph import SmartInlineImgParagraph
+from ..utils.utils import (
+    MAX_INLINE_IMG_PT,
+    replace_to_local_twemoji,
+    scale_oversized_inline_imgs,
+    strip_invalid_reportlab_img_tags,
+)
 
 
 class ListRenderer(BaseRenderer):
@@ -38,8 +48,13 @@ class ListRenderer(BaseRenderer):
         :param items: 嵌套列表数据 ['Item 1', ['Sub 1'], 'Item 2']
         :param is_ordered: 是否有序
         """
+        if not items:
+            return []
+
         # 构建 ListFlowable
         list_flowable = self._build_level(items, depth=0, ordered=is_ordered, start_index=start_index)
+        if list_flowable is None:
+            return []
         return [list_flowable]
 
     def _to_roman(self, n: int) -> str:
@@ -89,6 +104,9 @@ class ListRenderer(BaseRenderer):
         """
         递归构建列表层级
         """
+        if not sub_items:
+            return None
+
         flowables = []
         item_index = start_index - 1
         i = 0
@@ -111,9 +129,10 @@ class ListRenderer(BaseRenderer):
             # 获取符号
             bullet_char, bullet_font = self._get_symbol_and_font(depth, item_index, ordered)
 
-            raw_text = str(item)
+            raw_text = self._sanitize_item_text(str(item))
             img_heights = [float(h) for h in re.findall(r'height="([\d\.]+)"', raw_text)]
             max_img_h = max(img_heights) if img_heights else 0
+            max_img_h = min(max_img_h, MAX_INLINE_IMG_PT)
             # print("raw_text:", raw_text)
             # print("最大img高度：", max_img_h)
 
@@ -131,8 +150,10 @@ class ListRenderer(BaseRenderer):
                     spaceBefore=base_style.spaceBefore + extra_space_before,
                 )
 
-            # 内容 (使用 SafeCJKParagraph 防止崩溃)
-            item_content = [SafeCJKParagraph(raw_text, final_style)]
+            # 内容 (带图时改走更稳的 SmartInlineImgParagraph)
+            paragraph_cls = SmartInlineImgParagraph if "<img" in raw_text else SafeCJKParagraph
+            item_text = raw_text if raw_text.strip() else " "
+            item_content = [paragraph_cls(item_text, final_style)]
             # print(item_content)
 
             # 预读下一项，如果是列表，则是当前项的子列表
@@ -140,7 +161,8 @@ class ListRenderer(BaseRenderer):
                 child_data = sub_items[i + 1]
                 # 递归构建子 ListFlowable
                 child_flowable = self._build_level(child_data, depth + 1, ordered)
-                item_content.append(child_flowable)
+                if child_flowable is not None:
+                    item_content.append(child_flowable)
                 i += 1  # 跳过已处理的子列表
 
             # 创建 ListItem
@@ -157,6 +179,9 @@ class ListRenderer(BaseRenderer):
             i += 1
 
         # 构建 ListFlowable
+        if not flowables:
+            return None
+
         return ListFlowable(
             flowables,
             bulletType='bullet',  # 我们通过 ListItem 自定义了 bullet，这里设为 bullet 即可
@@ -167,3 +192,92 @@ class ListRenderer(BaseRenderer):
             spaceBefore=2,
             spaceAfter=2
         )
+
+    def _sanitize_item_text(self, text: str) -> str:
+        if not text:
+            return ""
+
+        text = emoji.replace_emoji(text, replace=replace_to_local_twemoji)
+        protected_imgs = {}
+
+        def protect_match(match):
+            key = f"__IMG_PROTECT_{len(protected_imgs)}__"
+            protected_imgs[key] = match.group(0)
+            return key
+
+        text_safe = re.sub(r'<img\b[^>]*>', protect_match, text)
+        soup = BeautifulSoup(text_safe, "html.parser")
+
+        for tag in soup.find_all("span"):
+            if not tag.has_attr("style"):
+                tag.unwrap()
+                continue
+
+            styles = self._parse_css_style(tag["style"])
+            new_tag = soup.new_tag("font")
+            new_tag.extend(tag.contents)
+
+            if "color" in styles:
+                new_tag["color"] = styles["color"]
+            if "background-color" in styles:
+                new_tag["backColor"] = styles["background-color"]
+            if "background" in styles:
+                new_tag["backColor"] = styles["background"]
+
+            tag.replace_with(new_tag)
+
+        allowed_tags = {'b', 'i', 'u', 'strike', 'sup', 'sub', 'font', 'a', 'br', 'strong', 'em'}
+        for tag in soup.find_all(True):
+            if tag.name not in allowed_tags:
+                tag.unwrap()
+                continue
+
+            if tag.name == "a":
+                safe_attrs = {}
+                href = (tag.get("href") or "").strip()
+                name = (tag.get("name") or "").strip()
+                if href:
+                    safe_attrs["href"] = href
+                if name:
+                    safe_attrs["name"] = name
+
+                if safe_attrs:
+                    tag.attrs = safe_attrs
+                else:
+                    tag.unwrap()
+            elif tag.name == "font":
+                safe_attrs = {}
+                for attr in ("color", "backColor", "backcolor", "face", "size"):
+                    value = tag.get(attr)
+                    if isinstance(value, str) and value.strip():
+                        safe_attrs[attr] = value.strip()
+                tag.attrs = safe_attrs
+            else:
+                tag.attrs = {}
+
+        clean_html = str(soup)
+        for key, original_img_tag in protected_imgs.items():
+            tag_content = original_img_tag.strip()
+            if not tag_content.endswith("/>"):
+                tag_content = tag_content.rstrip(">") + "/>"
+            clean_html = clean_html.replace(key, tag_content)
+
+        clean_html = re.sub(r'<font[^>]*>\s*</font>', '', clean_html)
+        clean_html = re.sub(r'<(b|i|u|strong|em)[^>]*>\s*</\1>', '', clean_html)
+        clean_html = re.sub(r'<a[^>]*>\s*</a>', '', clean_html)
+        clean_html = re.sub(r'<a\s+name="\s*"\s*/?>', '', clean_html)
+        clean_html = strip_invalid_reportlab_img_tags(clean_html)
+        clean_html = scale_oversized_inline_imgs(clean_html)
+        return clean_html
+
+    @staticmethod
+    def _parse_css_style(style_str: str) -> dict:
+        styles = {}
+        if not style_str:
+            return styles
+
+        for item in style_str.split(';'):
+            if ':' in item:
+                key, val = item.split(':', 1)
+                styles[key.strip().lower()] = val.strip()
+        return styles

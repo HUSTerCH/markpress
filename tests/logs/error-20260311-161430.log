@@ -1,0 +1,63 @@
+[2026-03-11 16:14:30] Batch 测试错误日志
+输入文件列表: error-files-20260309.txt
+待测文件总数: 362
+
+[2026-03-11 16:29:18] 崩溃文件: /Users/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/数学/北师大版-北京师范大学出版社/八年级/义务教育教科书·数学八年级上册.pdf_merge_folder/义务教育教科书·数学八年级上册/vlm/义务教育教科书·数学八年级上册.md
+目标输出: /Users/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/初中/数学/北师大版-北京师范大学出版社/八年级/义务教育教科书·数学八年级上册.pdf_merge_folder/义务教育教科书·数学八年级上册/vlm/义务教育教科书·数学八年级上册.pdf
+Traceback (most recent call last):
+  File "/Users/zq/work/opensource/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/Users/zq/work/opensource/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/Users/zq/work/opensource/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/doctemplate.py", line 932, in handle_flowable
+    if frame.add(f, canv, trySplit=self.allowSplitting):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/frames.py", line 158, in _add
+    w, h = flowable.wrap(aW, h)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/tables.py", line 1354, in wrap
+    self._calc(availWidth, availHeight)
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/tables.py", line 740, in _calc
+    self._calc_height(availHeight,availWidth,W=W)
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/tables.py", line 664, in _calc_height
+    dW,t = self._listCellGeom(v,w or self._listValueWidth(v),s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/tables.py", line 490, in _listCellGeom
+    raise ValueError(f'{self.identity()}: flowable given negative availWidth={aW} == width={w} - leftPadding={s.leftPadding} - rightPadding={s.rightPadding}')
+                        ^^^^^^^^^^^^^^^
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/tables.py", line 440, in identity
+    tallest = '(tallest row %d)' % int(max(rh))
+                                   ^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+
+
+================================================================================
+
+[2026-03-11 16:42:31] 崩溃文件: /Users/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/初中/日语/人教版-人民教育出版社/八年级/义务教育教科书·日语八年级全一册/vlm/义务教育教科书·日语八年级全一册.md
+目标输出: /Users/zq/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook_PDF/初中/日语/人教版-人民教育出版社/八年级/义务教育教科书·日语八年级全一册/vlm/义务教育教科书·日语八年级全一册.pdf
+Traceback (most recent call last):
+  File "/Users/zq/work/opensource/markpress/src/markpress/converter.py", line 64, in convert_markdown_batch
+    writer.save_pdf()
+  File "/Users/zq/work/opensource/markpress/src/markpress/core.py", line 474, in save_pdf
+    raise e
+  File "/Users/zq/work/opensource/markpress/src/markpress/core.py", line 467, in save_pdf
+    self.doc.build(self.story)  # 根 story
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/doctemplate.py", line 1322, in build
+    BaseDocTemplate.build(self,flowables, canvasmaker=canvasmaker)
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/doctemplate.py", line 1083, in build
+    self.handle_flowable(flowables)
+  File "/Users/zq/Library/Caches/pypoetry/virtualenvs/markpress-ypwa2vKq-py3.11/lib/python3.11/site-packages/reportlab/platypus/doctemplate.py", line 962, in handle_flowable
+    raise LayoutError(ident)
+reportlab.platypus.doctemplate.LayoutError: Flowable LIIndenter containing <SafeCJKParagraph at 0x107d08e50 frame=normal>(441.54330708661416 x 702.0) too large on page 285 in frame 'normal'(441.54330708661416 x 688.1574803149607*) of template 'Later'
+
+
+================================================================================
+

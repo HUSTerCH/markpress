@@ -70,6 +70,45 @@ class MarkPressEngine:
         self._init_doc_template()  # 这里会计算 self.page_width 等
         self.avail_width = self.doc.width  # 初始宽度 = 页面有效宽度
 
+    def get_media_max_height(self, reserve_height: float = 0) -> float:
+        """返回当前页面里单个不可拆分媒体元素允许占用的最大高度。"""
+        safety_margin = 2 * mm
+        max_height = float(self.doc.height) - float(reserve_height or 0) - safety_margin
+        return max(max_height, 24 * mm)
+
+    def fit_media_size(
+        self,
+        width: float,
+        height: float,
+        max_width: float = None,
+        max_height: float = None,
+    ) -> tuple[float, float]:
+        """按比例缩放媒体尺寸，保证不会超过页面或调用方给出的上限。"""
+        width = float(width or 0)
+        height = float(height or 0)
+        if width <= 0 or height <= 0:
+            return 0.0, 0.0
+
+        max_width = float(max_width if max_width is not None else self.avail_width)
+        max_height = float(max_height if max_height is not None else self.get_media_max_height())
+
+        scale = 1.0
+        if max_width > 0:
+            scale = min(scale, max_width / width)
+        if max_height > 0:
+            scale = min(scale, max_height / height)
+        scale = min(scale, 1.0)
+
+        return width * scale, height * scale
+
+    def get_inline_media_limits(self) -> tuple[float, float]:
+        """行内媒体必须足够保守，否则会把整段 Paragraph 撑爆。"""
+        body_conf = self.config.styles.body
+        max_height = max(body_conf.leading * 2.2, body_conf.font_size * 3.0)
+        max_height = min(max_height, self.get_media_max_height() * 0.25)
+        max_width = min(self.avail_width * 0.45, 50 * mm)
+        return max_width, max_height
+
     def _register_fonts(self):
         """从 Config 读取字体名，并加载"""
         try:
@@ -261,7 +300,15 @@ class MarkPressEngine:
         border_color = colors.HexColor(q_conf.border_color)
 
         # hAlign='LEFT' 保证引用块紧贴左侧
-        t = Table([[quote_content]], colWidths=[self.avail_width], hAlign='LEFT', vAlign='CENTER')
+        t = Table(
+            [[quote_content]],
+            colWidths=[self.avail_width],
+            splitByRow=1,
+            splitInRow=1,
+            longTableOptimize=1,
+            hAlign='LEFT',
+            vAlign='CENTER',
+        )
 
         t.setStyle(TableStyle([
             # 竖线样式
@@ -287,9 +334,18 @@ class MarkPressEngine:
         # 在引用块外部添加 Spacer，该Spacer 作用于当前层级之后，但会被上一层切除
         self.current_story.append(Spacer(1, 4 * mm))
 
+    def _extend_story(self, flowables):
+        if not flowables:
+            return
+
+        for flowable in flowables:
+            if flowable is None:
+                continue
+            self.current_story.append(flowable)
+
     def add_heading(self, text: str, level: int):
         flowables = self.heading_renderer.render(text, level)
-        self.current_story.extend(flowables)
+        self._extend_story(flowables)
         self.try_trigger_autosave()
 
     def add_text(self, xml_text: str, align: str = None):
@@ -303,7 +359,7 @@ class MarkPressEngine:
             # 如果 xml_text 里已经有了 color 设置，内层会覆盖外层，这是合理的
             xml_text = f'<font color="{q_color}">{xml_text}</font>'
         flowables = self.text_renderer.render(xml_text, align=align)
-        self.current_story.extend(flowables)
+        self._extend_story(flowables)
         self.try_trigger_autosave()
 
     # 分割线
@@ -330,22 +386,24 @@ class MarkPressEngine:
 
     def add_list(self, items: list, is_ordered: bool = False, start_index: int = 1):
         """添加列表"""
+        if not items:
+            return
         flowables = self.list_renderer.render(items, is_ordered, start_index=start_index)
-        self.current_story.extend(flowables)
+        self._extend_story(flowables)
         # 列表结束后加一点间距
         self.try_trigger_autosave()
 
     def add_table(self, table_data: dict):
         """添加表格"""
         flowables = self.table_renderer.render(table_data, avail_width=self.avail_width)
-        self.current_story.extend(flowables)
+        self._extend_story(flowables)
         self.try_trigger_autosave()
 
     def add_code(self, code: str, language: str = None):
         """添加代码块"""
         # 传入当前的 self.avail_width，这样嵌套在引用里的代码块会自动变窄
         flowables = self.code_renderer.render(code, language, avail_width=self.avail_width)
-        self.current_story.extend(flowables)
+        self._extend_story(flowables)
 
     def add_image(self, image_path: str, alt_text: str = ""):
         """添加图片"""
@@ -354,11 +412,11 @@ class MarkPressEngine:
             # 调用浏览器截图
             png_bytes, w, h = self.katex_renderer.render_svg_url_to_png(image_path)
             if png_bytes:
-                # 限制宽度防溢出
-                if w > self.avail_width:
-                    scale = self.avail_width / w
-                    w *= scale
-                    h *= scale
+                w, h = self.fit_media_size(
+                    w,
+                    h,
+                    max_height=self.get_media_max_height(reserve_height=2 * mm),
+                )
 
                 img = Image(io.BytesIO(png_bytes), width=w, height=h)
                 self.current_story.append(img)
@@ -367,8 +425,13 @@ class MarkPressEngine:
                 # 如果网络请求失败或截图失败，做文本降级兜底
                 self.add_text(f"<font color='gray'>[{alt_text or 'Badge'}]</font>")
                 return
-        flowables = self.image_renderer.render(image_path, alt_text, avail_width=self.avail_width)
-        self.current_story.extend(flowables)
+        flowables = self.image_renderer.render(
+            image_path,
+            alt_text,
+            avail_width=self.avail_width,
+            avail_height=self.get_media_max_height(reserve_height=6 * mm),
+        )
+        self._extend_story(flowables)
 
     def rasterize_svg(self, url: str):
         """将 SVG 转换为本地 PNG 文件路径及尺寸"""
@@ -385,6 +448,14 @@ class MarkPressEngine:
         png_bytes, w, h = self.katex_renderer.render_image(latex, is_block=True)
 
         if png_bytes:
+# <<<<<<< fix/batch_test
+#             # 公式截图属于不可拆分 Flowable，必须同时受宽高约束。
+#             w, h = self.fit_media_size(
+#                 w,
+#                 h,
+#                 max_height=self.get_media_max_height(reserve_height=6 * mm),
+#             )
+# =======
             # 走katex
             # 限制宽度防止溢出
             scale = 1
@@ -395,6 +466,7 @@ class MarkPressEngine:
                 scale = min(scale, self.doc.height * 0.9 / h)
             h *= scale
             w *= scale
+# >>>>>>> test/batch_test
 
             img = Image(io.BytesIO(png_bytes), width=w, height=h)
             img.hAlign = 'CENTER'
@@ -402,8 +474,12 @@ class MarkPressEngine:
             self.current_story.append(Spacer(1, 4 * mm))
         else:
             # 走matplot
-            flowables = self.formula_renderer.render_block(latex, avail_width=self.avail_width, avail_height=self.doc.height, )
-            self.current_story.extend(flowables)
+            flowables = self.formula_renderer.render_block(
+                latex,
+                avail_width=self.avail_width,
+                avail_height=self.get_media_max_height(reserve_height=6 * mm),
+            )
+            self._extend_story(flowables)
             self.try_trigger_autosave()
 
     def save_pdf(self):

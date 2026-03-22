@@ -9,7 +9,12 @@ from reportlab.platypus import Paragraph
 
 from .base import BaseRenderer
 from ..inherited.SmartInlineImgParagraph import SmartInlineImgParagraph
-from ..utils.utils import replace_to_local_twemoji
+from ..utils.utils import (
+    replace_to_local_twemoji,
+    strip_invalid_reportlab_img_tags,
+    scale_oversized_inline_imgs,
+    MAX_INLINE_IMG_PT,
+)
 
 
 class TextRenderer(BaseRenderer):
@@ -41,6 +46,8 @@ class TextRenderer(BaseRenderer):
         clean_text = self._sanitize_html_for_reportlab(xml_text).replace("\n", "")
         img_heights = [float(h) for h in re.findall(r'height="([\d\.]+)"', clean_text)]
         max_img_h = max(img_heights) if img_heights else 0
+        # 限制行高，避免 Paragraph 超出 frame（约 688pt）
+        max_img_h = min(max_img_h, MAX_INLINE_IMG_PT)
 
         # 获取基础样式
         base_style = self.styles["Body_Text"]
@@ -86,7 +93,7 @@ class TextRenderer(BaseRenderer):
         if "<img" in clean_text :
             return [SmartInlineImgParagraph(clean_text, final_style)]
         else:
-            return [Paragraph(clean_text, self.styles["Body_Text"])]
+            return [Paragraph(clean_text, final_style)]
 
     def _sanitize_html_for_reportlab(self, text: str) -> str:
         """
@@ -142,6 +149,31 @@ class TextRenderer(BaseRenderer):
             if tag.name not in ALLOWED_TAGS:
                 tag.unwrap()
 
+        # ReportLab 对 <a>/<font> 的属性白名单非常严格，必须做二次净化。
+        for tag in soup.find_all(True):
+            if tag.name == "a":
+                safe_attrs = {}
+                href = (tag.get("href") or "").strip()
+                name = (tag.get("name") or "").strip()
+                if href:
+                    safe_attrs["href"] = href
+                if name:
+                    safe_attrs["name"] = name
+
+                if safe_attrs:
+                    tag.attrs = safe_attrs
+                else:
+                    tag.unwrap()
+            elif tag.name == "font":
+                safe_attrs = {}
+                for attr in ("color", "backColor", "backcolor", "face", "size"):
+                    value = tag.get(attr)
+                    if isinstance(value, str) and value.strip():
+                        safe_attrs[attr] = value.strip()
+                tag.attrs = safe_attrs
+            else:
+                tag.attrs = {}
+
         clean_html = str(soup)
 
         # --- [Step 3] 还原 <img /> (带空格) ---
@@ -164,8 +196,11 @@ class TextRenderer(BaseRenderer):
         clean_html = re.sub(r'<font[^>]*>\s*</font>', '', clean_html)
         # 清理空 b/i/u/strong/em
         clean_html = re.sub(r'<(b|i|u|strong|em)[^>]*>\s*</\1>', '', clean_html)
-        # print("清洗前：", text)
-        # print("清洗后：", clean_html)
+        # 清理空 a，尤其是被非法属性清洗后变成空壳的情况
+        clean_html = re.sub(r'<a[^>]*>\s*</a>', '', clean_html)
+        clean_html = re.sub(r'<a\s+name="\s*"\s*/?>', '', clean_html)
+        clean_html = strip_invalid_reportlab_img_tags(clean_html)
+        clean_html = scale_oversized_inline_imgs(clean_html)
         return clean_html
 
     def _parse_css_style(self, style_str: str) -> dict:

@@ -109,10 +109,92 @@ def replace_to_local_twemoji(chars, data_dict):
 def strip_front_matter(md_text: str) -> str:
     """
     硬核防线：精准切除文件头部的 YAML Front Matter。
-    使用 \A 确保绝对只匹配文件的第一行，绝不误伤正文里的 Markdown 分割线。
+    使用 \\A 确保绝对只匹配文件的第一行，绝不误伤正文里的 Markdown 分割线。
     """
     pattern = re.compile(r'\A---\n.*?\n---\n', re.DOTALL)
     return pattern.sub('', md_text)
+
+
+def strip_invalid_reportlab_img_tags(text: str) -> str:
+    """
+    移除会触发 ReportLab `paraparser` 崩溃的无效 <img> 标签。
+    1. 过滤缺少非空 src 的情况，例如 <img/>
+    2. 过滤找不到的绝对本地路径，避免构建阶段才抛 `Cannot open resource`
+    3. 重建标签，只保留 ReportLab 支持的属性（height, src, valign, width）
+    """
+    if not text:
+        return ""
+
+    def _extract_attr(tag: str, attr: str) -> str:
+        quoted = re.search(rf'\b{attr}\s*=\s*(["\'])(.*?)\1', tag, re.IGNORECASE)
+        if quoted:
+            return quoted.group(2).strip()
+
+        unquoted = re.search(rf'\b{attr}\s*=\s*([^\s/>]+)', tag, re.IGNORECASE)
+        if unquoted:
+            return unquoted.group(1).strip()
+
+        return ""
+
+    def _escape_attr(value: str) -> str:
+        return value.replace("&", "&amp;").replace('"', "&quot;")
+
+    def _is_supported_src(src: str) -> bool:
+        lowered = src.lower()
+        if lowered.startswith(("http://", "https://", "data:")):
+            return True
+        if os.path.isabs(src):
+            return os.path.exists(src)
+        return True
+
+    def keep_valid_img(match):
+        tag = match.group(0)
+        src = _extract_attr(tag, "src")
+        if not src or not _is_supported_src(src):
+            return ""
+
+        attrs = [("src", src)]
+        for attr in ("width", "height", "valign"):
+            value = _extract_attr(tag, attr)
+            if value:
+                attrs.append((attr, value))
+
+        rebuilt = " ".join(f'{name}="{_escape_attr(value)}"' for name, value in attrs)
+        return f"<img {rebuilt}/>"
+
+    return re.sub(r'<img\b[^>]*>', keep_valid_img, text, flags=re.IGNORECASE)
+
+
+# 单帧高度约 688pt，内联图片需限制在此以内
+MAX_INLINE_IMG_PT = 450
+
+
+def scale_oversized_inline_imgs(text: str, max_pt: float = MAX_INLINE_IMG_PT) -> str:
+    """
+    缩放超大的内联 <img>，避免 Paragraph 高度超过 frame 导致 ReportLab 报错。
+    """
+    if not text or "<img" not in text:
+        return text
+
+    def _scale_img(match):
+        tag = match.group(0)
+        w = re.search(r'width\s*=\s*["\']([\d\.]+)["\']', tag, re.I)
+        h = re.search(r'height\s*=\s*["\']([\d\.]+)["\']', tag, re.I)
+        if not w or not h:
+            return tag
+        try:
+            wv, hv = float(w.group(1)), float(h.group(1))
+        except (ValueError, TypeError):
+            return tag
+        if wv <= max_pt and hv <= max_pt:
+            return tag
+        scale = min(max_pt / wv, max_pt / hv, 1.0)
+        nw, nh = round(wv * scale, 1), round(hv * scale, 1)
+        tag = re.sub(r'width\s*=\s*["\'][^"\']*["\']', f'width="{nw}"', tag, flags=re.I)
+        tag = re.sub(r'height\s*=\s*["\'][^"\']*["\']', f'height="{nh}"', tag, flags=re.I)
+        return tag
+
+    return re.sub(r'<img\b[^>]*>', _scale_img, text, flags=re.IGNORECASE)
 
 
 def optimize_ast_html_blocks(tokens: list) -> list:

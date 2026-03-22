@@ -62,9 +62,11 @@ class TableRenderer(BaseRenderer):
         if num_cols == 0:
             return []
 
-        # 等宽分配列宽
+        # 等宽分配列宽；padding 必须跟着列宽动态收缩，否则窄列会出现负 availWidth。
         col_width = avail_width / num_cols
         col_widths = [col_width] * num_cols
+        left_padding, right_padding = self._horizontal_padding(col_width)
+        top_padding, bottom_padding = self._vertical_padding(col_width)
 
         # 构建 Paragraph 矩阵
         table_data = []
@@ -87,7 +89,15 @@ class TableRenderer(BaseRenderer):
         if not table_data:
             return []
 
-        t = Table(table_data, colWidths=col_widths, hAlign='LEFT')
+        t = Table(
+            table_data,
+            colWidths=col_widths,
+            repeatRows=1 if header else 0,
+            splitByRow=1,
+            splitInRow=1,
+            longTableOptimize=1,
+            hAlign='LEFT',
+        )
 
         # 构建样式命令
         t_conf = self.config.styles.table
@@ -98,11 +108,11 @@ class TableRenderer(BaseRenderer):
 
         style_cmds = [
             ('GRID', (0, 0), (-1, -1), 0.5, grid_color),
-            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-            ('LEFTPADDING', (0, 0), (-1, -1), 6),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 6),
-            ('TOPPADDING', (0, 0), (-1, -1), 4),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+            ('LEFTPADDING', (0, 0), (-1, -1), left_padding),
+            ('RIGHTPADDING', (0, 0), (-1, -1), right_padding),
+            ('TOPPADDING', (0, 0), (-1, -1), top_padding),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), bottom_padding),
         ]
 
         # 表头背景
@@ -127,6 +137,21 @@ class TableRenderer(BaseRenderer):
         t.setStyle(TableStyle(style_cmds))
 
         return [Spacer(1, 2 * mm), t, Spacer(1, 4 * mm)]
+
+    @staticmethod
+    def _horizontal_padding(col_width: float) -> tuple[float, float]:
+        """保证单元格内部始终留出正的可用宽度。"""
+        safe_width = max(float(col_width or 0), 2.0)
+        padding_each_side = min(6.0, max(0.5, (safe_width - 2.0) / 2.0))
+        return padding_each_side, padding_each_side
+
+    @staticmethod
+    def _vertical_padding(col_width: float) -> tuple[float, float]:
+        if col_width < 18:
+            return 1.0, 1.0
+        if col_width < 28:
+            return 2.0, 2.0
+        return 4.0, 4.0
 
     def _cell_style(self, base_name: str, aligns: List[Optional[str]], col_idx: int) -> ParagraphStyle:
         """根据列对齐方式返回适配的 ParagraphStyle（命中缓存或动态创建）"""
