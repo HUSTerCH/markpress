@@ -26,7 +26,7 @@ from .utils.utils import get_font_path, clear_temp_files, APP_TMP
 
 
 class MarkPressEngine:
-    def __init__(self, filename: str, theme_name: str = "academic", config: StyleConfig = None,shared_katex=None):
+    def __init__(self, filename: str, theme_name: str = "academic", config: StyleConfig = None, shared_katex=None):
         # 创建临时文件夹
 
         os.makedirs(APP_TMP, exist_ok=True)
@@ -448,12 +448,25 @@ class MarkPressEngine:
         png_bytes, w, h = self.katex_renderer.render_image(latex, is_block=True)
 
         if png_bytes:
-            # 公式截图属于不可拆分 Flowable，必须同时受宽高约束。
-            w, h = self.fit_media_size(
-                w,
-                h,
-                max_height=self.get_media_max_height(reserve_height=6 * mm),
-            )
+# <<<<<<< fix/batch_test
+#             # 公式截图属于不可拆分 Flowable，必须同时受宽高约束。
+#             w, h = self.fit_media_size(
+#                 w,
+#                 h,
+#                 max_height=self.get_media_max_height(reserve_height=6 * mm),
+#             )
+# =======
+            # 走katex
+            # 限制宽度防止溢出
+            scale = 1
+            if w > self.avail_width:
+                scale = self.avail_width / w
+
+            if h > self.doc.height:
+                scale = min(scale, self.doc.height * 0.9 / h)
+            h *= scale
+            w *= scale
+# >>>>>>> test/batch_test
 
             img = Image(io.BytesIO(png_bytes), width=w, height=h)
             img.hAlign = 'CENTER'

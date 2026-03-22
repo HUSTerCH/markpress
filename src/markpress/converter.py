@@ -102,6 +102,7 @@ def convert_markdown_batch(
 
     return summary
 
+
 def convert_markdown_file(input_path: str, output_path: str, theme: str = "academic", config=None):
     """
     读取 Markdown 文件，解析为 AST，驱动 Writer 生成 PDF。
@@ -178,12 +179,20 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
             # 3. [核心修复]：包裹锚点标签
             # 使用 <a name="..."> 整个包裹住标题文本
             # 这样既注册了书签目的地，又避免了产生空的 <a></a> 导致 CJK 换行崩溃
-            text_with_anchor = f'<a name="{anchor_id}"/>{xml_text}' if anchor_id else xml_text
+# <<<<<<< fix/batch_test
+#             text_with_anchor = f'<a name="{anchor_id}"/>{xml_text}' if anchor_id else xml_text
 
-            if text_with_anchor.strip():
+#             if text_with_anchor.strip():
+#                 writer.add_heading(text_with_anchor, level=level)
+#             # text = _render_inline(writer, children)
+#             # writer.add_heading(text, level=level)
+# =======
+            if anchor_id and anchor_id != "":
+                text_with_anchor = f'<a name="{anchor_id}"/>{xml_text}'
                 writer.add_heading(text_with_anchor, level=level)
-            # text = _render_inline(writer, children)
-            # writer.add_heading(text, level=level)
+            else:
+                writer.add_heading(xml_text, level=level)
+# >>>>>>> test/batch_test
 
         # 段落 (Paragraph)
         elif t_type == 'paragraph':
@@ -220,8 +229,13 @@ def _render_ast(writer: MarkPressEngine, tokens: list, base_dir: str = "."):
         elif t_type == 'list':
             ordered = attrs.get('ordered', False)
             start_index = attrs.get('start', 1)
+# <<<<<<< fix/batch_test
             list_items = _parse_list_items(writer, children, base_dir)
             writer.add_list(list_items, is_ordered=ordered,start_index=start_index)
+# =======
+#             list_items = _parse_list_items(writer, children)
+#             writer.add_list(list_items, is_ordered=ordered, start_index=start_index)
+# >>>>>>> test/batch_test
 
         # 表格 (Table)
         elif t_type == 'table':
@@ -282,7 +296,7 @@ def _render_inline(writer: MarkPressEngine, tokens: list, base_dir: str = ".") -
         elif t_type == 'codespan':
             code = tok.get('raw', '').replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
             # 给行内代码加个背景色需要高级设置，这里简单换字体
-            result.append(f'<font face="{writer.config.fonts.code}">{code}</font>')
+            result.append(f'<font face="{writer.config.fonts.code}" backColor="{writer.config.colors.border}">{code}</font>')
         # 行内公式，生成<img/> 标签
         elif t_type == 'inline_math':
             try:

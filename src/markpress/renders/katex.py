@@ -205,8 +205,8 @@ class KatexRenderer(BaseRenderer):
             # box['width'] 是 CSS 像素，ReportLab 使用 Points (1 CSS px ≈ 0.75 pt)
             # 但这里我们直接用 box 尺寸即可，因为浏览器默认 96DPI
             # PDF Point = px * 72 / 96 = px * 0.75
-            width_pt = box['width'] * 0.75
-            height_pt = box['height'] * 0.75
+            width_pt = box['width'] * 0.6
+            height_pt = box['height'] * 0.6
 
             return png_bytes, width_pt, height_pt
 

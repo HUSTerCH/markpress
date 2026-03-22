@@ -2,7 +2,7 @@ from pprint import pprint
 
 import mistune
 
-from markpress.utils import _optimize_ast_html_blocks
+from markpress.utils.utils import optimize_ast_html_blocks
 
 
 # --- 核心可视化代码 (直接追加) ---
@@ -40,7 +40,7 @@ def dump_ast_tree(node, prefix="", is_last=True):
             dump_ast_tree(child, new_prefix, is_last=(i == len(children) - 1))
 
 
-with open("随机过程试卷.md", "r", encoding="utf-8") as f:
+with open("/Users/luochang/.cache/modelscope/hub/datasets/OpenDataLab/awesome-markdown-ebooks/ChinaTextbook/sample/义务教育教科书·科学·学生活动手册二年级上册/vlm/义务教育教科书·科学·学生活动手册二年级上册.md", "r", encoding="utf-8") as f:
     text = f.read()
     f.close()
 
@@ -65,7 +65,7 @@ markdown = mistune.create_markdown(
     ]
 )
 ast = markdown(text)
-optimized_ast = _optimize_ast_html_blocks(ast)
+optimized_ast = optimize_ast_html_blocks(ast)
 pprint(optimized_ast)
 # --- 执行 ---
 print("\nAST Structure:")

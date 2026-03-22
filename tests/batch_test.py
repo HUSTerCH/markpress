@@ -25,27 +25,51 @@ def write_file(path: Path, content: str):
 # 1. 从上次报错样本列表读取待重跑文件
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 tasks = []
-with open(ERROR_FILES_LIST, encoding="utf-8") as f:
-    for line in f:
-        md_path_str = line.strip()
-        if not md_path_str:
-            continue
-        md_file = Path(md_path_str)
-        if not md_file.exists():
-            print(f"[跳过] 文件不存在: {md_path_str}")
-            continue
-        # 保留相对路径层级，防止同名覆盖
-        try:
-            relative_path = md_file.relative_to(DATASET_DIR)
-        except ValueError:
-            print(f"[跳过] 路径不在 DATASET_DIR 下: {md_path_str}")
-            continue
-        pdf_path = EXPORT_DIR / relative_path.with_suffix(".pdf")
-        pdf_path.parent.mkdir(parents=True, exist_ok=True)
-        tasks.append((str(md_file), str(pdf_path)))
+# <<<<<<< fix/batch_test
+# with open(ERROR_FILES_LIST, encoding="utf-8") as f:
+#     for line in f:
+#         md_path_str = line.strip()
+#         if not md_path_str:
+#             continue
+#         md_file = Path(md_path_str)
+#         if not md_file.exists():
+#             print(f"[跳过] 文件不存在: {md_path_str}")
+#             continue
+#         # 保留相对路径层级，防止同名覆盖
+#         try:
+#             relative_path = md_file.relative_to(DATASET_DIR)
+#         except ValueError:
+#             print(f"[跳过] 路径不在 DATASET_DIR 下: {md_path_str}")
+#             continue
+#         pdf_path = EXPORT_DIR / relative_path.with_suffix(".pdf")
+#         pdf_path.parent.mkdir(parents=True, exist_ok=True)
+#         tasks.append((str(md_file), str(pdf_path)))
 
-print(f"从 {ERROR_FILES_LIST.name} 加载 {len(tasks)} 个待重跑样本。")
-print(f"日志输出目录: {LOG_DIR}")
+# print(f"从 {ERROR_FILES_LIST.name} 加载 {len(tasks)} 个待重跑样本。")
+# print(f"日志输出目录: {LOG_DIR}")
+# =======
+for md_file in markdown_files:
+    # 【修复1：保留相对路径层级，防止同名覆盖】
+    # 比如 src/Math/ch1.md -> EXPORT_DIR/Math/ch1.pdf
+    relative_path = md_file.relative_to(DATASET_DIR)
+    pdf_path = EXPORT_DIR / relative_path.with_suffix(".pdf")
+
+    # 【修复2：断点续传检查】
+    # 如果 PDF 已经存在且大小不为 0，说明上次成功了，直接跳过
+    if pdf_path.exists() and pdf_path.stat().st_size > 0:
+        continue
+
+    # 确保输出子目录存在
+    pdf_path.parent.mkdir(parents=True, exist_ok=True)
+    tasks.append((str(md_file), str(pdf_path)))
+
+print(f"总扫描到 {len(markdown_files)} 个文件。")
+print(f"排除已完成项后，剩余待处理任务: {len(tasks)} 个。")
+with open("error-files-20260309.txt", "w",encoding='utf-8') as f:
+    for task in tasks:
+        f.write(task[0] + "\n")
+exit(0)
+# >>>>>>> test/batch_test
 
 # 如果没有任务，直接退出
 if not tasks:
