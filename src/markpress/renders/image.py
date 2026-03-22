@@ -1,5 +1,5 @@
 import os
-from reportlab.platypus import Image, Spacer,Paragraph
+from reportlab.platypus import Image, Spacer, Paragraph
 from reportlab.lib.units import mm
 from .base import BaseRenderer
 from reportlab.lib import colors
@@ -50,10 +50,9 @@ class ImageRenderer(BaseRenderer):
                 print(f"警告: 无法下载图片: {image_path}")
                 return []
             image_path = local_path
-
         if not os.path.exists(image_path):
             print(f"警告: 图片文件不存在或无法访问: {image_path}")
-            return [Paragraph(f"<b><font color='red'>加载图片{alt_text}失败</font></b>",self.styles["Body_Text"])]
+            return [Paragraph(f"<b><font color='red'>加载图片{alt_text}失败</font></b>", self.styles["Body_Text"])]
         try:
             img = Image(image_path)
             # 获取原始尺寸
@@ -77,8 +76,10 @@ class ImageRenderer(BaseRenderer):
                 img.drawHeight = max_height
                 img.drawWidth = img.drawWidth * scale
             img.hAlign = 'CENTER'
+            # if img.drawHeight == 1123.21875 or img.drawWidth == 1123.21875 or img.imageWidth == 1123.21875 or img.imageHeight == 1123.21875:
+            #     print(img)
             return [
-                Spacer(1, 6 * mm),  # 图片前的间距
+                # Spacer(1, 6 * mm),  # 图片前的间距
                 img,
                 # Spacer(1, 3 * mm)   # 图片后的间距
             ]

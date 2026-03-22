@@ -30,7 +30,7 @@ for md_file in markdown_files:
 
 print(f"总扫描到 {len(markdown_files)} 个文件。")
 print(f"排除已完成项后，剩余待处理任务: {len(tasks)} 个。")
-with open("error-files-20260306.txt", "w",encoding='utf-8') as f:
+with open("error-files-20260309.txt", "w",encoding='utf-8') as f:
     for task in tasks:
         f.write(task[0] + "\n")
 exit(0)

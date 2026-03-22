@@ -26,7 +26,7 @@ from .utils.utils import get_font_path, clear_temp_files, APP_TMP
 
 
 class MarkPressEngine:
-    def __init__(self, filename: str, theme_name: str = "academic", config: StyleConfig = None,shared_katex=None):
+    def __init__(self, filename: str, theme_name: str = "academic", config: StyleConfig = None, shared_katex=None):
         # 创建临时文件夹
 
         os.makedirs(APP_TMP, exist_ok=True)
@@ -387,10 +387,14 @@ class MarkPressEngine:
         if png_bytes:
             # 走katex
             # 限制宽度防止溢出
+            scale = 1
             if w > self.avail_width:
                 scale = self.avail_width / w
-                w *= scale
-                h *= scale
+
+            if h > self.doc.height:
+                scale = min(scale, self.doc.height * 0.9 / h)
+            h *= scale
+            w *= scale
 
             img = Image(io.BytesIO(png_bytes), width=w, height=h)
             img.hAlign = 'CENTER'
